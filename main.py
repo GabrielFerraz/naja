@@ -1,5 +1,8 @@
 from automatos import automatos
 
+arquivo = open("entrada.txt", "a")
+arquivo.write("\n")
+arquivo.close
 arquivo = open("entrada.txt", "r")
 automato = ""
 chave = ""
@@ -24,7 +27,8 @@ for linha in arquivo.readlines():
 
 		try:
 			automato.proximo(entrada)
-			chave += entrada
+			if entrada not in [" ","\n"]:
+				chave += entrada
 		except:
 			print "Erro de sintaxe!"
 
