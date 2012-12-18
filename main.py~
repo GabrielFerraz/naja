@@ -74,5 +74,5 @@ for linha in arquivo.readlines():
 	
 arquivo.close()
 arquivo = file("saida.txt", "w")
-arquivo.write(str(pares))
+arquivo.write(pares)
 print pares

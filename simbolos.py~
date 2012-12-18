@@ -4,7 +4,7 @@ simbolos = {
 	"retorna": "reservado",
 	"Verdade": "constante",
 	"senaose": "reservado",
-	"imprime": "func_int",
+	"imprime": "func_int"
 	"quebra": "reservado",
 	"Falso": "constante",
 	"vazio": "reservado",

@@ -40,7 +40,7 @@ class Estado:
 				#print "outro","->",str(self.transicoes["outro"])
 				return self.transicoes["outro"]
 			
-		raise Exception("Proximo nao encontrado")
+		raise Exception("Próximo não encontrado")
 
 class Automato:
 	

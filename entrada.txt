@@ -1,5 +1,12 @@
-#dishdhdhsfk
-#es
-#qualquermerda
-anock
-ax +=bsd
+a>b
+a<b
+a>=b
+a<=b
+a&&b
+a||b
+a=b
+a==b
+a!=b
+!b
+
+   
