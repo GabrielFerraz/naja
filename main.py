@@ -2,17 +2,19 @@ from automatos import automatos
 from simbolos import simbolos
 import sys
 
-arquivo = open("entrada.txt", "a")
-arquivo.write(" ")
-arquivo.close
 arquivo = open("entrada.txt", "r")
 automato = ""
 chave = ""
 pares = []
+numero_linha = 0
 erro = False
-numero_linha = -1
 
-for linha in arquivo.readlines():
+a = arquivo.readlines()
+
+for linha in a:
+	if erro:
+		break
+		
 	numero_linha += 1
 	i = 0
 	while i < len(linha):
@@ -61,7 +63,8 @@ for linha in arquivo.readlines():
 				chave += entrada
 				
 		except:
-			print "Erro de sintaxe! linha", numero_linha, ">>", chave
+			print "Erro de sintaxe! linha", str(numero_linha)+":"
+			print linha + " " * (i-1) + "^" 
 			erro = True
 			break
 
@@ -76,8 +79,6 @@ for linha in arquivo.readlines():
 		
 		i += 1
 
-	if erro:
-		break
 	
 arquivo.close()
 arquivo = file("saida.txt", "w")
