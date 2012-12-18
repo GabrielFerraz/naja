@@ -5,6 +5,12 @@ def confere(tipo, entrada):
 		return "A" <= entrada <= "Z"
 	elif tipo == "digito":
 		return "0" <= entrada <= "9"
+	elif tipo == "naozero":
+		return "1" <= entrada <= "9"
+	elif tipo == "hexamin":
+		return "a" <= entrada <= "f"
+	elif tipo == "hexamai":
+		return "F" <= entrada <= "F"
 	else:
 		return entrada == tipo
 
