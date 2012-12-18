@@ -30,12 +30,14 @@ estados = []
 estados.append(Estado("q0", False))
 estados.append(Estado("q1", False))
 estados.append(Estado("q2", False))
+estados.append(Estado("q3", False))
 estados.append(Estado("string", True))
 estados.append(Estado("blibli", False))
 
 estados[0].set_transicoes({"'": estados[1],'"':estados[2]})
-estados[1].set_transicoes({"'": estados[3],"outro":estados[1],"\n": estados[4]})
-estados[2].set_transicoes({'"': estados[3],"outro":estados[2],"\n": estados[4]})
+estados[1].set_transicoes({"'": estados[3],"outro":estados[1],"\n": estados[5]})
+estados[2].set_transicoes({'"': estados[3],"outro":estados[2],"\n": estados[5]})
+estados[3].set_transicoes({"outro":estados[4]})
 
 automatos["string"] = Automato("string", estados, estados[0])
 

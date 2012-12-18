@@ -10,7 +10,7 @@ automato = ""
 chave = ""
 pares = []
 erro = False
-numero_linha = 0
+numero_linha = -1
 
 for linha in arquivo.readlines():
 	numero_linha += 1
@@ -19,7 +19,7 @@ for linha in arquivo.readlines():
 		entrada = linha[i]
 		
 		if automato == "":
-			if entrada in [" ","\n"]:
+			if entrada in [" ","\t","\n"]:
 				i += 1
 				continue
 			if entrada == "#":
@@ -35,15 +35,20 @@ for linha in arquivo.readlines():
 			elif entrada == '"' or entrada == "'":
 				automato = automatos["string"]
 			elif entrada == "(":
-				pares.append("parentesis","(")
+				pares.append(("parentesis","("))
+				break
 			elif entrada == ")":
-				pares.append("parentesis",")")
+				pares.append(("parentesis",")"))
+				break
 			elif entrada == "[":
-				pares.append("colchete","[")
+				pares.append(("colchete","["))
+				break
 			elif entrada == "]":
-				pares.append("colchete","]")
+				pares.append(("colchete","]"))
+				break
 			elif entrada == ":":
-				pares.append("doispontos", ":")
+				pares.append(("doispontos", ":"))
+				break
 
 		try:
 			automato.proximo(entrada)
@@ -52,7 +57,9 @@ for linha in arquivo.readlines():
 					chave += entrada
 				else:
 					i -= 1
-
+			elif entrada in [" ","\t"] and automato.get_nome() == "string":
+				chave += entrada
+				
 		except:
 			print "Erro de sintaxe! linha", numero_linha, ">>", chave
 			erro = True

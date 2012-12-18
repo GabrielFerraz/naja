@@ -1,12 +1,9 @@
-a>b
-a<b
-a>=b
-a<=b
-a&&b
-a||b
-a=b
-a==b
-a!=b
-!b
-
+crt x = "string com espacos... agora pega"
+  
+ 
    
+   
+ 
+ 
+ 
+ 
