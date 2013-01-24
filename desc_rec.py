@@ -1,40 +1,49 @@
-entrada = [('tipo', 'int'), ('identificador', 'x'), ('identificador', 'x'), ("=", "="), ('identificador', 'c'),('$','$')]
+from gramatica import m
+
+entrada = [('identificador', 'z'), ('=', '='), ('identificador', 'c'), ('+', '+'), ('int', '5'), ('$', '$')]
+
+
+for i in range(0,len(entrada)):
+    if entrada[i][0] in ["logico","aritmetico"]:
+        entrada[i] = entrada[i][1], entrada[i][0]
+
 proximo = 0
 pilha = ["P"]
-m = {"P":{"tipo":"D","identificador":"A","$":"$"}, "D":{"tipo":"T I"},
-	"T":{"tipo":"tipo"}, "I":{"identificador":"identificador"}, "A":{"id":"I = I"}}
+M = {"P":{"tipo":"D","identificador":"A","$":"$"}, "D":{"tipo":"T I"},
+	"T":{"tipo":"tipo"}, "I":{"identificador":"identificador"}, "A":{"id":"I L I"}, "L":{"=":"="}}
 terminais = ["tipo","identificador","="]
-nao_terminais = ["P","D","T","I","A"]
+nao_terminais = [x for x in m]
+terminais = ["+=","-=","*=","/=","%=","**=","=","tipo","int","identificador",
+            "<",">","<=",">=","!", "!=","==","+","-","*","/","//","&&","||","e","$"]
+
 x = pilha[-1]
 
 def parser(nt_atual):
     global proximo
     inicio = proximo
-    for producao in nt_atual:
-        print nt_atual
-        print "producao", producao
-        proximo = inicio
-        for elemento in nt_atual[producao].split(" "):
-            print "elemento", elemento
-            print "entrada", entrada[proximo][0]
+
+    if entrada[proximo][0] in nt_atual:
+        for elemento in nt_atual[entrada[proximo][0]].split(" "):
             if elemento in nao_terminais:
-                if not parser(m[elemento]):
-                    break
-            elif elemento in terminais and elemento == entrada[proximo][0]:
-                print "proximo"
+                if parser(m[elemento]):
+                    if (proximo - inicio) == len(nt_atual[entrada[inicio][0]].split(" ")):
+                        return True
+                else:
+                    return False                    
+            elif elemento == "e":
+                continue
+                
+            elif elemento == entrada[proximo][0]:
                 proximo += 1
-                if len(nt_atual) == (proximo - inicio):
+                if (proximo - inicio) == len(nt_atual[entrada[proximo-1][0]].split(" ")):
                     return True
             else:
-                break
-        if entrada[proximo][0] == "$":
-            print "ACHOU FIM DE CADEIA", nt_atual
-            return True
+                return False
     else:
-        if nt_atual == m["P"]:
-            return parser(m["P"])
-        else:
-            return False
+        return False
 
-    
+    if nt_atual == m["P"]:
+       return parser(m["P"])
+       
+    return True   
 print parser(m["P"])
