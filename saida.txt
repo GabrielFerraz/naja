@@ -1,1 +1,1 @@
-[('tipo', 'crt'), ('identificador', 'x'), ('logico', '='), ('string', '"string com espacos... agora pega"'), ('comentario', '#aslkdfjalskfklj'), ('string', '"blibli"')]
+[('tipo', 'int'), ('identificador', 'x')]

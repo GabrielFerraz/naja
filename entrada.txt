@@ -1,3 +1,1 @@
-crt x = "string com espacos... agora pega"
-#aslkdfjalskfklj
-"blibli"
+int x
