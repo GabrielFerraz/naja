@@ -1,7 +1,8 @@
 entrada = [('tipo', 'int'), ('identificador', 'x'), ('$','$')]
 proximo = entrada.pop(0)
 pilha = ["P"]
-m = {"P":{"tipo":"D", "$":"$"}, "D":{"tipo":"I T"}, "T":{"tipo":"tipo"}, "I":{"identificador":"identificador"}}
+m = {"P":{"tipo":"D","identificador":"A","$":"$"}, "D":{"tipo":"I T"},
+	"T":{"tipo":"tipo"}, "I":{"identificador":"identificador"}, "A":{"id":}}
 terminais = ["tipo","identificador"]
 nao_terminais = ["P","D","T","I"]
 x = pilha[-1]
