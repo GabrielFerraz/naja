@@ -150,6 +150,17 @@ def p_expressao(p):
 def p_comparacao(p):
     'comparacao : valor [operador_comp valor]'
     
+def p_operador_comp(p):
+    "operador_comp : '<' | '>' | IGUIG | MAIORIG | MENORIG | DIG "  
+           
+def p_exponenciacao(p):
+    "exponenciacao : comparacao [EXP exp_u]"
+
+def p_exp_u(p):
+    '''exp_u =
+        exponenciacao | "-" exp_u
+        | "+" exp_u'''
+    
 def p_param(p):
 
     'param : declaracao'

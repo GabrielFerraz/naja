@@ -149,6 +149,29 @@ def p_expressao(p):
 
 def p_comparacao(p):
     'comparacao : valor [operador_comp valor]'
+    
+def p_param(p):
+
+    'param : declaracao'
+
+def p_params(p):
+
+    'params : param(,param)*'
+
+def p_retorna(p):
+
+    'retorna : RETORNA expressao'
+
+def p_imprime(p):
+
+    'imprime : IMPRIME expressao'
+
+def p_op_aum(p):
+
+    'op_aum : MAISIG | MENOSIG | MULTIG | DIVIG | MODIG | EXPIG'
+
+def p_atribuicao_aumentada(p):
+    'atribuicao_aumentada : ID op_aum valor'
 
 def p_error(p):
     if p:
