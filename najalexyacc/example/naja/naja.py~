@@ -44,11 +44,11 @@ t_MENOSIG = r'-='
 t_MULTIG = r'\*='
 t_DIVIG = r'/='
 t_MODIG = r'%='
-t_EXPIG = r'\*\*='  
+t_EXPIG = r'\*\*='
 t_EXP = r'\*\*'
 t_DIVINT = r'//'
 t_E = r'&&'
-t_OU = r'||'
+t_OU = r'\|\|'
 t_MENORIG = r'<='
 t_MAIORIG = r'>='
 t_IGUIG = r'=='
@@ -61,20 +61,21 @@ def t_ID(t):
 	t.type = reserved.get(t.value,'ID')
 	return t
 
+
 def t_INT(t):
-    r'\d+'
-    t.value = int(t.value)
-    return t
+	r'\d+'
+	t.value = int(t.value)
+	return t
 
 def t_REAL(t):
-	r'\d*.\d+'    .
+	r'\d*.\d+'
 	t.value = float(t.value)
-    return t
+	return t
 
 def t_HEXA(t):
 	r'0[xX][0-9a-fA-F]+'
 	t.value = hex(t.value)
-    return t
+	return t
 
 t_ignore = " \t"
 
@@ -83,7 +84,8 @@ def t_newline(t):
     t.lexer.lineno += t.value.count("\n")
     
 def t_error(t):
-    print("Illegal character '%s'" % t.value[0])
+    print("Caracter Ilegal '%s'" % t.value[0])
+    print "Linha "+str(t.lineno)
     t.lexer.skip(1)
     
 # Build the lexer
@@ -101,43 +103,51 @@ lex.lex()
 # dictionary of names
 names = { }
 
-def p_statement_assign(p):
-    'statement : NAME "=" expression'
-    names[p[1]] = p[3]
+def p_primario_decl(p):
+	'primario : declaracao'
+	print "funfou"
 
-def p_statement_expr(p):
-    'statement : expression'
-    print(p[1])
+def p_declaracao(p):
+    'declaracao : TIPO ID'
+	
 
-def p_expression_binop(p):
-    '''expression : expression '+' expression
-                  | expression '-' expression
-                  | expression '*' expression
-                  | expression '/' expression'''
-    if p[2] == '+'  : p[0] = p[1] + p[3]
-    elif p[2] == '-': p[0] = p[1] - p[3]
-    elif p[2] == '*': p[0] = p[1] * p[3]
-    elif p[2] == '/': p[0] = p[1] / p[3]
+#def p_statement_assign(p):
+#    'statement : NAME "=" expression'
+#    names[p[1]] = p[3]
 
-def p_expression_uminus(p):
-    "expression : '-' expression %prec UMINUS"
-    p[0] = -p[2]
+#def p_statement_expr(p):
+#    'statement : expression'
+#    print(p[1])
 
-def p_expression_group(p):
-    "expression : '(' expression ')'"
-    p[0] = p[2]
+#def p_expression_binop(p):
+#    '''expression : expression '+' expression
+#                  | expression '-' expression
+#                  | expression '*' expression
+#                  | expression '/' expression'''
+#    if p[2] == '+'  : p[0] = p[1] + p[3]
+#    elif p[2] == '-': p[0] = p[1] - p[3]
+#    elif p[2] == '*': p[0] = p[1] * p[3]
+#    elif p[2] == '/': p[0] = p[1] / p[3]
 
-def p_expression_number(p):
-    "expression : NUMBER"
-    p[0] = p[1]
+#def p_expression_uminus(p):
+#    "expression : '-' expression %prec UMINUS"
+#    p[0] = -p[2]
 
-def p_expression_name(p):
-    "expression : NAME"
-    try:
-        p[0] = names[p[1]]
-    except LookupError:
-        print("Undefined name '%s'" % p[1])
-        p[0] = 0
+#def p_expression_group(p):
+#    "expression : '(' expression ')'"
+#    p[0] = p[2]
+
+#def p_expression_number(p):
+#    "expression : NUMBER"
+#    p[0] = p[1]
+
+#def p_expression_name(p):
+#    "expression : NAME"
+#    try:
+#        p[0] = names[p[1]]
+#    except LookupError:
+#        print("Undefined name '%s'" % p[1])
+#        p[0] = 0
 
 def p_error(p):
     if p:

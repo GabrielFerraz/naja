@@ -63,7 +63,7 @@ def t_ID(t):
 
 
 def t_INT(t):
-	r'\d+'
+	r'([1-9][0-9]*)|0'
 	t.value = int(t.value)
 	return t
 
@@ -84,7 +84,8 @@ def t_newline(t):
     t.lexer.lineno += t.value.count("\n")
     
 def t_error(t):
-    print("Illegal character '%s'" % t.value[0])
+    print("Caracter ilegal '%s'" % t.value[0])
+    print "Linha "+str(t.lineno)
     t.lexer.skip(1)
     
 # Build the lexer
@@ -94,6 +95,7 @@ lexer = lex.lex()
 # Test it out
 data = '''
 se a == 3 :
+k = 34.5
 retorna Verdade
 fim
 '''
