@@ -5,9 +5,9 @@ _tabversion = '3.2'
 
 _lr_method = 'LALR'
 
-_lr_signature = '\xa5\x8d\xb4;e+\x0b\xaad\xed\xd2\to\x0bK\xd0'
+_lr_signature = ')z\xb2\xb2\x82\xbc\xa8\xf2\x87\xc3\xf1\xd2h\xbb\xe2\xf4'
     
-_lr_action_items = {'ID':([3,],[4,]),'TIPO':([0,],[3,]),'$end':([1,2,4,],[0,-1,-2,]),}
+_lr_action_items = {'TIPO':([0,8,],[1,1,]),'ID':([1,],[7,]),':':([3,],[8,]),'$end':([2,4,5,6,7,10,],[0,-2,-1,-3,-4,-5,]),'SE':([0,],[3,]),'FIM':([7,9,],[-4,10,]),}
 
 _lr_action = { }
 for _k, _v in _lr_action_items.items():
@@ -16,7 +16,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'primario':([0,],[1,]),'declaracao':([0,],[2,]),}
+_lr_goto_items = {'controle':([0,],[4,]),'primario':([0,],[2,]),'declaracao':([0,8,],[5,9,]),'se':([0,],[6,]),}
 
 _lr_goto = { }
 for _k, _v in _lr_goto_items.items():
@@ -26,6 +26,9 @@ for _k, _v in _lr_goto_items.items():
 del _lr_goto_items
 _lr_productions = [
   ("S' -> primario","S'",1,None,None,None),
-  ('primario -> declaracao','primario',1,'p_primario_decl','naja.py',107),
-  ('declaracao -> TIPO ID','declaracao',2,'p_declaracao','naja.py',110),
+  ('primario -> declaracao','primario',1,'p_primario','naja.py',102),
+  ('primario -> controle','primario',1,'p_primario','naja.py',103),
+  ('controle -> se','controle',1,'p_controle','naja.py',106),
+  ('declaracao -> TIPO ID','declaracao',2,'p_declaracao','naja.py',109),
+  ('se -> SE : declaracao FIM','se',4,'p_se','naja.py',112),
 ]

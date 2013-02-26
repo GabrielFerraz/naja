@@ -33,8 +33,8 @@ reserved = {"enquanto": "ENQUANTO",
 	"crt": "TIPO"}
 
 tokens = [
-    'ID','INT','REAL','HEXA', 'MAISIG', 'MENOSIG', 'MULTIG', 'DIVIG', 'MODIG', 'EXPIG', 'EXP',
-    'DIVINT', 'E', 'OU', 'MENORIG', 'MAIORIG', 'IGUIG', 'DIF'
+    'ID','REAL','INT', 'MAISIG', 'MENOSIG', 'MULTIG', 'DIVIG', 'MODIG', 'EXPIG', 'EXP',
+    'DIVINT', 'E', 'OU', 'MENORIG', 'MAIORIG', 'IGUIG', 'DIF', 'STRING', 'NOVALINHA'
     ] + list(reserved.values())
 
 literals = ['=','+','-','*','/', '(',')','[', ']', '%', '!', '<', '>',':']
@@ -53,6 +53,7 @@ t_MENORIG = r'<='
 t_MAIORIG = r'>='
 t_IGUIG = r'=='
 t_DIF = r'!='
+#t_NOVALINHA = r'\n+'
 
 # Tokens
 
@@ -61,27 +62,22 @@ def t_ID(t):
 	t.type = reserved.get(t.value,'ID')
 	return t
 
-
-def t_INT(t):
-	r'([1-9][0-9]*)|0'
-	t.value = int(t.value)
-	return t
-
 def t_REAL(t):
 	r'\d*.\d+'
 	t.value = float(t.value)
 	return t
 
-def t_HEXA(t):
-	r'0[xX][0-9a-fA-F]+'
-	t.value = hex(t.value)
+def t_INT(t):
+	r'\d+'
+	t.value = int(t.value)
 	return t
 
 t_ignore = " \t"
 
-def t_newline(t):
+def t_NOVALINHA(t):
     r'\n+'
     t.lexer.lineno += t.value.count("\n")
+    return t    
     
 def t_error(t):
     print("Caracter ilegal '%s'" % t.value[0])
@@ -95,7 +91,6 @@ lexer = lex.lex()
 # Test it out
 data = '''
 se a == 3 :
-k = 34.5
 retorna Verdade
 fim
 '''
