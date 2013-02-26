@@ -181,6 +181,33 @@ def p_op_aum(p):
 
     'op_aum : MAISIG | MENOSIG | MULTIG | DIVIG | MODIG | EXPIG'
 
+def p_exp_m(p):
+	'''exp_m : u_expr | exp_m '*' exp_u | exp_m DIVINT exp_u | exp_m '/' exp_u'''
+
+def p_exp_a(p):
+	'''exp_a : exp_m | exp_a '+' exp_m | exp_a '-' exp_m'''
+
+def p_exp_ou(p):
+	'''exp_ou : exp_e | exp_ou OU exp_e'''
+
+def p_exp_e(p):
+	'''exp_e : exp_nao | exp_e E exp_nao'''
+
+def p_exp_nao(p):
+	'''exp_nao : exp_a | '!' exp_nao'''
+
+def p_suite(p):
+	'''suite : [NOVALINHA] afirmacao+'''
+
+def p_afirmacao(p):
+	'''afirmacao : afirm_simples NOVALINHA | afirm_composto'''
+
+def p_afirm_simples(p):
+	'''afirm_simples : atribuicao | atribuicao_aumentada | imprime | retorna | QUEBRA | CONTINUA'''
+
+def p_afirm_composto(p):
+	'''afirm_composto : se | enquanto | para'''
+
 def p_atribuicao_aumentada(p):
     'atribuicao_aumentada : ID op_aum valor'
 
