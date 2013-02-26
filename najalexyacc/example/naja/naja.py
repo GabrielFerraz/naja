@@ -116,39 +116,62 @@ def p_se(p):
         FIM '''
 
 def p_enquanto(p):
-    'enquanto = ENQUANTO expressao : suite FIM'
+    'enquanto : ENQUANTO expressao : suite FIM'
 
 def p_para(p):
-    '''para = PARA ID DE (INT | ID) ATE (INT | ID) :  
+    '''para : PARA ID DE (INT | ID) ATE (INT | ID) :  
         suite
         FIM'''
 
 def p_definicao(p):
-    '''definicao = DEF TIPO ID '('[params]')' : 
+    '''definicao : DEF TIPO ID '('[params]')' : 
         suite 
         retorna
         FIM'''
 
 def p_defsubfuncao(p):
-    '''defsubfuncao = DEF VAZIO ID '('[params]')' :
+    '''defsubfuncao : DEF VAZIO ID '('[params]')' :
         suite
         FIM'''
 
 def p_atribuicao(p):
-    "atribuicao = ID ['['INT']'] '=' valor"
+    "atribuicao : ID ['['INT']'] '=' valor"
     
 def p_chamada(p):
-    "chamada = ID '(' [valor (,valor)*] ')'"
+    "chamada : ID '(' [valor (,valor)*] ')'"
 
 def p_valor(p)
-    '''valor = ID 
+    '''valor : ID 
         | literal 
         | chamada'''
 def p_expressao(p):
-    'expressao =  exp_ou' 
+    'expressao :  exp_ou' 
 
 def p_comparacao(p):
-    'comparacao = valor [operador_comp valor]'
+    'comparacao : valor [operador_comp valor]'
+    
+def p_param(p):
+
+    'param : declaracao'
+
+def p_params(p):
+
+    'params : param(,param)*'
+
+def p_retorna(p):
+
+    'retorna : RETORNA expressao'
+
+def p_imprime(p):
+
+    'imprime : IMPRIME expressao'
+
+def p_op_aum(p):
+
+    'op_aum : MAISIG | MENOSIG | MULTIG | DIVIG | MODIG | EXPIG'
+
+def p_atribuicao_aumentada(p):
+    'atribuicao_aumentada : ID op_aum valor'
 
 def p_error(p):
     if p:
