@@ -115,6 +115,41 @@ def p_se(p):
         [SENAO ':' suite]
         FIM '''
 
+def p_enquanto(p):
+    'enquanto = ENQUANTO expressao : suite FIM'
+
+def p_para(p):
+    '''para = PARA ID DE (INT | ID) ATE (INT | ID) :  
+        suite
+        FIM'''
+
+def p_definicao(p):
+    '''definicao = DEF TIPO ID '('[params]')' : 
+        suite 
+        retorna
+        FIM'''
+
+def p_defsubfuncao(p):
+    '''defsubfuncao = DEF VAZIO ID '('[params]')' :
+        suite
+        FIM'''
+
+def p_atribuicao(p):
+    "atribuicao = ID ['['INT']'] '=' valor"
+    
+def p_chamada(p):
+    "chamada = ID '(' [valor (,valor)*] ')'"
+
+def p_valor(p)
+    '''valor = ID 
+        | literal 
+        | chamada'''
+def p_expressao(p):
+    'expressao =  exp_ou' 
+
+def p_comparacao(p):
+    'comparacao = valor [operador_comp valor]'
+
 def p_error(p):
     if p:
         print("Syntax error at '%s'" % p.value)
