@@ -34,10 +34,10 @@ reserved = {"enquanto": "ENQUANTO",
 
 tokens = [
     'ID','REAL','INT', 'MAISIG', 'MENOSIG', 'MULTIG', 'DIVIG', 'MODIG', 'EXPIG', 'EXP',
-    'DIVINT', 'E', 'OU', 'MENORIG', 'MAIORIG', 'IGUIG', 'DIF', 'STRING', 'NOVALINHA'
+    'DIVINT', 'E', 'OU', 'MENORIG', 'MAIORIG', 'IGUIG', 'DIF', 'PALAVRA', 'NOVALINHA'
     ] + list(reserved.values())
 
-literals = ['=','+','-','*','/', '(',')','[', ']', '%', '!', '<', '>',':']
+literals = ['=','+','-','*','/', '(',')','[', ']', '%', '!', '<', '>', ':',',']
 
 t_MAISIG = r'\+='
 t_MENOSIG = r'-='
@@ -53,14 +53,16 @@ t_MENORIG = r'<='
 t_MAIORIG = r'>='
 t_IGUIG = r'=='
 t_DIF = r'!='
-#t_NOVALINHA = r'\n+'
 
 # Tokens
 
 def t_ID(t):
-	r'[a-zA-Z_][a-zA-Z0-9_]*'
+	r'[a-zA-Z_]\w*'
 	t.type = reserved.get(t.value,'ID')
 	return t
+
+def t_COMENTARIO(t):
+    r'\#[^\n]*'
 
 def t_REAL(t):
 	r'\d*.\d+'
@@ -71,16 +73,21 @@ def t_INT(t):
 	r'\d+'
 	t.value = int(t.value)
 	return t
-
-t_ignore = " \t"
+	
+def t_PALAVRA(t):
+    r'\"[^\"]*\"'
+    t.value = t.value[1:-1]
+    return t
+    
+t_ignore = " \t"    
 
 def t_NOVALINHA(t):
     r'\n+'
     t.lexer.lineno += t.value.count("\n")
-    return t    
+    return t
     
 def t_error(t):
-    print("Caracter ilegal '%s'" % t.value[0])
+    print("Caracter Ilegal '%s'" % t.value[0])
     print "Linha "+str(t.lineno)
     t.lexer.skip(1)
     
@@ -90,10 +97,24 @@ lexer = lex.lex()
 
 # Test it out
 data = '''
-se a == 3 :
-retorna Verdade
+def int calculadora(int operacao, int v1, int v2):
+    se operacao == 1:
+        retorna v1 + v2
+    senaose operacao == 2:
+        retorna v1 - v2
+    senaose operacao == 3:
+        retorna v1 * v2
+    senao:
+        retorna v1 / v2
+    fim
+
+    retorna 0 
 fim
-'''
+
+int resultado
+resultado = calculadora(soma, 3, 6) 
+    
+'''  
 
 # Give the lexer some input
 lexer.input(data)
