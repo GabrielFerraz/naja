@@ -11,6 +11,10 @@ sys.path.insert(0,"../..")
 if sys.version_info[0] >= 3:
     raw_input = input
 
+entrada = ""
+arquivo = open(sys.argv[1], "r")
+a = arquivo.readlines()
+
 reserved = {"enquanto": "ENQUANTO",
 	"continua": "CONTINUA",
 	"retorna": "RETORNA",
@@ -282,35 +286,18 @@ def p_literal(p):
 
 def p_error(p):
     if p:
-        print("Syntax error at '%s'" % p.value)
-        print 'linha '+ str(p.lineno)
-        print 'posicao '+ str(p.lexpos)
-        print 'tipo '+ str(p.type)
+				print("Erro de Sintaxe em '%s'" % p.value)
+				print a[p.lineno-1]
+        #print 'linha '+ str(p.lineno)
+        #print 'posicao '+ str(p.lexpos)
+        #print 'tipo '+ str(p.type)
     else:
         print("Syntax error at EOF")
 
 import ply.yacc as yacc
 yacc.yacc()
 
+for linha in a:
+	entrada += linha
 
-s = '''
-def int calculadora(int operacao, int v1, int v2):
-    se operacao == 1:
-        retorna v1 + v2
-    senaose operacao == 2:
-        retorna v1 - v2
-    senaose operacao == 3:
-        retorna v1 * v2
-    senao:
-        retorna v1 / v2
-    fim
-
-    retorna 0 fim
-
-int resultado
-resultado = calculadora(soma, 3, 6) 
-''' 
-
-
-yacc.parse(s)
-print 'foi'
+yacc.parse(entrada)

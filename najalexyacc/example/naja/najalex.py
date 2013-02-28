@@ -115,9 +115,14 @@ int resultado
 resultado = calculadora(soma, 3, 6) 
     
 '''  
+entrada = ""
+arquivo = open("entrada.txt", "r")
+a = arquivo.readlines()
+for linha in a:
+	entrada += linha
 
 # Give the lexer some input
-lexer.input(data)
+lexer.input(entrada)
 
 # Tokenize
 while True:
