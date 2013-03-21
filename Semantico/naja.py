@@ -1,10 +1,3 @@
-# -----------------------------------------------------------------------------
-# naja.py
-#
-# A simple calculator with variables.   This is from O'Reilly's
-# "Lex and Yacc", p. 63.
-# -----------------------------------------------------------------------------
-
 import sys
 
 if sys.version_info[0] >= 3:
