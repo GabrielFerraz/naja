@@ -1,0 +1,5 @@
+int x
+x = 3
+x += 4
+int bla
+x = bla + 6

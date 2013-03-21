@@ -6,7 +6,6 @@ import lex.lex as lex
 entrada = ""
 arquivo = open(sys.argv[1], "r")
 entrada = lex.lex(arquivo)
-entrada.append(('$', '$'))
 #a = arquivo.readlines()
 
 for i in range(0,len(entrada)):

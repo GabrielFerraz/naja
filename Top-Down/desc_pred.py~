@@ -8,7 +8,6 @@ entrada = ""
 arquivo = open(sys.argv[1], "r")
 entrada = lex.lex(arquivo)
 entrada.append(('$', '$'))
-print entrada
 
 for i in range(0,len(entrada)):
 	if entrada[i][0] in ["aritmetico", "logico"]:

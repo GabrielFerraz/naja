@@ -2,7 +2,7 @@ from automatos import automatos
 from simbolos import simbolos
 import sys
 
-arquivo = open(sys.argv[1], "r")
+arquivo = open("entrada.txt", "r")
 automato = ""
 chave = ""
 pares = []

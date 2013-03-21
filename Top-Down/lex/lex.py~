@@ -1,8 +1,9 @@
 from automatos import automatos
 from simbolos import simbolos
-import sys
+import re, sys, types, copy, os
 
-arquivo = open(sys.argv[1], "r")
+def lex(entrada):
+arquivo = entrada
 automato = ""
 chave = ""
 pares = []
@@ -14,12 +15,12 @@ a = arquivo.readlines()
 for linha in a:
 	if erro:
 		break
-		
+
 	numero_linha += 1
 	i = 0
 	while i < len(linha):
 		entrada = linha[i]
-		
+
 		if automato == "":
 			if entrada in [" ","\t","\n"]:
 				i += 1
@@ -61,7 +62,7 @@ for linha in a:
 					i -= 1
 			elif entrada in [" ","\t"] and automato.get_nome() == "string":
 				chave += entrada
-				
+	
 		except:
 			print "Erro de sintaxe! linha", str(numero_linha)+":"
 			print linha + " " * (i-1) + "^" 
@@ -76,11 +77,11 @@ for linha in a:
 			automato.inicializa()
 			automato = ""
 			chave = ""
-		
+
 		i += 1
 
-	
-arquivo.close()
-arquivo = file("saida.txt", "w")
-arquivo.write(str(pares))
-print pares
+return pares
+#arquivo.close()
+#arquivo = file("saida.txt", "w")
+#arquivo.write(str(pares))
+#print pares
