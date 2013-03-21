@@ -114,13 +114,11 @@ def p_primario(p):
 	            | chamada 
 	            | defsubfuncao
 	            | NOVALINHA primario '''
-	print "primario", p.stack
 	
 def p_controle(p):
 	'''controle : se 
                 | enquanto 
                 | para'''
-	print "controle", p.stack
 
 def p_declaracao(p):
 	'''declaracao : TIPO ID '''
@@ -156,7 +154,6 @@ def p_senao(p):
 
 def p_se(p):
 	"se : SE expressao ':' suite senaosemais senao FIM "
-	print "se", p.stack
 
 def p_enquanto(p):
     "enquanto : ENQUANTO expressao ':' suite FIM "
@@ -172,7 +169,7 @@ def p_definicao(p):
 	'''definicao : DEF TIPO ID '(' params ')' ':' suite_sem_retorno retorna FIM
                  | DEF TIPO ID '(' params ')' ':' suite_sem_retorno retorna novalinha FIM'''
 	pilha.append({p.lexpos(3):[p[3],p[2],p[1]]})
-	print "definicao", p.stack
+	names[p.lexpos(2)] = {"valor":p[3],"tipo":p[2]}
 
                  
 def p_novalinha(p):
@@ -187,6 +184,7 @@ def p_atribuicao_vetor(p):
     
 def p_atribuicao(p):
     "atribuicao : ID '=' valor "
+	if p[1] in 
     
 def p_valorvalor(p):
     '''valorvalor : ',' valor valorvalor
@@ -233,7 +231,6 @@ def p_params(p):
 	'''params : param ',' params
             | param 
             | empty '''
-	print "params2"
 
 def p_retorna(p):
     'retorna : RETORNA expressao'
