@@ -1,5 +1,0 @@
-import sys
-import lex.lex as lex
-entrada = ""
-arquivo = open(sys.argv[1], "r")
-entrada = lex.lex(arquivo)
