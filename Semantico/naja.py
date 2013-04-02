@@ -101,6 +101,8 @@ lexer = lex.lex()
 # dictionary of names
 names = { }
 pilha = []
+qtd_params = 0
+
 def p_program(p):
     ''' program : primario 
                 | primario program 
@@ -138,8 +140,9 @@ def p_declaracao(p):
 			
 
 def p_empty(p):
-    'empty : '
-    pass
+	'empty : '
+	p[0] = 0
+	pass
 
 def p_senaosemais(p):
     '''senaosemais : senaose senaosemais
@@ -169,7 +172,7 @@ def p_definicao(p):
 	'''definicao : DEF TIPO ID '(' params ')' ':' suite_sem_retorno retorna FIM
                  | DEF TIPO ID '(' params ')' ':' suite_sem_retorno retorna novalinha FIM'''
 	pilha.append({p.lexpos(3):[p[3],p[2],p[1]]})
-	names[p.lexpos(2)] = {"valor":p[3],"tipo":p[2]}
+	names[p.lexpos(2)] = {"valor":p[3],"tipo":p[2], "params":p[5]}
 
                  
 def p_novalinha(p):
@@ -184,21 +187,36 @@ def p_atribuicao_vetor(p):
     
 def p_atribuicao(p):
     "atribuicao : ID '=' valor "
-	if p[1] in 
+	
     
 def p_valorvalor(p):
-    '''valorvalor : ',' valor valorvalor
+	'''valorvalor : ',' valor valorvalor
                 | empty '''
+	if len(p) > 2:
+		if not p[3]:
+			p[3] = 0
+		p[0] = p[2] + p[3]
+
 
 def p_chamada(p):
-    '''chamada : ID '(' valor valorvalor ')'
-               | ID '(' ')' '''
+	'''chamada : ID '(' valor valorvalor ')'
+			   | ID '(' ')' '''
+	if len(p) > 4:
+		if not p[4]:
+			p[4] = 0
+	for n in names:
+		if names[n]["valor"] == p[1]:
+			if len(p) > 4 and names[n]["params"] == p[3]+p[4]:
+				break
+			else:
+				erro_semantico(p[1]+'() precisa de '+str(names[n]["params"])+' argumentos ('+str(p[3]+p[4])+' passados)')
 
 def p_valor(p):
-    '''valor : ID 
-        | literal 
-        | chamada 
-        | CONSTANTE'''
+	'''valor : ID 
+		| literal 
+		| chamada 
+		| CONSTANTE'''
+	p[0] = 1
         
 def p_expressao(p):
     'expressao :  exp_ou' 
@@ -225,13 +243,25 @@ def p_exp_u(p):
              | "+" exp_u '''
     
 def p_param(p):
-    'param : declaracao'
+	'param : declaracao'
+	p[0] = 1
 
 def p_params(p):
 	'''params : param ',' params
-            | param 
-            | empty '''
-
+			  | param 
+			  | empty '''
+	if len(p) > 2:
+		if not p[3]:
+			p[3] = 0
+		if p[2] == ',':
+			p[0] = p[1] + p[3]
+		else:
+			p[0] = p[1]
+	else:
+		if not p[1]:
+			p[1] = 0
+		else:
+			p[0] = p[1]
 def p_retorna(p):
     'retorna : RETORNA expressao'
 
@@ -330,6 +360,10 @@ def p_error(p):
     else:
         print("Syntax error at EOF")
 
+def erro_semantico(string):
+	print(string)
+	sys.exit(0)
+	
 import ply.yacc as yacc
 yacc.yacc()
 

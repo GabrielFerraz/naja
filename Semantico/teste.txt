@@ -1,0 +1,4 @@
+def int teste(int bla, int bla2, int bla3):
+	retorna bla
+fim
+teste(bla, bla)
