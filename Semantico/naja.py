@@ -1,4 +1,5 @@
 import sys
+from operator import itemgetter
 
 if sys.version_info[0] >= 3:
     raw_input = input
@@ -131,17 +132,16 @@ def p_declaracao(p):
 			if a.value in ["def","se","senao","senaose","para","enquanto"]:
 				if a.value not in ["senao","senaose"]:
 					escopo += 1
-				codigo = a.lexpos
 		except:
 			pass
 	names[p.lexpos(2)] = {"valor":p[2],"tipo":p[1],"escopo":escopo,'codigo':codigo}
+	p[0] = p.lexpos(2)
 		
-				
-			
+
+
 
 def p_empty(p):
 	'empty : '
-	p[0] = 0
 	pass
 
 def p_senaosemais(p):
@@ -171,10 +171,12 @@ def p_para(p):
 def p_definicao(p):
 	'''definicao : DEF TIPO ID '(' params ')' ':' suite_sem_retorno retorna FIM
                  | DEF TIPO ID '(' params ')' ':' suite_sem_retorno retorna novalinha FIM'''
-	pilha.append({p.lexpos(3):[p[3],p[2],p[1]]})
-	names[p.lexpos(2)] = {"valor":p[3],"tipo":p[2], "params":p[5]}
+	if not p[5]:
+		p[5] = []
+	names[p.lexpos(3)] = {"valor":p[3],"tipo":p[2], "params":len(p[5]), "codigo":-1}
+	for i in p[5]:
+		names[i]["codigo"] = p.lexpos(3)
 
-                 
 def p_novalinha(p):
     '''novalinha : NOVALINHA
                 | NOVALINHA novalinha'''
@@ -194,29 +196,48 @@ def p_valorvalor(p):
                 | empty '''
 	if len(p) > 2:
 		if not p[3]:
-			p[3] = 0
+			p[3] = []
 		p[0] = p[2] + p[3]
 
 
 def p_chamada(p):
 	'''chamada : ID '(' valor valorvalor ')'
 			   | ID '(' ')' '''
+	p[0] = p[1]
+	print p[3]
+	if len(p) >4: 
+		print p[4]
 	if len(p) > 4:
 		if not p[4]:
 			p[4] = 0
-	for n in names:
-		if names[n]["valor"] == p[1]:
-			if len(p) > 4 and names[n]["params"] == p[3]+p[4]:
-				break
+	chamada = busca_nome(p[1])
+	parametros = []
+	pos = []
+	for i in names:
+		if names[i]['codigo'] == chamada:
+			parametros.append((i,names[i]['tipo']))
+	parametros = sorted(parametros, key = itemgetter(0))
+	if len(p) > 4 and names[chamada]["params"] == len(p[3]+p[4]):
+		
+		for w in p[3]+p[4]:
+			if w in ['int','real','crt']:
+				if w != parametros[0][1]:
+					erro_semantico("argumento do tipo "+w+". "+parametros[0][1]+" esperado")
 			else:
-				erro_semantico(p[1]+'() precisa de '+str(names[n]["params"])+' argumentos ('+str(p[3]+p[4])+' passados)')
+				n = busca_nome(w)
+				if names[n]['tipo'] != parametros[0][1]:
+					erro_semantico(names[n]["valor"]+" do tipo "+names[n]['tipo']+". "+parametros[0][1]+" esperado")
+			parametros.pop(0)
+	else:
+		erro_semantico(p[1]+'() precisa de '+str(names[chamada]["params"])+' argumentos ('+str(len(p[3]+p[4]))+' passados)')
 
 def p_valor(p):
 	'''valor : ID 
 		| literal 
 		| chamada 
 		| CONSTANTE'''
-	p[0] = 1
+	p[0] = [p[1]]
+	print p[1]
         
 def p_expressao(p):
     'expressao :  exp_ou' 
@@ -244,7 +265,7 @@ def p_exp_u(p):
     
 def p_param(p):
 	'param : declaracao'
-	p[0] = 1
+	p[0] = [p[1]]
 
 def p_params(p):
 	'''params : param ',' params
@@ -252,14 +273,12 @@ def p_params(p):
 			  | empty '''
 	if len(p) > 2:
 		if not p[3]:
-			p[3] = 0
+			p[3] = []
 		if p[2] == ',':
 			p[0] = p[1] + p[3]
-		else:
-			p[0] = p[1]
 	else:
 		if not p[1]:
-			p[1] = 0
+			p[1] = []
 		else:
 			p[0] = p[1]
 def p_retorna(p):
@@ -345,18 +364,22 @@ def p_atribuicao_aumentada(p):
     'atribuicao_aumentada : ID op_aum valor'
 
 def p_literal(p):
-    '''literal : PALAVRA 
-               | INT 
-               | REAL'''
+	'''literal : PALAVRA 
+			   | INT 
+			   | REAL'''
+	if isinstance(p[1],type(1)):
+		p[0] = 'int'
+	elif isinstance(p[1],type(1.1)):
+		p[0] = 'real'
+	elif isinstance(p[1],type('bla')):
+		p[0] = 'crt'
+	
 
 def p_error(p):
     if p:
         print("Erro de Sintaxe: '%s' encontrado" % p.value)
         print str(p.lineno)+": "+a[p.lineno-1]
         sys.exit(0)
-        #print 'linha '+ str(p.lineno)
-        #print 'posicao '+ str(p.lexpos)
-        #print 'tipo '+ str(p.type)
     else:
         print("Syntax error at EOF")
 
@@ -364,6 +387,12 @@ def erro_semantico(string):
 	print(string)
 	sys.exit(0)
 	
+def busca_nome(string):
+	for n in names:
+		if string == names[n]['valor']:
+			return n
+			
+	erro_semantico("nome "+string+" nao definido")
 import ply.yacc as yacc
 yacc.yacc()
 

@@ -1,4 +1,11 @@
-def int teste(int bla, int bla2, int bla3):
+def int teste(crt bla3, int bla2, int bla):
+	crt bli
 	retorna bla
 fim
-teste(bla, bla)
+def int t():
+	retorna 0
+fim
+crt a
+int b
+int c
+teste(bli,b,c)
