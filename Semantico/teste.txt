@@ -1,11 +1,33 @@
+se Verdadeiro:
+	int var1
+	crt var2
+	var1 = 23
+senao:
+	int var3
+	se Verdadeiro:
+		int var4
+		var3 = 50
+	senao:
+		var3 = 12
+	fim
+	var3 = 20
+fim
+
+para vish de 1 ate var1: 	
+fim
+
+int bli
+
 def int teste(crt bla3, int bla2, int bla):
 	crt bli
 	retorna bla
 fim
+
+bli = 3
+
 def int t():
 	retorna 0
 fim
 crt a
-int b
 int c
-teste(bli,b,c)
+teste(a,bli,c)

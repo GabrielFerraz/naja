@@ -1,6 +1,53 @@
 import sys
 from operator import itemgetter
 
+#------------------------{ HELPERS }------------------------
+def filtra_escopo(pilha):
+    to_return = [0]
+    for item in pilha:
+        try:
+            if item.value in ["se","def", "para"]:
+                to_return.append(item.lexpos)
+            elif item.value in ["senaose", "senao", "fim"]:
+                to_return.pop()
+                to_return.append(item.lexpos)
+            
+        except:
+            pass
+    return to_return
+
+def verifica_tipo(varnome, vartype, pilha):
+    varcodigo = get_codigo(varnome,pilha)
+        
+    if not varcodigo:
+        return -1
+    else:
+        if vartype != get_tipo(names[varcodigo]):
+            return -2
+    return True
+
+def get_codigo(varnome, pilha):
+    
+    for name in names:
+        if varnome == names[name]['valor']:
+            for item in reversed(filtra_escopo(pilha)):
+                if names[name]['codigo'] == item:
+                    return name
+    return None
+
+def get_tipo(valor):
+    if valor in ["int", "crt", "bool"]:
+        return valor
+    else:
+        try:
+            return valor['tipo']
+        except:
+            pass
+
+#------------------------------------------------
+
+
+
 if sys.version_info[0] >= 3:
     raw_input = input
 
@@ -60,7 +107,7 @@ def t_ID(t):
 
 
 def t_REAL(t):
-	r'\d*.\d+'
+	r'\d*\.\d+'
 	t.value = float(t.value)
 	return t
 
@@ -124,21 +171,24 @@ def p_controle(p):
                 | para'''
 
 def p_declaracao(p):
-	'''declaracao : TIPO ID '''
-	escopo = 0
-	codigo = 0
-	for a in p.stack:
-		try:
-			if a.value in ["def","se","senao","senaose","para","enquanto"]:
-				if a.value not in ["senao","senaose"]:
-					escopo += 1
-		except:
-			pass
-	names[p.lexpos(2)] = {"valor":p[2],"tipo":p[1],"escopo":escopo,'codigo':codigo}
-	p[0] = p.lexpos(2)
-		
+        '''declaracao : TIPO ID '''
+        escopo = 0
+        codigo = 0
+        for a in p.stack:
+            try:
+                if a.value in ["def","se","senao","senaose","para","enquanto"]:
+                    codigo = a.lexpos
+                    if a.value not in ["senao","senaose"]:
+                        escopo += 1
+	    except:
+                pass
 
-
+        for name in names:
+            if names[name]['valor'] == p[2] and names[name]['codigo'] == codigo:
+                erro_semantico("Redefinicao de nome: '"+ p[2] +"'")
+                
+        names[p.lexpos(2)] = {"valor":p[2],"tipo":p[1],"escopo":escopo,'codigo':codigo}
+        p[0] = p.lexpos(2)
 
 def p_empty(p):
 	'empty : '
@@ -164,9 +214,18 @@ def p_enquanto(p):
 def p_intid(p):
     '''intid : INT 
              | ID '''
+    if not isinstance(p[1], type(1)):
+        erro = verifica_tipo(p[1], "int", p.stack);
+        if erro == -1:
+            erro_semantico("Variavel '"+ str(p[1]) +"' nao encontrada")
+         
+        if erro == -2:
+            erro_semantico("Loop ilegal:  'int' esperado, mas '"+ names[get_codigo(p[1], p.stack)]['tipo'] +"' encontrado")
+    
 
 def p_para(p):
     '''para : PARA ID DE intid ATE intid ':' suite FIM '''
+    erro = verifica_tipo(p[2], "int", p.stack)
 
 def p_definicao(p):
 	'''definicao : DEF TIPO ID '(' params ')' ':' suite_sem_retorno retorna FIM
@@ -189,27 +248,29 @@ def p_atribuicao_vetor(p):
     
 def p_atribuicao(p):
     "atribuicao : ID '=' valor "
-	
-    
+    erro = verifica_tipo(p[1], get_tipo(p[3][0]), p.stack)
+    if erro == -1:
+        erro_semantico("Variavel '"+ p[1] +"' nao encontrada!")
+    elif erro == -2:
+        erro_semantico("Atribuicao ilegal: '"+ get_tipo(names[get_codigo(p[1], p.stack)]) +"' esperado, mas '"+get_tipo(p[3][0])+"' encontrado!")
+        
+                    
 def p_valorvalor(p):
 	'''valorvalor : ',' valor valorvalor
                 | empty '''
 	if len(p) > 2:
-		if not p[3]:
-			p[3] = []
 		p[0] = p[2] + p[3]
+	else:
+            p[0] = []
 
 
 def p_chamada(p):
 	'''chamada : ID '(' valor valorvalor ')'
 			   | ID '(' ')' '''
 	p[0] = p[1]
-	print p[3]
-	if len(p) >4: 
-		print p[4]
-	if len(p) > 4:
-		if not p[4]:
-			p[4] = 0
+#	if len(p) > 4:
+#		if not p[4]:
+#			p[4] = 0
 	chamada = busca_nome(p[1])
 	parametros = []
 	pos = []
@@ -224,7 +285,7 @@ def p_chamada(p):
 				if w != parametros[0][1]:
 					erro_semantico("argumento do tipo "+w+". "+parametros[0][1]+" esperado")
 			else:
-				n = busca_nome(w)
+				n = get_codigo(w,p.stack)
 				if names[n]['tipo'] != parametros[0][1]:
 					erro_semantico(names[n]["valor"]+" do tipo "+names[n]['tipo']+". "+parametros[0][1]+" esperado")
 			parametros.pop(0)
@@ -237,7 +298,6 @@ def p_valor(p):
 		| chamada 
 		| CONSTANTE'''
 	p[0] = [p[1]]
-	print p[1]
         
 def p_expressao(p):
     'expressao :  exp_ou' 
@@ -402,7 +462,6 @@ for linha in a:
 yacc.parse(entrada)
 lexer.input(entrada)
 print("Programa sem erros")
-print names
 #print pilha
 #print lexer.token()
 #while True:
