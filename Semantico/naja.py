@@ -107,7 +107,7 @@ def t_ID(t):
 
 
 def t_REAL(t):
-	r'\d*\.\d+'
+	r'\d*.\d+'
 	t.value = float(t.value)
 	return t
 
@@ -171,25 +171,25 @@ def p_controle(p):
                 | para'''
 
 def p_declaracao(p):
-        '''declaracao : TIPO ID '''
-        escopo = 0
-        codigo = 0
-        for a in p.stack:
-            try:
-                if a.value in ["def","se","senao","senaose","para","enquanto"]:
-                    codigo = a.lexpos
-                    if a.value not in ["senao","senaose"]:
-                        escopo += 1
-	    except:
-                pass
-
-        for name in names:
+		'''declaracao : TIPO ID '''
+		escopo = 0
+		codigo = 0
+		for a in p.stack:
+			try:
+				if a.value in ["def","se","senao","senaose","para","enquanto"]:
+					codigo = a.lexpos
+					if a.value not in ["senao","senaose"]:
+						escopo += 1
+			except:
+				pass
+				
+		for name in names:
             if names[name]['valor'] == p[2] and names[name]['codigo'] == codigo:
                 erro_semantico("Redefinicao de nome: '"+ p[2] +"'")
-                
-        names[p.lexpos(2)] = {"valor":p[2],"tipo":p[1],"escopo":escopo,'codigo':codigo}
-        p[0] = p.lexpos(2)
-
+				
+		names[p.lexpos(2)] = {"valor":p[2],"tipo":p[1],"escopo":escopo,'codigo':codigo}
+		p[0] = p.lexpos(2)
+		
 def p_empty(p):
 	'empty : '
 	pass
@@ -214,18 +214,18 @@ def p_enquanto(p):
 def p_intid(p):
     '''intid : INT 
              | ID '''
-    if not isinstance(p[1], type(1)):
+	if not isinstance(p[1], type(1)):
         erro = verifica_tipo(p[1], "int", p.stack);
         if erro == -1:
             erro_semantico("Variavel '"+ str(p[1]) +"' nao encontrada")
          
         if erro == -2:
             erro_semantico("Loop ilegal:  'int' esperado, mas '"+ names[get_codigo(p[1], p.stack)]['tipo'] +"' encontrado")
-    
-
+			
+			
 def p_para(p):
     '''para : PARA ID DE intid ATE intid ':' suite FIM '''
-    erro = verifica_tipo(p[2], "int", p.stack)
+	erro = verifica_tipo(p[2], "int", p.stack)
 
 def p_definicao(p):
 	'''definicao : DEF TIPO ID '(' params ')' ':' suite_sem_retorno retorna FIM
@@ -248,20 +248,20 @@ def p_atribuicao_vetor(p):
     
 def p_atribuicao(p):
     "atribuicao : ID '=' valor "
-    erro = verifica_tipo(p[1], get_tipo(p[3][0]), p.stack)
+	erro = verifica_tipo(p[1], get_tipo(p[3][0]), p.stack)
     if erro == -1:
         erro_semantico("Variavel '"+ p[1] +"' nao encontrada!")
     elif erro == -2:
         erro_semantico("Atribuicao ilegal: '"+ get_tipo(names[get_codigo(p[1], p.stack)]) +"' esperado, mas '"+get_tipo(p[3][0])+"' encontrado!")
-        
-                    
+	
+    
 def p_valorvalor(p):
 	'''valorvalor : ',' valor valorvalor
                 | empty '''
 	if len(p) > 2:
 		p[0] = p[2] + p[3]
 	else:
-            p[0] = []
+		p[0] = []
 
 
 def p_chamada(p):
@@ -273,7 +273,7 @@ def p_chamada(p):
 #			p[4] = 0
 	chamada = busca_nome(p[1])
 	parametros = []
-	pos = []
+	
 	for i in names:
 		if names[i]['codigo'] == chamada:
 			parametros.append((i,names[i]['tipo']))
@@ -297,15 +297,36 @@ def p_valor(p):
 		| literal 
 		| chamada 
 		| CONSTANTE'''
+	if p[1] in ["Verdadeiro", "Falso"]:
+		p[1] = 'bool'
 	p[0] = [p[1]]
         
 def p_expressao(p):
     'expressao :  exp_ou' 
 
 def p_comparacao(p):
-    '''comparacao : valor
+	'''comparacao : valor
                   | valor operador_comp valor '''
-    
+	if len(p)>2:
+		print p[1],p[3]
+		if p[1][0] in ['int','real','crt','bool']:
+			v1 = p[1][0]
+		else:
+			v1 = names[busca_nome(p[1][0])]['tipo']
+		if p[3][0] in ['int','real','crt','bool']:
+			v2 = p[3][0]
+		else:
+			v2 = names[busca_nome(p[3][0])]['tipo']
+		if p[2] in ['>=','<=']:
+			if "crt" in [v1,v2]:
+				erro_semantico('comparacao ilegal de caracteres')
+		if v1 != v2:
+			erro_semantico("Comparacao ilegal de "+v1+" com "+v2)
+			
+		p[0] = 'bool'
+	else:
+		p[0] = p[1][0]
+	
 def p_operador_comp(p):
     '''operador_comp : '<' 
                      | '>' 
@@ -315,14 +336,27 @@ def p_operador_comp(p):
                      | DIF '''
            
 def p_exponenciacao(p):
-    '''exponenciacao : comparacao
-                   | comparacao EXP exp_u '''
+	'''exponenciacao : comparacao
+					| comparacao EXP exp_u '''
+
+	if len(p) > 2:
+		if p[1] not in ['int', 'real'] or p[2] != 'int':
+			erro_semantico("Operacao ilegal com exponenciacao.")
+
+	p[0] = p[1]
 
 def p_exp_u(p):
-    '''exp_u : exponenciacao 
-             | "-" exp_u
-             | "+" exp_u '''
-    
+	'''exp_u : exponenciacao 
+			 | "-" exp_u
+			 | "+" exp_u '''
+
+	if len(p) > 2:
+		if p[2] not in ['int', 'real']:
+			erro_semantico("Operacao ilegal com sinais")
+		p[0] = p[2]
+	else:
+		p[0] = p[1]
+	
 def p_param(p):
 	'param : declaracao'
 	p[0] = [p[1]]
@@ -360,6 +394,17 @@ def p_exp_m(p):
 	         | exp_m '*' exp_u 
 	         | exp_m DIVINT exp_u 
 	         | exp_m '/' exp_u'''
+			 
+	if len(p) > 2:
+		if p[1] not in ['real', 'int'] or p[3] not in ['real', 'int']:
+			erro_semantico("Operacao ilegal") # <------------------------------- MUDAR ISSO AQUI!
+			
+		if p[2] == '//':
+			p[0] = 'int'
+		else:
+			p[0] = p[1]
+	else:
+		p[0] = p[1]
 
 def p_exp_a(p):
 	'''exp_a : exp_m 
