@@ -235,6 +235,8 @@ def p_definicao(p):
 	names[p.lexpos(3)] = {"valor":p[3],"tipo":p[2], "params":len(p[5]), "codigo":-1}
 	for i in p[5]:
 		names[i]["codigo"] = p.lexpos(3)
+	if p[2] != p[9]:
+		erro_semantico("Funcao retornando "+p[9]+". "+p[2]+" esperado")
 
 def p_novalinha(p):
     '''novalinha : NOVALINHA
@@ -301,9 +303,6 @@ def p_valor(p):
 		p[1] = 'bool'
 	p[0] = [p[1]]
         
-def p_expressao(p):
-    'expressao :  exp_ou' 
-
 def p_comparacao(p):
 	'''comparacao : valor
                   | valor operador_comp valor '''
@@ -357,6 +356,80 @@ def p_exp_u(p):
 	else:
 		p[0] = p[1]
 	
+def p_exp_m(p):
+	'''exp_m : exp_u 
+	         | exp_m '*' exp_u 
+	         | exp_m DIVINT exp_u 
+	         | exp_m '/' exp_u'''
+			 
+	if len(p) > 2:
+		if p[1] not in ['real', 'int'] or p[3] not in ['real', 'int']:
+			erro_semantico("Operacao aritmetica ilegal.") # <------------------------------- MUDAR ISSO AQUI!
+			
+		if p[2] == '//':
+			p[0] = 'int'
+		else:
+			if "real" in [p[1],p[3]]:
+				p[0] = "real"
+			else:
+				p[0] = "int"
+	else:
+		p[0] = p[1]
+		
+def p_exp_a(p):
+	'''exp_a : exp_m 
+			 | exp_a '+' exp_m 
+			 | exp_a '-' exp_m'''
+	if len(p) > 2:
+		if p[1] not in ['real', 'int'] or p[3] not in ['real', 'int']:
+			erro_semantico("Operacao aritmetica ilegal.") # <------------------------------- MUDAR ISSO AQUI!
+		else:
+			if "real" in [p[1],p[3]]:
+				p[0] = "real"
+			else:
+				p[0] = "int"
+	else:
+		p[0] = p[1]
+	
+def p_exp_nao(p):
+	'''exp_nao : exp_a 
+			   | '!' exp_nao'''
+    if p[1] == '!' and p[2] != "bool":
+			erro_semantico("Operacao logica ilegal.") # <------------------------------- MUDAR ISSO AQUI!
+	else:
+		p[0] = p[1]
+
+def p_exp_e(p):
+	'''exp_e : exp_nao 
+			 | exp_e E exp_nao'''
+	if len(p) > 2:
+		if p[1] != "bool" or p[3] != "bool":
+			erro_semantico("Operacao logica ilegal.") # <------------------------------- MUDAR ISSO AQUI!
+	else:
+		p[0] = p[1]
+
+def p_exp_e(p):
+	'''exp_e : exp_nao 
+			 | exp_e E exp_nao'''
+	if len(p) > 2:
+		if p[1] != "bool" or p[3] != "bool":
+			erro_semantico("Operacao logica ilegal.") # <------------------------------- MUDAR ISSO AQUI!
+	else:
+		p[0] = p[1]
+
+def p_exp_ou(p):
+	'''exp_ou : exp_e 
+			  | exp_ou OU exp_e'''
+	if len(p) > 2:
+		if p[1] != "bool" or p[3] != "bool":
+			erro_semantico("Operacao logica ilegal.") # <------------------------------- MUDAR ISSO AQUI!
+	else:
+		p[0] = p[1]
+		
+def p_expressao(p):
+	'expressao :  exp_ou' 
+	p[0] = p[1]
+
 def p_param(p):
 	'param : declaracao'
 	p[0] = [p[1]]
@@ -376,7 +449,8 @@ def p_params(p):
 		else:
 			p[0] = p[1]
 def p_retorna(p):
-    'retorna : RETORNA expressao'
+	'retorna : RETORNA expressao'
+	p[0] = p[2]
 
 def p_imprime(p):
     'imprime : IMPRIME expressao'
@@ -389,40 +463,17 @@ def p_op_aum(p):
               | MODIG 
               | EXPIG '''
 
-def p_exp_m(p):
-	'''exp_m : exp_u 
-	         | exp_m '*' exp_u 
-	         | exp_m DIVINT exp_u 
-	         | exp_m '/' exp_u'''
-			 
-	if len(p) > 2:
-		if p[1] not in ['real', 'int'] or p[3] not in ['real', 'int']:
-			erro_semantico("Operacao ilegal") # <------------------------------- MUDAR ISSO AQUI!
-			
-		if p[2] == '//':
-			p[0] = 'int'
-		else:
-			p[0] = p[1]
+def p_atribuicao_aumentada(p):
+	"atribuicao_aumentada : ID op_aum valor"
+	if get_tipo(names[get_codigo(p[1], p.stack)]) in ['real', 'int']:
+		erro = verifica_tipo(p[1], get_tipo(p[3][0]), p.stack)
+		if erro == -1:
+			erro_semantico("Variavel '"+ p[1] +"' nao encontrada!")
+		elif erro == -2:
+			erro_semantico("Atribuicao ilegal: '"+ get_tipo(names[get_codigo(p[1], p.stack)]) +"' esperado, mas '"+get_tipo(p[3][0])+"' encontrado!")
 	else:
-		p[0] = p[1]
-
-def p_exp_a(p):
-	'''exp_a : exp_m 
-	         | exp_a '+' exp_m 
-	         | exp_a '-' exp_m'''
-
-def p_exp_ou(p):
-	'''exp_ou : exp_e 
-	          | exp_ou OU exp_e'''
-
-def p_exp_e(p):
-	'''exp_e : exp_nao 
-	         | exp_e E exp_nao'''
-
-def p_exp_nao(p):
-	'''exp_nao : exp_a 
-               | '!' exp_nao'''
-               
+		erro_semantico("Atribuição ilegal. Variavel do tipo "+get_tipo(names[get_codigo(p[1], p.stack)]))
+		
 def p_suite(p):
 	'''suite : afirmacao
 	         | afirmacao NOVALINHA suite
@@ -465,8 +516,6 @@ def p_afirm_composto(p):
 	                  | enquanto 
 	                  | para'''
 
-def p_atribuicao_aumentada(p):
-    'atribuicao_aumentada : ID op_aum valor'
 
 def p_literal(p):
 	'''literal : PALAVRA 
