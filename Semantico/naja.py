@@ -169,9 +169,8 @@ def p_primario(p):
 	            | defsubfuncao
 	            | NOVALINHA primario '''
 	global buffer
-	if buffer:
-		saida.write(buffer)
-		buffer = ''
+	saida.write(buffer)
+	buffer = ''
 	
 def p_controle(p):
 	'''controle : se 
@@ -265,7 +264,12 @@ def p_novalinha(p):
                 | NOVALINHA novalinha'''
     
 def p_defsubfuncao(p):
-    '''defsubfuncao : DEF VAZIO ID '(' params ')' ':' suite FIM '''
+	'''defsubfuncao : DEF VAZIO ID '(' params ')' ':' suite FIM '''
+	if not p[5]:
+		p[5] = []
+	names[p.lexpos(3)] = {"valor":p[3],"tipo":p[2], "params":len(p[5]), "codigo":-1}
+	for i in p[5]:
+		names[i]["codigo"] = p.lexpos(3)
     
 def p_atribuicao_vetor(p):
     "atribuicao : ID '[' INT ']' '=' valor "
@@ -277,7 +281,9 @@ def p_atribuicao(p):
 		erro_semantico("Variavel '"+ p[1] +"' nao encontrada!")
 	elif erro == -2:
 		erro_semantico("Atribuicao ilegal: '"+ get_tipo(names[get_codigo(p[1], p.stack)]) +"' esperado, mas '"+get_tipo(p[3][0])+"' encontrado!")
-	buffer = p[1]+" = "
+	buffer = p[1]+" = "+str(bufferValor.pop())+';'
+	print buffer
+	print 1
     
 def p_valorvalor(p):
 	'''valorvalor : ',' valor valorvalor
@@ -321,10 +327,13 @@ def p_valor(p):
 		| literal 
 		| chamada 
 		| CONSTANTE'''
+	if p[1] not in ['int', 'real', 'crt']:
+		bufferValor.append(p[1])
+		
 	if p[1] in ["Verdadeiro", "Falso"]:
 		p[1] = 'bool'
 	p[0] = [p[1]]
-	bufferValor.append(p[1])
+	
 def p_comparacao(p):
 	'''comparacao : valor
 				  | valor operador_comp valor '''
@@ -345,7 +354,7 @@ def p_comparacao(p):
 			erro_semantico("Comparacao ilegal de "+v1+" com "+v2)
 			
 		p[0] = 'bool'
-		buffer += bufferValor.pop(-2)+' '+p[2]+' '+bufferValor.pop()
+		buffer += str(bufferValor.pop(-2))+' '+p[2]+' '+str(bufferValor.pop())
 	else:
 		p[0] = p[1][0]
 	
@@ -557,7 +566,7 @@ def p_literal(p):
 		p[0] = 'real'
 	elif isinstance(p[1],type('bla')):
 		p[0] = 'crt'
-	
+	bufferValor.append(p[1])
 
 def p_error(p):
     if p:

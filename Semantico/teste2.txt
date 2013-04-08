@@ -1,0 +1,6 @@
+int bla
+crt car
+real bli
+bla = 2
+car = "c"
+bli = 2.5
