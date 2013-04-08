@@ -1,0 +1,17 @@
+int var1;
+var1 = 23;
+int var3;
+int var4;
+var3 = 50;
+var3 = 12;
+var3 = 20;
+int var2;
+var2 = 10;
+int bli;
+char bla3;
+int bla2;
+int bla;
+char bli;
+bli = 3;
+char a;
+int c;

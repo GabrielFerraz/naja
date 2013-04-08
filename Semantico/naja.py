@@ -226,11 +226,12 @@ def p_se(p):
 	"se : SE expressao ':' suite senaosemais senao FIM "
 	if p[2] != "bool":
 		erro_semantico("Expressao apos o Se invalida")
-		
+
+        
 def p_enquanto(p):
 	"enquanto : ENQUANTO expressao ':' suite FIM "
 	if p[2] != "bool":
-		erro_semantico("Expressao apos o Se invalida")
+		erro_semantico("Expressao apos o Enquanto invalida")
 
 def p_intid(p):
 	'''intid : INT 
@@ -400,7 +401,7 @@ def p_exp_m(p):
 			 
 	if len(p) > 2:
 		if p[1] not in ['real', 'int'] or p[3] not in ['real', 'int']:
-			erro_semantico("Operacao aritmetica ilegal.") # <------------------------------- MUDAR ISSO AQUI!
+			erro_semantico("Operacao aritmetica ilegal. 'real' ou 'int' esperado. '"+ p[1] +" "+ p[2] +" "+ p[3] +"' encontrado.")
 			
 		if p[2] == '//':
 			p[0] = 'int'
@@ -418,7 +419,7 @@ def p_exp_a(p):
 			 | exp_a '-' exp_m'''
 	if len(p) > 2:
 		if p[1] not in ['real', 'int'] or p[3] not in ['real', 'int']:
-			erro_semantico("Operacao aritmetica ilegal.") # <------------------------------- MUDAR ISSO AQUI!
+			erro_semantico("Operacao aritmetica ilegal. 'real' ou 'int' esperado. '"+ p[1] +" "+ p[2] +" "+ p[3] +"' encontrado.")
 		else:
 			if "real" in [p[1],p[3]]:
 				p[0] = "real"
@@ -431,7 +432,7 @@ def p_exp_nao(p):
 	'''exp_nao : exp_a 
 			   | '!' exp_nao'''
 	if p[1] == '!' and p[2] != "bool":
-			erro_semantico("Operacao logica ilegal.") # <------------------------------- MUDAR ISSO AQUI!
+			erro_semantico("Operacao logica ilegal. 'bool' esperado. '"+ p[2] +"' encontrado.")
 	else:
 		p[0] = p[1]
 
@@ -440,16 +441,7 @@ def p_exp_e(p):
 			 | exp_e E exp_nao'''
 	if len(p) > 2:
 		if p[1] != "bool" or p[3] != "bool":
-			erro_semantico("Operacao logica ilegal.") # <------------------------------- MUDAR ISSO AQUI!
-	else:
-		p[0] = p[1]
-
-def p_exp_e(p):
-	'''exp_e : exp_nao 
-			 | exp_e E exp_nao'''
-	if len(p) > 2:
-		if p[1] != "bool" or p[3] != "bool":
-			erro_semantico("Operacao logica ilegal.") # <------------------------------- MUDAR ISSO AQUI!
+			erro_semantico("Operacao logica ilegal. 'bool E bool' esperado. '"+ p[1] +" E "+ p[3] +"' encontrado.")
 	else:
 		p[0] = p[1]
 
@@ -458,7 +450,7 @@ def p_exp_ou(p):
 			  | exp_ou OU exp_e'''
 	if len(p) > 2:
 		if p[1] != "bool" or p[3] != "bool":
-			erro_semantico("Operacao logica ilegal.") # <------------------------------- MUDAR ISSO AQUI!
+			erro_semantico("Operacao logica ilegal. 'bool OU bool' esperado. '"+ p[1] +" OU "+ p[3] +"' encontrado.")
 	else:
 		p[0] = p[1]
 		
@@ -596,10 +588,69 @@ for linha in a:
 yacc.parse(entrada)
 lexer.input(entrada)
 print("Programa sem erros")
-print buffer
+#print buffer
 #print pilha
 #print lexer.token()
-#while True:
-#    tok = lexer.token()
-#    if not tok: break      # No more input
-#    print tok
+
+
+saida = open("saida.c", "w")
+pilha = []
+aux = ""
+writer = ""
+while True:
+	tok = lexer.token()
+	if not tok: break      # No more input
+	
+	if tok.value in ["se", "para", "enquanto", "def"]:
+		pilha.append(tok)
+
+	if tok.value == "se":
+		tok = lexer.token()
+		aux += "if !("
+		while tok.value != ":":
+			aux += tok.value +" "
+			tok = lexer.token()
+
+		aux += ") goto "+ str(pilha[-1].lexpos) + ";\n"
+
+	elif tok.value == "senao":
+		token = pilha.pop()
+		pilha.append(tok)
+		aux += "goto fim"+ str(tok.lexpos) + ";\n"
+		aux += "label "+  str(token.lexpos) + ":\n"
+
+		lexer.token() #jogar o : fora		
+
+
+	elif tok.value == "para":
+		pilha.append(tok)
+		pos = tok.lexpos
+		tok.var = "__"+ str(lexer.token().value)
+		aux += "int __"+ tok.var +" = "
+		lexer.token()
+		aux += str(lexer.token().value) +" - "
+		lexer.token()
+		aux += str(lexer.token().value) +";\n"
+		
+		aux += "label "+ str(pos) +":\n"
+		
+	elif tok.value == "fim":
+		token = pilha.pop()
+		if token.value in ("se", "senao"):
+			aux += "label fim"+ str(token.lexpos) + ":\n"
+		elif token.value == "para":
+			aux += token.var +"++;\n"
+			aux += "if ("+ str(token.var) +" != 0) goto "+ str(token.lexpos) +";\n"
+		
+
+	elif tok.value == "\n":
+		aux += ";\n"
+	else:
+		aux += str(tok.value) + " "
+
+	print aux
+	writer += aux.replace("crt", "char").replace("def","").replace("Verdadeiro","1").replace("Falso","0")
+	aux = ""
+	 
+saida.write(writer.replace("\n;\n", "\n\n"))
+
