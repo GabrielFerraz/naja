@@ -1,6 +1,5 @@
 se Verdadeiro:
 	int var1
-	crt var2
 	var1 = 23
 senao:
 	int var3
@@ -13,21 +12,15 @@ senao:
 	var3 = 20
 fim
 
+int var2
 para vish de 1 ate var1: 	
+	var2 = 10
 fim
 
 int bli
 
-def int teste(crt bla3, int bla2, int bla):
-	crt bli
-	retorna bla
-fim
-
 bli = 3
 
-def int t():
-	retorna 0
-fim
 crt a
 int c
-teste(a,bli,c)
+
