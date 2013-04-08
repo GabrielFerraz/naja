@@ -36,7 +36,7 @@ def get_codigo(varnome, pilha):
     return None
 
 def get_tipo(valor):
-    if valor in ["int", "crt", "bool"]:
+    if valor in ["int", "crt", "bool", "real"]:
         return valor
     else:
         try:
@@ -54,6 +54,8 @@ if sys.version_info[0] >= 3:
 entrada = ""
 arquivo = open(sys.argv[1], "r")
 a = arquivo.readlines()
+saida = open(sys.argv[1].split('.')[0]+'.c','w')
+
 
 reserved = {"enquanto": "ENQUANTO",
 	"continua": "CONTINUA",
@@ -107,7 +109,7 @@ def t_ID(t):
 
 
 def t_REAL(t):
-	r'\d*.\d+'
+	r'\d*\.\d+'
 	t.value = float(t.value)
 	return t
 
@@ -150,6 +152,8 @@ lexer = lex.lex()
 names = { }
 pilha = []
 qtd_params = 0
+buffer = ""
+bufferValor = []
 
 def p_program(p):
     ''' program : primario 
@@ -164,6 +168,10 @@ def p_primario(p):
 	            | chamada 
 	            | defsubfuncao
 	            | NOVALINHA primario '''
+	global buffer
+	if buffer:
+		saida.write(buffer)
+		buffer = ''
 	
 def p_controle(p):
 	'''controle : se 
@@ -171,24 +179,32 @@ def p_controle(p):
                 | para'''
 
 def p_declaracao(p):
-		'''declaracao : TIPO ID '''
-		escopo = 0
-		codigo = 0
-		for a in p.stack:
-			try:
-				if a.value in ["def","se","senao","senaose","para","enquanto"]:
-					codigo = a.lexpos
-					if a.value not in ["senao","senaose"]:
-						escopo += 1
-			except:
-				pass
-				
-		for name in names:
-            if names[name]['valor'] == p[2] and names[name]['codigo'] == codigo:
-                erro_semantico("Redefinicao de nome: '"+ p[2] +"'")
-				
-		names[p.lexpos(2)] = {"valor":p[2],"tipo":p[1],"escopo":escopo,'codigo':codigo}
-		p[0] = p.lexpos(2)
+	'''declaracao : TIPO ID '''
+	global buffer
+	escopo = 0
+	codigo = 0
+	for a in p.stack:
+		try:
+			if a.value in ["def","se","senao","senaose","para","enquanto"]:
+				codigo = a.lexpos
+				if a.value not in ["senao","senaose"]:
+					escopo += 1
+		except:
+			pass
+			
+	for name in names:
+		if names[name]['valor'] == p[2] and names[name]['codigo'] == codigo:
+			erro_semantico("Redefinicao de nome: '"+ p[2] +"'")
+			
+	names[p.lexpos(2)] = {"valor":p[2],"tipo":p[1],"escopo":escopo,'codigo':codigo}
+	p[0] = p.lexpos(2)
+	if p[1] == 'crt':
+		buffer += 'char '
+	elif p[1] == 'real':
+		buffer += 'float '
+	else:
+		buffer += 'int '
+	buffer += p[2]+';\n'
 		
 def p_empty(p):
 	'empty : '
@@ -199,32 +215,38 @@ def p_senaosemais(p):
                    | empty '''
 
 def p_senaose(p):
-    '''senaose : SENAOSE expressao ':' suite '''
-
+	'''senaose : SENAOSE expressao ':' suite '''
+	if p[2] != "bool":
+		erro_semantico("Expressao apos o Se invalida")
+		
 def p_senao(p):
     '''senao : SENAO ':' suite 
              | empty '''
 
 def p_se(p):
 	"se : SE expressao ':' suite senaosemais senao FIM "
-
+	if p[2] != "bool":
+		erro_semantico("Expressao apos o Se invalida")
+		
 def p_enquanto(p):
-    "enquanto : ENQUANTO expressao ':' suite FIM "
+	"enquanto : ENQUANTO expressao ':' suite FIM "
+	if p[2] != "bool":
+		erro_semantico("Expressao apos o Se invalida")
 
 def p_intid(p):
-    '''intid : INT 
-             | ID '''
+	'''intid : INT 
+			 | ID '''
 	if not isinstance(p[1], type(1)):
-        erro = verifica_tipo(p[1], "int", p.stack);
-        if erro == -1:
-            erro_semantico("Variavel '"+ str(p[1]) +"' nao encontrada")
-         
-        if erro == -2:
-            erro_semantico("Loop ilegal:  'int' esperado, mas '"+ names[get_codigo(p[1], p.stack)]['tipo'] +"' encontrado")
+		erro = verifica_tipo(p[1], "int", p.stack);
+		if erro == -1:
+			erro_semantico("Variavel '"+ str(p[1]) +"' nao encontrada")
+		 
+		if erro == -2:
+			erro_semantico("Loop ilegal:  'int' esperado, mas '"+ names[get_codigo(p[1], p.stack)]['tipo'] +"' encontrado")
 			
 			
 def p_para(p):
-    '''para : PARA ID DE intid ATE intid ':' suite FIM '''
+	'''para : PARA ID DE intid ATE intid ':' suite FIM '''
 	erro = verifica_tipo(p[2], "int", p.stack)
 
 def p_definicao(p):
@@ -249,17 +271,17 @@ def p_atribuicao_vetor(p):
     "atribuicao : ID '[' INT ']' '=' valor "
     
 def p_atribuicao(p):
-    "atribuicao : ID '=' valor "
+	"atribuicao : ID '=' valor "
 	erro = verifica_tipo(p[1], get_tipo(p[3][0]), p.stack)
-    if erro == -1:
-        erro_semantico("Variavel '"+ p[1] +"' nao encontrada!")
-    elif erro == -2:
-        erro_semantico("Atribuicao ilegal: '"+ get_tipo(names[get_codigo(p[1], p.stack)]) +"' esperado, mas '"+get_tipo(p[3][0])+"' encontrado!")
-	
+	if erro == -1:
+		erro_semantico("Variavel '"+ p[1] +"' nao encontrada!")
+	elif erro == -2:
+		erro_semantico("Atribuicao ilegal: '"+ get_tipo(names[get_codigo(p[1], p.stack)]) +"' esperado, mas '"+get_tipo(p[3][0])+"' encontrado!")
+	buffer = p[1]+" = "
     
 def p_valorvalor(p):
 	'''valorvalor : ',' valor valorvalor
-                | empty '''
+				| empty '''
 	if len(p) > 2:
 		p[0] = p[2] + p[3]
 	else:
@@ -270,12 +292,12 @@ def p_chamada(p):
 	'''chamada : ID '(' valor valorvalor ')'
 			   | ID '(' ')' '''
 	p[0] = p[1]
-#	if len(p) > 4:
-#		if not p[4]:
-#			p[4] = 0
+	#	if len(p) > 4:
+	#		if not p[4]:
+	#			p[4] = 0
 	chamada = busca_nome(p[1])
 	parametros = []
-	
+
 	for i in names:
 		if names[i]['codigo'] == chamada:
 			parametros.append((i,names[i]['tipo']))
@@ -302,12 +324,12 @@ def p_valor(p):
 	if p[1] in ["Verdadeiro", "Falso"]:
 		p[1] = 'bool'
 	p[0] = [p[1]]
-        
+	bufferValor.append(p[1])
 def p_comparacao(p):
 	'''comparacao : valor
-                  | valor operador_comp valor '''
+				  | valor operador_comp valor '''
+	global buffer
 	if len(p)>2:
-		print p[1],p[3]
 		if p[1][0] in ['int','real','crt','bool']:
 			v1 = p[1][0]
 		else:
@@ -323,17 +345,21 @@ def p_comparacao(p):
 			erro_semantico("Comparacao ilegal de "+v1+" com "+v2)
 			
 		p[0] = 'bool'
+		buffer += bufferValor.pop(-2)+' '+p[2]+' '+bufferValor.pop()
 	else:
 		p[0] = p[1][0]
 	
+	
+	
 def p_operador_comp(p):
-    '''operador_comp : '<' 
+	'''operador_comp : '<' 
                      | '>' 
                      | IGUIG 
                      | MAIORIG 
                      | MENORIG 
                      | DIF '''
-           
+	p[0] = p[1]
+	
 def p_exponenciacao(p):
 	'''exponenciacao : comparacao
 					| comparacao EXP exp_u '''
@@ -358,9 +384,9 @@ def p_exp_u(p):
 	
 def p_exp_m(p):
 	'''exp_m : exp_u 
-	         | exp_m '*' exp_u 
-	         | exp_m DIVINT exp_u 
-	         | exp_m '/' exp_u'''
+			 | exp_m '*' exp_u 
+			 | exp_m DIVINT exp_u 
+			 | exp_m '/' exp_u'''
 			 
 	if len(p) > 2:
 		if p[1] not in ['real', 'int'] or p[3] not in ['real', 'int']:
@@ -394,7 +420,7 @@ def p_exp_a(p):
 def p_exp_nao(p):
 	'''exp_nao : exp_a 
 			   | '!' exp_nao'''
-    if p[1] == '!' and p[2] != "bool":
+	if p[1] == '!' and p[2] != "bool":
 			erro_semantico("Operacao logica ilegal.") # <------------------------------- MUDAR ISSO AQUI!
 	else:
 		p[0] = p[1]
@@ -448,9 +474,13 @@ def p_params(p):
 			p[1] = []
 		else:
 			p[0] = p[1]
+			
 def p_retorna(p):
 	'retorna : RETORNA expressao'
-	p[0] = p[2]
+	if p[2] not in ['int','real','crt','bool']:
+			p[0] = names[busca_nome(p[2])]['tipo']
+	else:
+		p[0] = p[2]
 
 def p_imprime(p):
     'imprime : IMPRIME expressao'
@@ -472,7 +502,7 @@ def p_atribuicao_aumentada(p):
 		elif erro == -2:
 			erro_semantico("Atribuicao ilegal: '"+ get_tipo(names[get_codigo(p[1], p.stack)]) +"' esperado, mas '"+get_tipo(p[3][0])+"' encontrado!")
 	else:
-		erro_semantico("Atribuição ilegal. Variavel do tipo "+get_tipo(names[get_codigo(p[1], p.stack)]))
+		erro_semantico("Atribuicao ilegal. Variavel do tipo "+get_tipo(names[get_codigo(p[1], p.stack)]))
 		
 def p_suite(p):
 	'''suite : afirmacao
@@ -499,7 +529,7 @@ def p_afirm_simples(p):
                      | atribuicao_aumentada 
                      | imprime 
                      | retorna 
-		     | declaracao
+					 | declaracao
                      | QUEBRA 
                      | CONTINUA'''
                      
@@ -556,6 +586,7 @@ for linha in a:
 yacc.parse(entrada)
 lexer.input(entrada)
 print("Programa sem erros")
+print buffer
 #print pilha
 #print lexer.token()
 #while True:

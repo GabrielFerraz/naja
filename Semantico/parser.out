@@ -43,122 +43,122 @@ Rule 37    valor -> ID
 Rule 38    valor -> literal
 Rule 39    valor -> chamada
 Rule 40    valor -> CONSTANTE
-Rule 41    expressao -> exp_ou
-Rule 42    comparacao -> valor
-Rule 43    comparacao -> valor operador_comp valor
-Rule 44    operador_comp -> <
-Rule 45    operador_comp -> >
-Rule 46    operador_comp -> IGUIG
-Rule 47    operador_comp -> MAIORIG
-Rule 48    operador_comp -> MENORIG
-Rule 49    operador_comp -> DIF
-Rule 50    exponenciacao -> comparacao
-Rule 51    exponenciacao -> comparacao EXP exp_u
-Rule 52    exp_u -> exponenciacao
-Rule 53    exp_u -> - exp_u
-Rule 54    exp_u -> + exp_u
-Rule 55    param -> declaracao
-Rule 56    params -> param , params
-Rule 57    params -> param
-Rule 58    params -> empty
-Rule 59    retorna -> RETORNA expressao
-Rule 60    imprime -> IMPRIME expressao
-Rule 61    op_aum -> MAISIG
-Rule 62    op_aum -> MENOSIG
-Rule 63    op_aum -> MULTIG
-Rule 64    op_aum -> DIVIG
-Rule 65    op_aum -> MODIG
-Rule 66    op_aum -> EXPIG
-Rule 67    exp_m -> exp_u
-Rule 68    exp_m -> exp_m * exp_u
-Rule 69    exp_m -> exp_m DIVINT exp_u
-Rule 70    exp_m -> exp_m / exp_u
-Rule 71    exp_a -> exp_m
-Rule 72    exp_a -> exp_a + exp_m
-Rule 73    exp_a -> exp_a - exp_m
-Rule 74    exp_ou -> exp_e
-Rule 75    exp_ou -> exp_ou OU exp_e
-Rule 76    exp_e -> exp_nao
-Rule 77    exp_e -> exp_e E exp_nao
-Rule 78    exp_nao -> exp_a
-Rule 79    exp_nao -> ! exp_nao
-Rule 80    suite -> afirmacao
-Rule 81    suite -> afirmacao NOVALINHA suite
-Rule 82    suite -> NOVALINHA suite
-Rule 83    suite -> empty
-Rule 84    suite_sem_retorno -> afirmacao_sem_retorno
-Rule 85    suite_sem_retorno -> afirmacao_sem_retorno NOVALINHA suite_sem_retorno
-Rule 86    suite_sem_retorno -> NOVALINHA suite_sem_retorno
-Rule 87    suite_sem_retorno -> empty
-Rule 88    afirmacao -> afirm_simples
-Rule 89    afirmacao -> afirm_composto
-Rule 90    afirmacao_sem_retorno -> afirm_simples_sem_retorno
-Rule 91    afirmacao_sem_retorno -> afirm_composto
-Rule 92    afirm_simples -> atribuicao
-Rule 93    afirm_simples -> atribuicao_aumentada
-Rule 94    afirm_simples -> imprime
-Rule 95    afirm_simples -> retorna
-Rule 96    afirm_simples -> declaracao
-Rule 97    afirm_simples -> QUEBRA
-Rule 98    afirm_simples -> CONTINUA
-Rule 99    afirm_simples_sem_retorno -> atribuicao
-Rule 100   afirm_simples_sem_retorno -> atribuicao_aumentada
-Rule 101   afirm_simples_sem_retorno -> imprime
-Rule 102   afirm_simples_sem_retorno -> declaracao
-Rule 103   afirm_simples_sem_retorno -> QUEBRA
-Rule 104   afirm_simples_sem_retorno -> CONTINUA
-Rule 105   afirm_composto -> se
-Rule 106   afirm_composto -> enquanto
-Rule 107   afirm_composto -> para
-Rule 108   atribuicao_aumentada -> ID op_aum valor
+Rule 41    comparacao -> valor
+Rule 42    comparacao -> valor operador_comp valor
+Rule 43    operador_comp -> <
+Rule 44    operador_comp -> >
+Rule 45    operador_comp -> IGUIG
+Rule 46    operador_comp -> MAIORIG
+Rule 47    operador_comp -> MENORIG
+Rule 48    operador_comp -> DIF
+Rule 49    exponenciacao -> comparacao
+Rule 50    exponenciacao -> comparacao EXP exp_u
+Rule 51    exp_u -> exponenciacao
+Rule 52    exp_u -> - exp_u
+Rule 53    exp_u -> + exp_u
+Rule 54    exp_m -> exp_u
+Rule 55    exp_m -> exp_m * exp_u
+Rule 56    exp_m -> exp_m DIVINT exp_u
+Rule 57    exp_m -> exp_m / exp_u
+Rule 58    exp_a -> exp_m
+Rule 59    exp_a -> exp_a + exp_m
+Rule 60    exp_a -> exp_a - exp_m
+Rule 61    exp_nao -> exp_a
+Rule 62    exp_nao -> ! exp_nao
+Rule 63    exp_e -> exp_nao
+Rule 64    exp_e -> exp_e E exp_nao
+Rule 65    exp_ou -> exp_e
+Rule 66    exp_ou -> exp_ou OU exp_e
+Rule 67    expressao -> exp_ou
+Rule 68    param -> declaracao
+Rule 69    params -> param , params
+Rule 70    params -> param
+Rule 71    params -> empty
+Rule 72    retorna -> RETORNA expressao
+Rule 73    imprime -> IMPRIME expressao
+Rule 74    op_aum -> MAISIG
+Rule 75    op_aum -> MENOSIG
+Rule 76    op_aum -> MULTIG
+Rule 77    op_aum -> DIVIG
+Rule 78    op_aum -> MODIG
+Rule 79    op_aum -> EXPIG
+Rule 80    atribuicao_aumentada -> ID op_aum valor
+Rule 81    suite -> afirmacao
+Rule 82    suite -> afirmacao NOVALINHA suite
+Rule 83    suite -> NOVALINHA suite
+Rule 84    suite -> empty
+Rule 85    suite_sem_retorno -> afirmacao_sem_retorno
+Rule 86    suite_sem_retorno -> afirmacao_sem_retorno NOVALINHA suite_sem_retorno
+Rule 87    suite_sem_retorno -> NOVALINHA suite_sem_retorno
+Rule 88    suite_sem_retorno -> empty
+Rule 89    afirmacao -> afirm_simples
+Rule 90    afirmacao -> afirm_composto
+Rule 91    afirmacao_sem_retorno -> afirm_simples_sem_retorno
+Rule 92    afirmacao_sem_retorno -> afirm_composto
+Rule 93    afirm_simples -> atribuicao
+Rule 94    afirm_simples -> atribuicao_aumentada
+Rule 95    afirm_simples -> imprime
+Rule 96    afirm_simples -> retorna
+Rule 97    afirm_simples -> declaracao
+Rule 98    afirm_simples -> QUEBRA
+Rule 99    afirm_simples -> CONTINUA
+Rule 100   afirm_simples_sem_retorno -> atribuicao
+Rule 101   afirm_simples_sem_retorno -> atribuicao_aumentada
+Rule 102   afirm_simples_sem_retorno -> imprime
+Rule 103   afirm_simples_sem_retorno -> declaracao
+Rule 104   afirm_simples_sem_retorno -> QUEBRA
+Rule 105   afirm_simples_sem_retorno -> CONTINUA
+Rule 106   afirm_composto -> se
+Rule 107   afirm_composto -> enquanto
+Rule 108   afirm_composto -> para
 Rule 109   literal -> PALAVRA
 Rule 110   literal -> INT
 Rule 111   literal -> REAL
 
 Terminals, with rules where they appear
 
-!                    : 79
+!                    : 62
 (                    : 26 27 30 35 36
 )                    : 26 27 30 35 36
-*                    : 68
-+                    : 54 72
-,                    : 33 56
--                    : 53 73
-/                    : 70
+*                    : 55
++                    : 53 59
+,                    : 33 69
+-                    : 52 60
+/                    : 57
 :                    : 18 19 21 22 25 26 27 30
-<                    : 44
+<                    : 43
 =                    : 31 32
->                    : 45
+>                    : 44
 ATE                  : 25
 CONSTANTE            : 40
-CONTINUA             : 98 104
+CONTINUA             : 99 105
 DE                   : 25
 DEF                  : 26 27 30
-DIF                  : 49
-DIVIG                : 64
-DIVINT               : 69
-E                    : 77
+DIF                  : 48
+DIVIG                : 77
+DIVINT               : 56
+E                    : 64
 ENQUANTO             : 22
-EXP                  : 51
-EXPIG                : 66
+EXP                  : 50
+EXPIG                : 79
 FIM                  : 21 22 25 26 27 30
-ID                   : 14 24 25 26 27 30 31 32 35 36 37 108
-IGUIG                : 46
-IMPRIME              : 60
+ID                   : 14 24 25 26 27 30 31 32 35 36 37 80
+IGUIG                : 45
+IMPRIME              : 73
 INT                  : 23 31 110
-MAIORIG              : 47
-MAISIG               : 61
-MENORIG              : 48
-MENOSIG              : 62
-MODIG                : 65
-MULTIG               : 63
-NOVALINHA            : 3 10 28 29 81 82 85 86
-OU                   : 75
+MAIORIG              : 46
+MAISIG               : 74
+MENORIG              : 47
+MENOSIG              : 75
+MODIG                : 78
+MULTIG               : 76
+NOVALINHA            : 3 10 28 29 82 83 86 87
+OU                   : 66
 PALAVRA              : 109
 PARA                 : 25
-QUEBRA               : 97 103
+QUEBRA               : 98 104
 REAL                 : 111
-RETORNA              : 59
+RETORNA              : 72
 SE                   : 21
 SENAO                : 19
 SENAOSE              : 18
@@ -170,48 +170,48 @@ error                :
 
 Nonterminals, with rules where they appear
 
-afirm_composto       : 89 91
-afirm_simples        : 88
-afirm_simples_sem_retorno : 90
-afirmacao            : 80 81
-afirmacao_sem_retorno : 84 85
-atribuicao           : 7 92 99
-atribuicao_aumentada : 93 100
+afirm_composto       : 90 92
+afirm_simples        : 89
+afirm_simples_sem_retorno : 91
+afirmacao            : 81 82
+afirmacao_sem_retorno : 85 86
+atribuicao           : 7 93 100
+atribuicao_aumentada : 94 101
 chamada              : 8 39
-comparacao           : 50 51
+comparacao           : 49 50
 controle             : 4
-declaracao           : 5 55 96 102
+declaracao           : 5 68 97 103
 definicao            : 6
 defsubfuncao         : 9
-empty                : 17 20 34 58 83 87
-enquanto             : 12 106
-exp_a                : 72 73 78
-exp_e                : 74 75 77
-exp_m                : 68 69 70 71 72 73
-exp_nao              : 76 77 79
-exp_ou               : 41 75
-exp_u                : 51 53 54 67 68 69 70
-exponenciacao        : 52
-expressao            : 18 21 22 59 60
-imprime              : 94 101
+empty                : 17 20 34 71 84 88
+enquanto             : 12 107
+exp_a                : 59 60 61
+exp_e                : 64 65 66
+exp_m                : 55 56 57 58 59 60
+exp_nao              : 62 63 64
+exp_ou               : 66 67
+exp_u                : 50 52 53 54 55 56 57
+exponenciacao        : 51
+expressao            : 18 21 22 72 73
+imprime              : 95 102
 intid                : 25 25
 literal              : 38
 novalinha            : 27 29
-op_aum               : 108
-operador_comp        : 43
-para                 : 13 107
-param                : 56 57
-params               : 26 27 30 56
+op_aum               : 80
+operador_comp        : 42
+para                 : 13 108
+param                : 69 70
+params               : 26 27 30 69
 primario             : 1 2 10
 program              : 2 0
-retorna              : 26 27 95
-se                   : 11 105
+retorna              : 26 27 96
+se                   : 11 106
 senao                : 21
 senaose              : 16
 senaosemais          : 16 21
-suite                : 18 19 21 22 25 30 81 82
-suite_sem_retorno    : 26 27 85 86
-valor                : 31 32 33 35 42 43 43 108
+suite                : 18 19 21 22 25 30 82 83
+suite_sem_retorno    : 26 27 86 87
+valor                : 31 32 33 35 41 42 42 80
 valorvalor           : 33 35
 
 Parsing method: LALR
@@ -489,27 +489,27 @@ state 13
 state 14
 
     (22) enquanto -> ENQUANTO . expressao : suite FIM
-    (41) expressao -> . exp_ou
-    (74) exp_ou -> . exp_e
-    (75) exp_ou -> . exp_ou OU exp_e
-    (76) exp_e -> . exp_nao
-    (77) exp_e -> . exp_e E exp_nao
-    (78) exp_nao -> . exp_a
-    (79) exp_nao -> . ! exp_nao
-    (71) exp_a -> . exp_m
-    (72) exp_a -> . exp_a + exp_m
-    (73) exp_a -> . exp_a - exp_m
-    (67) exp_m -> . exp_u
-    (68) exp_m -> . exp_m * exp_u
-    (69) exp_m -> . exp_m DIVINT exp_u
-    (70) exp_m -> . exp_m / exp_u
-    (52) exp_u -> . exponenciacao
-    (53) exp_u -> . - exp_u
-    (54) exp_u -> . + exp_u
-    (50) exponenciacao -> . comparacao
-    (51) exponenciacao -> . comparacao EXP exp_u
-    (42) comparacao -> . valor
-    (43) comparacao -> . valor operador_comp valor
+    (67) expressao -> . exp_ou
+    (65) exp_ou -> . exp_e
+    (66) exp_ou -> . exp_ou OU exp_e
+    (63) exp_e -> . exp_nao
+    (64) exp_e -> . exp_e E exp_nao
+    (61) exp_nao -> . exp_a
+    (62) exp_nao -> . ! exp_nao
+    (58) exp_a -> . exp_m
+    (59) exp_a -> . exp_a + exp_m
+    (60) exp_a -> . exp_a - exp_m
+    (54) exp_m -> . exp_u
+    (55) exp_m -> . exp_m * exp_u
+    (56) exp_m -> . exp_m DIVINT exp_u
+    (57) exp_m -> . exp_m / exp_u
+    (51) exp_u -> . exponenciacao
+    (52) exp_u -> . - exp_u
+    (53) exp_u -> . + exp_u
+    (49) exponenciacao -> . comparacao
+    (50) exponenciacao -> . comparacao EXP exp_u
+    (41) comparacao -> . valor
+    (42) comparacao -> . valor operador_comp valor
     (37) valor -> . ID
     (38) valor -> . literal
     (39) valor -> . chamada
@@ -573,27 +573,27 @@ state 16
 state 17
 
     (21) se -> SE . expressao : suite senaosemais senao FIM
-    (41) expressao -> . exp_ou
-    (74) exp_ou -> . exp_e
-    (75) exp_ou -> . exp_ou OU exp_e
-    (76) exp_e -> . exp_nao
-    (77) exp_e -> . exp_e E exp_nao
-    (78) exp_nao -> . exp_a
-    (79) exp_nao -> . ! exp_nao
-    (71) exp_a -> . exp_m
-    (72) exp_a -> . exp_a + exp_m
-    (73) exp_a -> . exp_a - exp_m
-    (67) exp_m -> . exp_u
-    (68) exp_m -> . exp_m * exp_u
-    (69) exp_m -> . exp_m DIVINT exp_u
-    (70) exp_m -> . exp_m / exp_u
-    (52) exp_u -> . exponenciacao
-    (53) exp_u -> . - exp_u
-    (54) exp_u -> . + exp_u
-    (50) exponenciacao -> . comparacao
-    (51) exponenciacao -> . comparacao EXP exp_u
-    (42) comparacao -> . valor
-    (43) comparacao -> . valor operador_comp valor
+    (67) expressao -> . exp_ou
+    (65) exp_ou -> . exp_e
+    (66) exp_ou -> . exp_ou OU exp_e
+    (63) exp_e -> . exp_nao
+    (64) exp_e -> . exp_e E exp_nao
+    (61) exp_nao -> . exp_a
+    (62) exp_nao -> . ! exp_nao
+    (58) exp_a -> . exp_m
+    (59) exp_a -> . exp_a + exp_m
+    (60) exp_a -> . exp_a - exp_m
+    (54) exp_m -> . exp_u
+    (55) exp_m -> . exp_m * exp_u
+    (56) exp_m -> . exp_m DIVINT exp_u
+    (57) exp_m -> . exp_m / exp_u
+    (51) exp_u -> . exponenciacao
+    (52) exp_u -> . - exp_u
+    (53) exp_u -> . + exp_u
+    (49) exponenciacao -> . comparacao
+    (50) exponenciacao -> . comparacao EXP exp_u
+    (41) comparacao -> . valor
+    (42) comparacao -> . valor operador_comp valor
     (37) valor -> . ID
     (38) valor -> . literal
     (39) valor -> . chamada
@@ -839,75 +839,75 @@ state 29
 
 state 30
 
-    (74) exp_ou -> exp_e .
-    (77) exp_e -> exp_e . E exp_nao
+    (65) exp_ou -> exp_e .
+    (64) exp_e -> exp_e . E exp_nao
 
-    OU              reduce using rule 74 (exp_ou -> exp_e .)
-    NOVALINHA       reduce using rule 74 (exp_ou -> exp_e .)
-    FIM             reduce using rule 74 (exp_ou -> exp_e .)
-    SENAOSE         reduce using rule 74 (exp_ou -> exp_e .)
-    SENAO           reduce using rule 74 (exp_ou -> exp_e .)
-    :               reduce using rule 74 (exp_ou -> exp_e .)
-    RETORNA         reduce using rule 74 (exp_ou -> exp_e .)
+    OU              reduce using rule 65 (exp_ou -> exp_e .)
+    NOVALINHA       reduce using rule 65 (exp_ou -> exp_e .)
+    FIM             reduce using rule 65 (exp_ou -> exp_e .)
+    SENAOSE         reduce using rule 65 (exp_ou -> exp_e .)
+    SENAO           reduce using rule 65 (exp_ou -> exp_e .)
+    :               reduce using rule 65 (exp_ou -> exp_e .)
+    RETORNA         reduce using rule 65 (exp_ou -> exp_e .)
     E               shift and go to state 57
 
 
 state 31
 
-    (78) exp_nao -> exp_a .
-    (72) exp_a -> exp_a . + exp_m
-    (73) exp_a -> exp_a . - exp_m
+    (61) exp_nao -> exp_a .
+    (59) exp_a -> exp_a . + exp_m
+    (60) exp_a -> exp_a . - exp_m
 
-    E               reduce using rule 78 (exp_nao -> exp_a .)
-    OU              reduce using rule 78 (exp_nao -> exp_a .)
-    :               reduce using rule 78 (exp_nao -> exp_a .)
-    NOVALINHA       reduce using rule 78 (exp_nao -> exp_a .)
-    FIM             reduce using rule 78 (exp_nao -> exp_a .)
-    SENAOSE         reduce using rule 78 (exp_nao -> exp_a .)
-    SENAO           reduce using rule 78 (exp_nao -> exp_a .)
-    RETORNA         reduce using rule 78 (exp_nao -> exp_a .)
+    E               reduce using rule 61 (exp_nao -> exp_a .)
+    OU              reduce using rule 61 (exp_nao -> exp_a .)
+    :               reduce using rule 61 (exp_nao -> exp_a .)
+    NOVALINHA       reduce using rule 61 (exp_nao -> exp_a .)
+    FIM             reduce using rule 61 (exp_nao -> exp_a .)
+    SENAOSE         reduce using rule 61 (exp_nao -> exp_a .)
+    SENAO           reduce using rule 61 (exp_nao -> exp_a .)
+    RETORNA         reduce using rule 61 (exp_nao -> exp_a .)
     +               shift and go to state 59
     -               shift and go to state 58
 
 
 state 32
 
-    (50) exponenciacao -> comparacao .
-    (51) exponenciacao -> comparacao . EXP exp_u
+    (49) exponenciacao -> comparacao .
+    (50) exponenciacao -> comparacao . EXP exp_u
 
-    *               reduce using rule 50 (exponenciacao -> comparacao .)
-    DIVINT          reduce using rule 50 (exponenciacao -> comparacao .)
-    /               reduce using rule 50 (exponenciacao -> comparacao .)
-    +               reduce using rule 50 (exponenciacao -> comparacao .)
-    -               reduce using rule 50 (exponenciacao -> comparacao .)
-    E               reduce using rule 50 (exponenciacao -> comparacao .)
-    OU              reduce using rule 50 (exponenciacao -> comparacao .)
-    :               reduce using rule 50 (exponenciacao -> comparacao .)
-    NOVALINHA       reduce using rule 50 (exponenciacao -> comparacao .)
-    FIM             reduce using rule 50 (exponenciacao -> comparacao .)
-    SENAOSE         reduce using rule 50 (exponenciacao -> comparacao .)
-    SENAO           reduce using rule 50 (exponenciacao -> comparacao .)
-    RETORNA         reduce using rule 50 (exponenciacao -> comparacao .)
+    *               reduce using rule 49 (exponenciacao -> comparacao .)
+    DIVINT          reduce using rule 49 (exponenciacao -> comparacao .)
+    /               reduce using rule 49 (exponenciacao -> comparacao .)
+    +               reduce using rule 49 (exponenciacao -> comparacao .)
+    -               reduce using rule 49 (exponenciacao -> comparacao .)
+    E               reduce using rule 49 (exponenciacao -> comparacao .)
+    OU              reduce using rule 49 (exponenciacao -> comparacao .)
+    :               reduce using rule 49 (exponenciacao -> comparacao .)
+    NOVALINHA       reduce using rule 49 (exponenciacao -> comparacao .)
+    FIM             reduce using rule 49 (exponenciacao -> comparacao .)
+    SENAOSE         reduce using rule 49 (exponenciacao -> comparacao .)
+    SENAO           reduce using rule 49 (exponenciacao -> comparacao .)
+    RETORNA         reduce using rule 49 (exponenciacao -> comparacao .)
     EXP             shift and go to state 60
 
 
 state 33
 
-    (71) exp_a -> exp_m .
-    (68) exp_m -> exp_m . * exp_u
-    (69) exp_m -> exp_m . DIVINT exp_u
-    (70) exp_m -> exp_m . / exp_u
+    (58) exp_a -> exp_m .
+    (55) exp_m -> exp_m . * exp_u
+    (56) exp_m -> exp_m . DIVINT exp_u
+    (57) exp_m -> exp_m . / exp_u
 
-    +               reduce using rule 71 (exp_a -> exp_m .)
-    -               reduce using rule 71 (exp_a -> exp_m .)
-    E               reduce using rule 71 (exp_a -> exp_m .)
-    OU              reduce using rule 71 (exp_a -> exp_m .)
-    :               reduce using rule 71 (exp_a -> exp_m .)
-    NOVALINHA       reduce using rule 71 (exp_a -> exp_m .)
-    FIM             reduce using rule 71 (exp_a -> exp_m .)
-    SENAOSE         reduce using rule 71 (exp_a -> exp_m .)
-    SENAO           reduce using rule 71 (exp_a -> exp_m .)
-    RETORNA         reduce using rule 71 (exp_a -> exp_m .)
+    +               reduce using rule 58 (exp_a -> exp_m .)
+    -               reduce using rule 58 (exp_a -> exp_m .)
+    E               reduce using rule 58 (exp_a -> exp_m .)
+    OU              reduce using rule 58 (exp_a -> exp_m .)
+    :               reduce using rule 58 (exp_a -> exp_m .)
+    NOVALINHA       reduce using rule 58 (exp_a -> exp_m .)
+    FIM             reduce using rule 58 (exp_a -> exp_m .)
+    SENAOSE         reduce using rule 58 (exp_a -> exp_m .)
+    SENAO           reduce using rule 58 (exp_a -> exp_m .)
+    RETORNA         reduce using rule 58 (exp_a -> exp_m .)
     *               shift and go to state 62
     DIVINT          shift and go to state 61
     /               shift and go to state 63
@@ -922,14 +922,14 @@ state 34
 
 state 35
 
-    (54) exp_u -> + . exp_u
-    (52) exp_u -> . exponenciacao
-    (53) exp_u -> . - exp_u
-    (54) exp_u -> . + exp_u
-    (50) exponenciacao -> . comparacao
-    (51) exponenciacao -> . comparacao EXP exp_u
-    (42) comparacao -> . valor
-    (43) comparacao -> . valor operador_comp valor
+    (53) exp_u -> + . exp_u
+    (51) exp_u -> . exponenciacao
+    (52) exp_u -> . - exp_u
+    (53) exp_u -> . + exp_u
+    (49) exponenciacao -> . comparacao
+    (50) exponenciacao -> . comparacao EXP exp_u
+    (41) comparacao -> . valor
+    (42) comparacao -> . valor operador_comp valor
     (37) valor -> . ID
     (38) valor -> . literal
     (39) valor -> . chamada
@@ -957,14 +957,14 @@ state 35
 
 state 36
 
-    (53) exp_u -> - . exp_u
-    (52) exp_u -> . exponenciacao
-    (53) exp_u -> . - exp_u
-    (54) exp_u -> . + exp_u
-    (50) exponenciacao -> . comparacao
-    (51) exponenciacao -> . comparacao EXP exp_u
-    (42) comparacao -> . valor
-    (43) comparacao -> . valor operador_comp valor
+    (52) exp_u -> - . exp_u
+    (51) exp_u -> . exponenciacao
+    (52) exp_u -> . - exp_u
+    (53) exp_u -> . + exp_u
+    (49) exponenciacao -> . comparacao
+    (50) exponenciacao -> . comparacao EXP exp_u
+    (41) comparacao -> . valor
+    (42) comparacao -> . valor operador_comp valor
     (37) valor -> . ID
     (38) valor -> . literal
     (39) valor -> . chamada
@@ -992,21 +992,21 @@ state 36
 
 state 37
 
-    (67) exp_m -> exp_u .
+    (54) exp_m -> exp_u .
 
-    *               reduce using rule 67 (exp_m -> exp_u .)
-    DIVINT          reduce using rule 67 (exp_m -> exp_u .)
-    /               reduce using rule 67 (exp_m -> exp_u .)
-    +               reduce using rule 67 (exp_m -> exp_u .)
-    -               reduce using rule 67 (exp_m -> exp_u .)
-    E               reduce using rule 67 (exp_m -> exp_u .)
-    OU              reduce using rule 67 (exp_m -> exp_u .)
-    :               reduce using rule 67 (exp_m -> exp_u .)
-    NOVALINHA       reduce using rule 67 (exp_m -> exp_u .)
-    FIM             reduce using rule 67 (exp_m -> exp_u .)
-    SENAOSE         reduce using rule 67 (exp_m -> exp_u .)
-    SENAO           reduce using rule 67 (exp_m -> exp_u .)
-    RETORNA         reduce using rule 67 (exp_m -> exp_u .)
+    *               reduce using rule 54 (exp_m -> exp_u .)
+    DIVINT          reduce using rule 54 (exp_m -> exp_u .)
+    /               reduce using rule 54 (exp_m -> exp_u .)
+    +               reduce using rule 54 (exp_m -> exp_u .)
+    -               reduce using rule 54 (exp_m -> exp_u .)
+    E               reduce using rule 54 (exp_m -> exp_u .)
+    OU              reduce using rule 54 (exp_m -> exp_u .)
+    :               reduce using rule 54 (exp_m -> exp_u .)
+    NOVALINHA       reduce using rule 54 (exp_m -> exp_u .)
+    FIM             reduce using rule 54 (exp_m -> exp_u .)
+    SENAOSE         reduce using rule 54 (exp_m -> exp_u .)
+    SENAO           reduce using rule 54 (exp_m -> exp_u .)
+    RETORNA         reduce using rule 54 (exp_m -> exp_u .)
 
 
 state 38
@@ -1046,48 +1046,48 @@ state 38
 
 state 39
 
-    (52) exp_u -> exponenciacao .
+    (51) exp_u -> exponenciacao .
 
-    *               reduce using rule 52 (exp_u -> exponenciacao .)
-    DIVINT          reduce using rule 52 (exp_u -> exponenciacao .)
-    /               reduce using rule 52 (exp_u -> exponenciacao .)
-    +               reduce using rule 52 (exp_u -> exponenciacao .)
-    -               reduce using rule 52 (exp_u -> exponenciacao .)
-    E               reduce using rule 52 (exp_u -> exponenciacao .)
-    OU              reduce using rule 52 (exp_u -> exponenciacao .)
-    :               reduce using rule 52 (exp_u -> exponenciacao .)
-    NOVALINHA       reduce using rule 52 (exp_u -> exponenciacao .)
-    FIM             reduce using rule 52 (exp_u -> exponenciacao .)
-    SENAOSE         reduce using rule 52 (exp_u -> exponenciacao .)
-    SENAO           reduce using rule 52 (exp_u -> exponenciacao .)
-    RETORNA         reduce using rule 52 (exp_u -> exponenciacao .)
+    *               reduce using rule 51 (exp_u -> exponenciacao .)
+    DIVINT          reduce using rule 51 (exp_u -> exponenciacao .)
+    /               reduce using rule 51 (exp_u -> exponenciacao .)
+    +               reduce using rule 51 (exp_u -> exponenciacao .)
+    -               reduce using rule 51 (exp_u -> exponenciacao .)
+    E               reduce using rule 51 (exp_u -> exponenciacao .)
+    OU              reduce using rule 51 (exp_u -> exponenciacao .)
+    :               reduce using rule 51 (exp_u -> exponenciacao .)
+    NOVALINHA       reduce using rule 51 (exp_u -> exponenciacao .)
+    FIM             reduce using rule 51 (exp_u -> exponenciacao .)
+    SENAOSE         reduce using rule 51 (exp_u -> exponenciacao .)
+    SENAO           reduce using rule 51 (exp_u -> exponenciacao .)
+    RETORNA         reduce using rule 51 (exp_u -> exponenciacao .)
 
 
 state 40
 
-    (42) comparacao -> valor .
-    (43) comparacao -> valor . operador_comp valor
-    (44) operador_comp -> . <
-    (45) operador_comp -> . >
-    (46) operador_comp -> . IGUIG
-    (47) operador_comp -> . MAIORIG
-    (48) operador_comp -> . MENORIG
-    (49) operador_comp -> . DIF
+    (41) comparacao -> valor .
+    (42) comparacao -> valor . operador_comp valor
+    (43) operador_comp -> . <
+    (44) operador_comp -> . >
+    (45) operador_comp -> . IGUIG
+    (46) operador_comp -> . MAIORIG
+    (47) operador_comp -> . MENORIG
+    (48) operador_comp -> . DIF
 
-    EXP             reduce using rule 42 (comparacao -> valor .)
-    *               reduce using rule 42 (comparacao -> valor .)
-    DIVINT          reduce using rule 42 (comparacao -> valor .)
-    /               reduce using rule 42 (comparacao -> valor .)
-    +               reduce using rule 42 (comparacao -> valor .)
-    -               reduce using rule 42 (comparacao -> valor .)
-    E               reduce using rule 42 (comparacao -> valor .)
-    OU              reduce using rule 42 (comparacao -> valor .)
-    :               reduce using rule 42 (comparacao -> valor .)
-    NOVALINHA       reduce using rule 42 (comparacao -> valor .)
-    FIM             reduce using rule 42 (comparacao -> valor .)
-    SENAOSE         reduce using rule 42 (comparacao -> valor .)
-    SENAO           reduce using rule 42 (comparacao -> valor .)
-    RETORNA         reduce using rule 42 (comparacao -> valor .)
+    EXP             reduce using rule 41 (comparacao -> valor .)
+    *               reduce using rule 41 (comparacao -> valor .)
+    DIVINT          reduce using rule 41 (comparacao -> valor .)
+    /               reduce using rule 41 (comparacao -> valor .)
+    +               reduce using rule 41 (comparacao -> valor .)
+    -               reduce using rule 41 (comparacao -> valor .)
+    E               reduce using rule 41 (comparacao -> valor .)
+    OU              reduce using rule 41 (comparacao -> valor .)
+    :               reduce using rule 41 (comparacao -> valor .)
+    NOVALINHA       reduce using rule 41 (comparacao -> valor .)
+    FIM             reduce using rule 41 (comparacao -> valor .)
+    SENAOSE         reduce using rule 41 (comparacao -> valor .)
+    SENAO           reduce using rule 41 (comparacao -> valor .)
+    RETORNA         reduce using rule 41 (comparacao -> valor .)
     <               shift and go to state 72
     >               shift and go to state 73
     IGUIG           shift and go to state 71
@@ -1134,37 +1134,37 @@ state 41
 
 state 42
 
-    (41) expressao -> exp_ou .
-    (75) exp_ou -> exp_ou . OU exp_e
+    (67) expressao -> exp_ou .
+    (66) exp_ou -> exp_ou . OU exp_e
 
-    :               reduce using rule 41 (expressao -> exp_ou .)
-    NOVALINHA       reduce using rule 41 (expressao -> exp_ou .)
-    FIM             reduce using rule 41 (expressao -> exp_ou .)
-    SENAOSE         reduce using rule 41 (expressao -> exp_ou .)
-    SENAO           reduce using rule 41 (expressao -> exp_ou .)
-    RETORNA         reduce using rule 41 (expressao -> exp_ou .)
+    :               reduce using rule 67 (expressao -> exp_ou .)
+    NOVALINHA       reduce using rule 67 (expressao -> exp_ou .)
+    FIM             reduce using rule 67 (expressao -> exp_ou .)
+    SENAOSE         reduce using rule 67 (expressao -> exp_ou .)
+    SENAO           reduce using rule 67 (expressao -> exp_ou .)
+    RETORNA         reduce using rule 67 (expressao -> exp_ou .)
     OU              shift and go to state 74
 
 
 state 43
 
-    (79) exp_nao -> ! . exp_nao
-    (78) exp_nao -> . exp_a
-    (79) exp_nao -> . ! exp_nao
-    (71) exp_a -> . exp_m
-    (72) exp_a -> . exp_a + exp_m
-    (73) exp_a -> . exp_a - exp_m
-    (67) exp_m -> . exp_u
-    (68) exp_m -> . exp_m * exp_u
-    (69) exp_m -> . exp_m DIVINT exp_u
-    (70) exp_m -> . exp_m / exp_u
-    (52) exp_u -> . exponenciacao
-    (53) exp_u -> . - exp_u
-    (54) exp_u -> . + exp_u
-    (50) exponenciacao -> . comparacao
-    (51) exponenciacao -> . comparacao EXP exp_u
-    (42) comparacao -> . valor
-    (43) comparacao -> . valor operador_comp valor
+    (62) exp_nao -> ! . exp_nao
+    (61) exp_nao -> . exp_a
+    (62) exp_nao -> . ! exp_nao
+    (58) exp_a -> . exp_m
+    (59) exp_a -> . exp_a + exp_m
+    (60) exp_a -> . exp_a - exp_m
+    (54) exp_m -> . exp_u
+    (55) exp_m -> . exp_m * exp_u
+    (56) exp_m -> . exp_m DIVINT exp_u
+    (57) exp_m -> . exp_m / exp_u
+    (51) exp_u -> . exponenciacao
+    (52) exp_u -> . - exp_u
+    (53) exp_u -> . + exp_u
+    (49) exponenciacao -> . comparacao
+    (50) exponenciacao -> . comparacao EXP exp_u
+    (41) comparacao -> . valor
+    (42) comparacao -> . valor operador_comp valor
     (37) valor -> . ID
     (38) valor -> . literal
     (39) valor -> . chamada
@@ -1304,16 +1304,16 @@ state 46
 
 state 47
 
-    (76) exp_e -> exp_nao .
+    (63) exp_e -> exp_nao .
 
-    E               reduce using rule 76 (exp_e -> exp_nao .)
-    OU              reduce using rule 76 (exp_e -> exp_nao .)
-    NOVALINHA       reduce using rule 76 (exp_e -> exp_nao .)
-    FIM             reduce using rule 76 (exp_e -> exp_nao .)
-    SENAOSE         reduce using rule 76 (exp_e -> exp_nao .)
-    SENAO           reduce using rule 76 (exp_e -> exp_nao .)
-    RETORNA         reduce using rule 76 (exp_e -> exp_nao .)
-    :               reduce using rule 76 (exp_e -> exp_nao .)
+    E               reduce using rule 63 (exp_e -> exp_nao .)
+    OU              reduce using rule 63 (exp_e -> exp_nao .)
+    NOVALINHA       reduce using rule 63 (exp_e -> exp_nao .)
+    FIM             reduce using rule 63 (exp_e -> exp_nao .)
+    SENAOSE         reduce using rule 63 (exp_e -> exp_nao .)
+    SENAO           reduce using rule 63 (exp_e -> exp_nao .)
+    RETORNA         reduce using rule 63 (exp_e -> exp_nao .)
+    :               reduce using rule 63 (exp_e -> exp_nao .)
 
 
 state 48
@@ -1459,23 +1459,23 @@ state 56
 
 state 57
 
-    (77) exp_e -> exp_e E . exp_nao
-    (78) exp_nao -> . exp_a
-    (79) exp_nao -> . ! exp_nao
-    (71) exp_a -> . exp_m
-    (72) exp_a -> . exp_a + exp_m
-    (73) exp_a -> . exp_a - exp_m
-    (67) exp_m -> . exp_u
-    (68) exp_m -> . exp_m * exp_u
-    (69) exp_m -> . exp_m DIVINT exp_u
-    (70) exp_m -> . exp_m / exp_u
-    (52) exp_u -> . exponenciacao
-    (53) exp_u -> . - exp_u
-    (54) exp_u -> . + exp_u
-    (50) exponenciacao -> . comparacao
-    (51) exponenciacao -> . comparacao EXP exp_u
-    (42) comparacao -> . valor
-    (43) comparacao -> . valor operador_comp valor
+    (64) exp_e -> exp_e E . exp_nao
+    (61) exp_nao -> . exp_a
+    (62) exp_nao -> . ! exp_nao
+    (58) exp_a -> . exp_m
+    (59) exp_a -> . exp_a + exp_m
+    (60) exp_a -> . exp_a - exp_m
+    (54) exp_m -> . exp_u
+    (55) exp_m -> . exp_m * exp_u
+    (56) exp_m -> . exp_m DIVINT exp_u
+    (57) exp_m -> . exp_m / exp_u
+    (51) exp_u -> . exponenciacao
+    (52) exp_u -> . - exp_u
+    (53) exp_u -> . + exp_u
+    (49) exponenciacao -> . comparacao
+    (50) exponenciacao -> . comparacao EXP exp_u
+    (41) comparacao -> . valor
+    (42) comparacao -> . valor operador_comp valor
     (37) valor -> . ID
     (38) valor -> . literal
     (39) valor -> . chamada
@@ -1507,18 +1507,18 @@ state 57
 
 state 58
 
-    (73) exp_a -> exp_a - . exp_m
-    (67) exp_m -> . exp_u
-    (68) exp_m -> . exp_m * exp_u
-    (69) exp_m -> . exp_m DIVINT exp_u
-    (70) exp_m -> . exp_m / exp_u
-    (52) exp_u -> . exponenciacao
-    (53) exp_u -> . - exp_u
-    (54) exp_u -> . + exp_u
-    (50) exponenciacao -> . comparacao
-    (51) exponenciacao -> . comparacao EXP exp_u
-    (42) comparacao -> . valor
-    (43) comparacao -> . valor operador_comp valor
+    (60) exp_a -> exp_a - . exp_m
+    (54) exp_m -> . exp_u
+    (55) exp_m -> . exp_m * exp_u
+    (56) exp_m -> . exp_m DIVINT exp_u
+    (57) exp_m -> . exp_m / exp_u
+    (51) exp_u -> . exponenciacao
+    (52) exp_u -> . - exp_u
+    (53) exp_u -> . + exp_u
+    (49) exponenciacao -> . comparacao
+    (50) exponenciacao -> . comparacao EXP exp_u
+    (41) comparacao -> . valor
+    (42) comparacao -> . valor operador_comp valor
     (37) valor -> . ID
     (38) valor -> . literal
     (39) valor -> . chamada
@@ -1547,18 +1547,18 @@ state 58
 
 state 59
 
-    (72) exp_a -> exp_a + . exp_m
-    (67) exp_m -> . exp_u
-    (68) exp_m -> . exp_m * exp_u
-    (69) exp_m -> . exp_m DIVINT exp_u
-    (70) exp_m -> . exp_m / exp_u
-    (52) exp_u -> . exponenciacao
-    (53) exp_u -> . - exp_u
-    (54) exp_u -> . + exp_u
-    (50) exponenciacao -> . comparacao
-    (51) exponenciacao -> . comparacao EXP exp_u
-    (42) comparacao -> . valor
-    (43) comparacao -> . valor operador_comp valor
+    (59) exp_a -> exp_a + . exp_m
+    (54) exp_m -> . exp_u
+    (55) exp_m -> . exp_m * exp_u
+    (56) exp_m -> . exp_m DIVINT exp_u
+    (57) exp_m -> . exp_m / exp_u
+    (51) exp_u -> . exponenciacao
+    (52) exp_u -> . - exp_u
+    (53) exp_u -> . + exp_u
+    (49) exponenciacao -> . comparacao
+    (50) exponenciacao -> . comparacao EXP exp_u
+    (41) comparacao -> . valor
+    (42) comparacao -> . valor operador_comp valor
     (37) valor -> . ID
     (38) valor -> . literal
     (39) valor -> . chamada
@@ -1587,14 +1587,14 @@ state 59
 
 state 60
 
-    (51) exponenciacao -> comparacao EXP . exp_u
-    (52) exp_u -> . exponenciacao
-    (53) exp_u -> . - exp_u
-    (54) exp_u -> . + exp_u
-    (50) exponenciacao -> . comparacao
-    (51) exponenciacao -> . comparacao EXP exp_u
-    (42) comparacao -> . valor
-    (43) comparacao -> . valor operador_comp valor
+    (50) exponenciacao -> comparacao EXP . exp_u
+    (51) exp_u -> . exponenciacao
+    (52) exp_u -> . - exp_u
+    (53) exp_u -> . + exp_u
+    (49) exponenciacao -> . comparacao
+    (50) exponenciacao -> . comparacao EXP exp_u
+    (41) comparacao -> . valor
+    (42) comparacao -> . valor operador_comp valor
     (37) valor -> . ID
     (38) valor -> . literal
     (39) valor -> . chamada
@@ -1622,14 +1622,14 @@ state 60
 
 state 61
 
-    (69) exp_m -> exp_m DIVINT . exp_u
-    (52) exp_u -> . exponenciacao
-    (53) exp_u -> . - exp_u
-    (54) exp_u -> . + exp_u
-    (50) exponenciacao -> . comparacao
-    (51) exponenciacao -> . comparacao EXP exp_u
-    (42) comparacao -> . valor
-    (43) comparacao -> . valor operador_comp valor
+    (56) exp_m -> exp_m DIVINT . exp_u
+    (51) exp_u -> . exponenciacao
+    (52) exp_u -> . - exp_u
+    (53) exp_u -> . + exp_u
+    (49) exponenciacao -> . comparacao
+    (50) exponenciacao -> . comparacao EXP exp_u
+    (41) comparacao -> . valor
+    (42) comparacao -> . valor operador_comp valor
     (37) valor -> . ID
     (38) valor -> . literal
     (39) valor -> . chamada
@@ -1657,14 +1657,14 @@ state 61
 
 state 62
 
-    (68) exp_m -> exp_m * . exp_u
-    (52) exp_u -> . exponenciacao
-    (53) exp_u -> . - exp_u
-    (54) exp_u -> . + exp_u
-    (50) exponenciacao -> . comparacao
-    (51) exponenciacao -> . comparacao EXP exp_u
-    (42) comparacao -> . valor
-    (43) comparacao -> . valor operador_comp valor
+    (55) exp_m -> exp_m * . exp_u
+    (51) exp_u -> . exponenciacao
+    (52) exp_u -> . - exp_u
+    (53) exp_u -> . + exp_u
+    (49) exponenciacao -> . comparacao
+    (50) exponenciacao -> . comparacao EXP exp_u
+    (41) comparacao -> . valor
+    (42) comparacao -> . valor operador_comp valor
     (37) valor -> . ID
     (38) valor -> . literal
     (39) valor -> . chamada
@@ -1692,14 +1692,14 @@ state 62
 
 state 63
 
-    (70) exp_m -> exp_m / . exp_u
-    (52) exp_u -> . exponenciacao
-    (53) exp_u -> . - exp_u
-    (54) exp_u -> . + exp_u
-    (50) exponenciacao -> . comparacao
-    (51) exponenciacao -> . comparacao EXP exp_u
-    (42) comparacao -> . valor
-    (43) comparacao -> . valor operador_comp valor
+    (57) exp_m -> exp_m / . exp_u
+    (51) exp_u -> . exponenciacao
+    (52) exp_u -> . - exp_u
+    (53) exp_u -> . + exp_u
+    (49) exponenciacao -> . comparacao
+    (50) exponenciacao -> . comparacao EXP exp_u
+    (41) comparacao -> . valor
+    (42) comparacao -> . valor operador_comp valor
     (37) valor -> . ID
     (38) valor -> . literal
     (39) valor -> . chamada
@@ -1728,28 +1728,28 @@ state 63
 state 64
 
     (22) enquanto -> ENQUANTO expressao : . suite FIM
-    (80) suite -> . afirmacao
-    (81) suite -> . afirmacao NOVALINHA suite
-    (82) suite -> . NOVALINHA suite
-    (83) suite -> . empty
-    (88) afirmacao -> . afirm_simples
-    (89) afirmacao -> . afirm_composto
+    (81) suite -> . afirmacao
+    (82) suite -> . afirmacao NOVALINHA suite
+    (83) suite -> . NOVALINHA suite
+    (84) suite -> . empty
+    (89) afirmacao -> . afirm_simples
+    (90) afirmacao -> . afirm_composto
     (15) empty -> .
-    (92) afirm_simples -> . atribuicao
-    (93) afirm_simples -> . atribuicao_aumentada
-    (94) afirm_simples -> . imprime
-    (95) afirm_simples -> . retorna
-    (96) afirm_simples -> . declaracao
-    (97) afirm_simples -> . QUEBRA
-    (98) afirm_simples -> . CONTINUA
-    (105) afirm_composto -> . se
-    (106) afirm_composto -> . enquanto
-    (107) afirm_composto -> . para
+    (93) afirm_simples -> . atribuicao
+    (94) afirm_simples -> . atribuicao_aumentada
+    (95) afirm_simples -> . imprime
+    (96) afirm_simples -> . retorna
+    (97) afirm_simples -> . declaracao
+    (98) afirm_simples -> . QUEBRA
+    (99) afirm_simples -> . CONTINUA
+    (106) afirm_composto -> . se
+    (107) afirm_composto -> . enquanto
+    (108) afirm_composto -> . para
     (31) atribuicao -> . ID [ INT ] = valor
     (32) atribuicao -> . ID = valor
-    (108) atribuicao_aumentada -> . ID op_aum valor
-    (60) imprime -> . IMPRIME expressao
-    (59) retorna -> . RETORNA expressao
+    (80) atribuicao_aumentada -> . ID op_aum valor
+    (73) imprime -> . IMPRIME expressao
+    (72) retorna -> . RETORNA expressao
     (14) declaracao -> . TIPO ID
     (21) se -> . SE expressao : suite senaosemais senao FIM
     (22) enquanto -> . ENQUANTO expressao : suite FIM
@@ -1783,67 +1783,67 @@ state 64
 
 state 65
 
-    (54) exp_u -> + exp_u .
+    (53) exp_u -> + exp_u .
 
-    *               reduce using rule 54 (exp_u -> + exp_u .)
-    DIVINT          reduce using rule 54 (exp_u -> + exp_u .)
-    /               reduce using rule 54 (exp_u -> + exp_u .)
-    +               reduce using rule 54 (exp_u -> + exp_u .)
-    -               reduce using rule 54 (exp_u -> + exp_u .)
-    E               reduce using rule 54 (exp_u -> + exp_u .)
-    OU              reduce using rule 54 (exp_u -> + exp_u .)
-    :               reduce using rule 54 (exp_u -> + exp_u .)
-    NOVALINHA       reduce using rule 54 (exp_u -> + exp_u .)
-    FIM             reduce using rule 54 (exp_u -> + exp_u .)
-    SENAOSE         reduce using rule 54 (exp_u -> + exp_u .)
-    SENAO           reduce using rule 54 (exp_u -> + exp_u .)
-    RETORNA         reduce using rule 54 (exp_u -> + exp_u .)
+    *               reduce using rule 53 (exp_u -> + exp_u .)
+    DIVINT          reduce using rule 53 (exp_u -> + exp_u .)
+    /               reduce using rule 53 (exp_u -> + exp_u .)
+    +               reduce using rule 53 (exp_u -> + exp_u .)
+    -               reduce using rule 53 (exp_u -> + exp_u .)
+    E               reduce using rule 53 (exp_u -> + exp_u .)
+    OU              reduce using rule 53 (exp_u -> + exp_u .)
+    :               reduce using rule 53 (exp_u -> + exp_u .)
+    NOVALINHA       reduce using rule 53 (exp_u -> + exp_u .)
+    FIM             reduce using rule 53 (exp_u -> + exp_u .)
+    SENAOSE         reduce using rule 53 (exp_u -> + exp_u .)
+    SENAO           reduce using rule 53 (exp_u -> + exp_u .)
+    RETORNA         reduce using rule 53 (exp_u -> + exp_u .)
 
 
 state 66
 
-    (53) exp_u -> - exp_u .
+    (52) exp_u -> - exp_u .
 
-    *               reduce using rule 53 (exp_u -> - exp_u .)
-    DIVINT          reduce using rule 53 (exp_u -> - exp_u .)
-    /               reduce using rule 53 (exp_u -> - exp_u .)
-    +               reduce using rule 53 (exp_u -> - exp_u .)
-    -               reduce using rule 53 (exp_u -> - exp_u .)
-    E               reduce using rule 53 (exp_u -> - exp_u .)
-    OU              reduce using rule 53 (exp_u -> - exp_u .)
-    :               reduce using rule 53 (exp_u -> - exp_u .)
-    NOVALINHA       reduce using rule 53 (exp_u -> - exp_u .)
-    FIM             reduce using rule 53 (exp_u -> - exp_u .)
-    SENAOSE         reduce using rule 53 (exp_u -> - exp_u .)
-    SENAO           reduce using rule 53 (exp_u -> - exp_u .)
-    RETORNA         reduce using rule 53 (exp_u -> - exp_u .)
+    *               reduce using rule 52 (exp_u -> - exp_u .)
+    DIVINT          reduce using rule 52 (exp_u -> - exp_u .)
+    /               reduce using rule 52 (exp_u -> - exp_u .)
+    +               reduce using rule 52 (exp_u -> - exp_u .)
+    -               reduce using rule 52 (exp_u -> - exp_u .)
+    E               reduce using rule 52 (exp_u -> - exp_u .)
+    OU              reduce using rule 52 (exp_u -> - exp_u .)
+    :               reduce using rule 52 (exp_u -> - exp_u .)
+    NOVALINHA       reduce using rule 52 (exp_u -> - exp_u .)
+    FIM             reduce using rule 52 (exp_u -> - exp_u .)
+    SENAOSE         reduce using rule 52 (exp_u -> - exp_u .)
+    SENAO           reduce using rule 52 (exp_u -> - exp_u .)
+    RETORNA         reduce using rule 52 (exp_u -> - exp_u .)
 
 
 state 67
 
-    (48) operador_comp -> MENORIG .
+    (47) operador_comp -> MENORIG .
 
-    ID              reduce using rule 48 (operador_comp -> MENORIG .)
-    CONSTANTE       reduce using rule 48 (operador_comp -> MENORIG .)
-    PALAVRA         reduce using rule 48 (operador_comp -> MENORIG .)
-    INT             reduce using rule 48 (operador_comp -> MENORIG .)
-    REAL            reduce using rule 48 (operador_comp -> MENORIG .)
+    ID              reduce using rule 47 (operador_comp -> MENORIG .)
+    CONSTANTE       reduce using rule 47 (operador_comp -> MENORIG .)
+    PALAVRA         reduce using rule 47 (operador_comp -> MENORIG .)
+    INT             reduce using rule 47 (operador_comp -> MENORIG .)
+    REAL            reduce using rule 47 (operador_comp -> MENORIG .)
 
 
 state 68
 
-    (49) operador_comp -> DIF .
+    (48) operador_comp -> DIF .
 
-    ID              reduce using rule 49 (operador_comp -> DIF .)
-    CONSTANTE       reduce using rule 49 (operador_comp -> DIF .)
-    PALAVRA         reduce using rule 49 (operador_comp -> DIF .)
-    INT             reduce using rule 49 (operador_comp -> DIF .)
-    REAL            reduce using rule 49 (operador_comp -> DIF .)
+    ID              reduce using rule 48 (operador_comp -> DIF .)
+    CONSTANTE       reduce using rule 48 (operador_comp -> DIF .)
+    PALAVRA         reduce using rule 48 (operador_comp -> DIF .)
+    INT             reduce using rule 48 (operador_comp -> DIF .)
+    REAL            reduce using rule 48 (operador_comp -> DIF .)
 
 
 state 69
 
-    (43) comparacao -> valor operador_comp . valor
+    (42) comparacao -> valor operador_comp . valor
     (37) valor -> . ID
     (38) valor -> . literal
     (39) valor -> . chamada
@@ -1866,69 +1866,69 @@ state 69
 
 state 70
 
-    (47) operador_comp -> MAIORIG .
+    (46) operador_comp -> MAIORIG .
 
-    ID              reduce using rule 47 (operador_comp -> MAIORIG .)
-    CONSTANTE       reduce using rule 47 (operador_comp -> MAIORIG .)
-    PALAVRA         reduce using rule 47 (operador_comp -> MAIORIG .)
-    INT             reduce using rule 47 (operador_comp -> MAIORIG .)
-    REAL            reduce using rule 47 (operador_comp -> MAIORIG .)
+    ID              reduce using rule 46 (operador_comp -> MAIORIG .)
+    CONSTANTE       reduce using rule 46 (operador_comp -> MAIORIG .)
+    PALAVRA         reduce using rule 46 (operador_comp -> MAIORIG .)
+    INT             reduce using rule 46 (operador_comp -> MAIORIG .)
+    REAL            reduce using rule 46 (operador_comp -> MAIORIG .)
 
 
 state 71
 
-    (46) operador_comp -> IGUIG .
+    (45) operador_comp -> IGUIG .
 
-    ID              reduce using rule 46 (operador_comp -> IGUIG .)
-    CONSTANTE       reduce using rule 46 (operador_comp -> IGUIG .)
-    PALAVRA         reduce using rule 46 (operador_comp -> IGUIG .)
-    INT             reduce using rule 46 (operador_comp -> IGUIG .)
-    REAL            reduce using rule 46 (operador_comp -> IGUIG .)
+    ID              reduce using rule 45 (operador_comp -> IGUIG .)
+    CONSTANTE       reduce using rule 45 (operador_comp -> IGUIG .)
+    PALAVRA         reduce using rule 45 (operador_comp -> IGUIG .)
+    INT             reduce using rule 45 (operador_comp -> IGUIG .)
+    REAL            reduce using rule 45 (operador_comp -> IGUIG .)
 
 
 state 72
 
-    (44) operador_comp -> < .
+    (43) operador_comp -> < .
 
-    ID              reduce using rule 44 (operador_comp -> < .)
-    CONSTANTE       reduce using rule 44 (operador_comp -> < .)
-    PALAVRA         reduce using rule 44 (operador_comp -> < .)
-    INT             reduce using rule 44 (operador_comp -> < .)
-    REAL            reduce using rule 44 (operador_comp -> < .)
+    ID              reduce using rule 43 (operador_comp -> < .)
+    CONSTANTE       reduce using rule 43 (operador_comp -> < .)
+    PALAVRA         reduce using rule 43 (operador_comp -> < .)
+    INT             reduce using rule 43 (operador_comp -> < .)
+    REAL            reduce using rule 43 (operador_comp -> < .)
 
 
 state 73
 
-    (45) operador_comp -> > .
+    (44) operador_comp -> > .
 
-    ID              reduce using rule 45 (operador_comp -> > .)
-    CONSTANTE       reduce using rule 45 (operador_comp -> > .)
-    PALAVRA         reduce using rule 45 (operador_comp -> > .)
-    INT             reduce using rule 45 (operador_comp -> > .)
-    REAL            reduce using rule 45 (operador_comp -> > .)
+    ID              reduce using rule 44 (operador_comp -> > .)
+    CONSTANTE       reduce using rule 44 (operador_comp -> > .)
+    PALAVRA         reduce using rule 44 (operador_comp -> > .)
+    INT             reduce using rule 44 (operador_comp -> > .)
+    REAL            reduce using rule 44 (operador_comp -> > .)
 
 
 state 74
 
-    (75) exp_ou -> exp_ou OU . exp_e
-    (76) exp_e -> . exp_nao
-    (77) exp_e -> . exp_e E exp_nao
-    (78) exp_nao -> . exp_a
-    (79) exp_nao -> . ! exp_nao
-    (71) exp_a -> . exp_m
-    (72) exp_a -> . exp_a + exp_m
-    (73) exp_a -> . exp_a - exp_m
-    (67) exp_m -> . exp_u
-    (68) exp_m -> . exp_m * exp_u
-    (69) exp_m -> . exp_m DIVINT exp_u
-    (70) exp_m -> . exp_m / exp_u
-    (52) exp_u -> . exponenciacao
-    (53) exp_u -> . - exp_u
-    (54) exp_u -> . + exp_u
-    (50) exponenciacao -> . comparacao
-    (51) exponenciacao -> . comparacao EXP exp_u
-    (42) comparacao -> . valor
-    (43) comparacao -> . valor operador_comp valor
+    (66) exp_ou -> exp_ou OU . exp_e
+    (63) exp_e -> . exp_nao
+    (64) exp_e -> . exp_e E exp_nao
+    (61) exp_nao -> . exp_a
+    (62) exp_nao -> . ! exp_nao
+    (58) exp_a -> . exp_m
+    (59) exp_a -> . exp_a + exp_m
+    (60) exp_a -> . exp_a - exp_m
+    (54) exp_m -> . exp_u
+    (55) exp_m -> . exp_m * exp_u
+    (56) exp_m -> . exp_m DIVINT exp_u
+    (57) exp_m -> . exp_m / exp_u
+    (51) exp_u -> . exponenciacao
+    (52) exp_u -> . - exp_u
+    (53) exp_u -> . + exp_u
+    (49) exponenciacao -> . comparacao
+    (50) exponenciacao -> . comparacao EXP exp_u
+    (41) comparacao -> . valor
+    (42) comparacao -> . valor operador_comp valor
     (37) valor -> . ID
     (38) valor -> . literal
     (39) valor -> . chamada
@@ -1961,43 +1961,43 @@ state 74
 
 state 75
 
-    (79) exp_nao -> ! exp_nao .
+    (62) exp_nao -> ! exp_nao .
 
-    E               reduce using rule 79 (exp_nao -> ! exp_nao .)
-    OU              reduce using rule 79 (exp_nao -> ! exp_nao .)
-    :               reduce using rule 79 (exp_nao -> ! exp_nao .)
-    NOVALINHA       reduce using rule 79 (exp_nao -> ! exp_nao .)
-    FIM             reduce using rule 79 (exp_nao -> ! exp_nao .)
-    SENAOSE         reduce using rule 79 (exp_nao -> ! exp_nao .)
-    SENAO           reduce using rule 79 (exp_nao -> ! exp_nao .)
-    RETORNA         reduce using rule 79 (exp_nao -> ! exp_nao .)
+    E               reduce using rule 62 (exp_nao -> ! exp_nao .)
+    OU              reduce using rule 62 (exp_nao -> ! exp_nao .)
+    :               reduce using rule 62 (exp_nao -> ! exp_nao .)
+    NOVALINHA       reduce using rule 62 (exp_nao -> ! exp_nao .)
+    FIM             reduce using rule 62 (exp_nao -> ! exp_nao .)
+    SENAOSE         reduce using rule 62 (exp_nao -> ! exp_nao .)
+    SENAO           reduce using rule 62 (exp_nao -> ! exp_nao .)
+    RETORNA         reduce using rule 62 (exp_nao -> ! exp_nao .)
 
 
 state 76
 
     (21) se -> SE expressao : . suite senaosemais senao FIM
-    (80) suite -> . afirmacao
-    (81) suite -> . afirmacao NOVALINHA suite
-    (82) suite -> . NOVALINHA suite
-    (83) suite -> . empty
-    (88) afirmacao -> . afirm_simples
-    (89) afirmacao -> . afirm_composto
+    (81) suite -> . afirmacao
+    (82) suite -> . afirmacao NOVALINHA suite
+    (83) suite -> . NOVALINHA suite
+    (84) suite -> . empty
+    (89) afirmacao -> . afirm_simples
+    (90) afirmacao -> . afirm_composto
     (15) empty -> .
-    (92) afirm_simples -> . atribuicao
-    (93) afirm_simples -> . atribuicao_aumentada
-    (94) afirm_simples -> . imprime
-    (95) afirm_simples -> . retorna
-    (96) afirm_simples -> . declaracao
-    (97) afirm_simples -> . QUEBRA
-    (98) afirm_simples -> . CONTINUA
-    (105) afirm_composto -> . se
-    (106) afirm_composto -> . enquanto
-    (107) afirm_composto -> . para
+    (93) afirm_simples -> . atribuicao
+    (94) afirm_simples -> . atribuicao_aumentada
+    (95) afirm_simples -> . imprime
+    (96) afirm_simples -> . retorna
+    (97) afirm_simples -> . declaracao
+    (98) afirm_simples -> . QUEBRA
+    (99) afirm_simples -> . CONTINUA
+    (106) afirm_composto -> . se
+    (107) afirm_composto -> . enquanto
+    (108) afirm_composto -> . para
     (31) atribuicao -> . ID [ INT ] = valor
     (32) atribuicao -> . ID = valor
-    (108) atribuicao_aumentada -> . ID op_aum valor
-    (60) imprime -> . IMPRIME expressao
-    (59) retorna -> . RETORNA expressao
+    (80) atribuicao_aumentada -> . ID op_aum valor
+    (73) imprime -> . IMPRIME expressao
+    (72) retorna -> . RETORNA expressao
     (14) declaracao -> . TIPO ID
     (21) se -> . SE expressao : suite senaosemais senao FIM
     (22) enquanto -> . ENQUANTO expressao : suite FIM
@@ -2058,10 +2058,10 @@ state 80
 
     (26) definicao -> DEF TIPO ID ( . params ) : suite_sem_retorno retorna FIM
     (27) definicao -> DEF TIPO ID ( . params ) : suite_sem_retorno retorna novalinha FIM
-    (56) params -> . param , params
-    (57) params -> . param
-    (58) params -> . empty
-    (55) param -> . declaracao
+    (69) params -> . param , params
+    (70) params -> . param
+    (71) params -> . empty
+    (68) param -> . declaracao
     (15) empty -> .
     (14) declaracao -> . TIPO ID
 
@@ -2076,10 +2076,10 @@ state 80
 state 81
 
     (30) defsubfuncao -> DEF VAZIO ID ( . params ) : suite FIM
-    (56) params -> . param , params
-    (57) params -> . param
-    (58) params -> . empty
-    (55) param -> . declaracao
+    (69) params -> . param , params
+    (70) params -> . param
+    (71) params -> . empty
+    (68) param -> . declaracao
     (15) empty -> .
     (14) declaracao -> . TIPO ID
 
@@ -2137,35 +2137,35 @@ state 85
 
 state 86
 
-    (77) exp_e -> exp_e E exp_nao .
+    (64) exp_e -> exp_e E exp_nao .
 
-    E               reduce using rule 77 (exp_e -> exp_e E exp_nao .)
-    OU              reduce using rule 77 (exp_e -> exp_e E exp_nao .)
-    NOVALINHA       reduce using rule 77 (exp_e -> exp_e E exp_nao .)
-    FIM             reduce using rule 77 (exp_e -> exp_e E exp_nao .)
-    SENAOSE         reduce using rule 77 (exp_e -> exp_e E exp_nao .)
-    SENAO           reduce using rule 77 (exp_e -> exp_e E exp_nao .)
-    RETORNA         reduce using rule 77 (exp_e -> exp_e E exp_nao .)
-    :               reduce using rule 77 (exp_e -> exp_e E exp_nao .)
+    E               reduce using rule 64 (exp_e -> exp_e E exp_nao .)
+    OU              reduce using rule 64 (exp_e -> exp_e E exp_nao .)
+    NOVALINHA       reduce using rule 64 (exp_e -> exp_e E exp_nao .)
+    FIM             reduce using rule 64 (exp_e -> exp_e E exp_nao .)
+    SENAOSE         reduce using rule 64 (exp_e -> exp_e E exp_nao .)
+    SENAO           reduce using rule 64 (exp_e -> exp_e E exp_nao .)
+    RETORNA         reduce using rule 64 (exp_e -> exp_e E exp_nao .)
+    :               reduce using rule 64 (exp_e -> exp_e E exp_nao .)
 
 
 state 87
 
-    (73) exp_a -> exp_a - exp_m .
-    (68) exp_m -> exp_m . * exp_u
-    (69) exp_m -> exp_m . DIVINT exp_u
-    (70) exp_m -> exp_m . / exp_u
+    (60) exp_a -> exp_a - exp_m .
+    (55) exp_m -> exp_m . * exp_u
+    (56) exp_m -> exp_m . DIVINT exp_u
+    (57) exp_m -> exp_m . / exp_u
 
-    +               reduce using rule 73 (exp_a -> exp_a - exp_m .)
-    -               reduce using rule 73 (exp_a -> exp_a - exp_m .)
-    E               reduce using rule 73 (exp_a -> exp_a - exp_m .)
-    OU              reduce using rule 73 (exp_a -> exp_a - exp_m .)
-    :               reduce using rule 73 (exp_a -> exp_a - exp_m .)
-    NOVALINHA       reduce using rule 73 (exp_a -> exp_a - exp_m .)
-    FIM             reduce using rule 73 (exp_a -> exp_a - exp_m .)
-    SENAOSE         reduce using rule 73 (exp_a -> exp_a - exp_m .)
-    SENAO           reduce using rule 73 (exp_a -> exp_a - exp_m .)
-    RETORNA         reduce using rule 73 (exp_a -> exp_a - exp_m .)
+    +               reduce using rule 60 (exp_a -> exp_a - exp_m .)
+    -               reduce using rule 60 (exp_a -> exp_a - exp_m .)
+    E               reduce using rule 60 (exp_a -> exp_a - exp_m .)
+    OU              reduce using rule 60 (exp_a -> exp_a - exp_m .)
+    :               reduce using rule 60 (exp_a -> exp_a - exp_m .)
+    NOVALINHA       reduce using rule 60 (exp_a -> exp_a - exp_m .)
+    FIM             reduce using rule 60 (exp_a -> exp_a - exp_m .)
+    SENAOSE         reduce using rule 60 (exp_a -> exp_a - exp_m .)
+    SENAO           reduce using rule 60 (exp_a -> exp_a - exp_m .)
+    RETORNA         reduce using rule 60 (exp_a -> exp_a - exp_m .)
     *               shift and go to state 62
     DIVINT          shift and go to state 61
     /               shift and go to state 63
@@ -2173,21 +2173,21 @@ state 87
 
 state 88
 
-    (72) exp_a -> exp_a + exp_m .
-    (68) exp_m -> exp_m . * exp_u
-    (69) exp_m -> exp_m . DIVINT exp_u
-    (70) exp_m -> exp_m . / exp_u
+    (59) exp_a -> exp_a + exp_m .
+    (55) exp_m -> exp_m . * exp_u
+    (56) exp_m -> exp_m . DIVINT exp_u
+    (57) exp_m -> exp_m . / exp_u
 
-    +               reduce using rule 72 (exp_a -> exp_a + exp_m .)
-    -               reduce using rule 72 (exp_a -> exp_a + exp_m .)
-    E               reduce using rule 72 (exp_a -> exp_a + exp_m .)
-    OU              reduce using rule 72 (exp_a -> exp_a + exp_m .)
-    :               reduce using rule 72 (exp_a -> exp_a + exp_m .)
-    NOVALINHA       reduce using rule 72 (exp_a -> exp_a + exp_m .)
-    FIM             reduce using rule 72 (exp_a -> exp_a + exp_m .)
-    SENAOSE         reduce using rule 72 (exp_a -> exp_a + exp_m .)
-    SENAO           reduce using rule 72 (exp_a -> exp_a + exp_m .)
-    RETORNA         reduce using rule 72 (exp_a -> exp_a + exp_m .)
+    +               reduce using rule 59 (exp_a -> exp_a + exp_m .)
+    -               reduce using rule 59 (exp_a -> exp_a + exp_m .)
+    E               reduce using rule 59 (exp_a -> exp_a + exp_m .)
+    OU              reduce using rule 59 (exp_a -> exp_a + exp_m .)
+    :               reduce using rule 59 (exp_a -> exp_a + exp_m .)
+    NOVALINHA       reduce using rule 59 (exp_a -> exp_a + exp_m .)
+    FIM             reduce using rule 59 (exp_a -> exp_a + exp_m .)
+    SENAOSE         reduce using rule 59 (exp_a -> exp_a + exp_m .)
+    SENAO           reduce using rule 59 (exp_a -> exp_a + exp_m .)
+    RETORNA         reduce using rule 59 (exp_a -> exp_a + exp_m .)
     *               shift and go to state 62
     DIVINT          shift and go to state 61
     /               shift and go to state 63
@@ -2195,140 +2195,140 @@ state 88
 
 state 89
 
-    (51) exponenciacao -> comparacao EXP exp_u .
+    (50) exponenciacao -> comparacao EXP exp_u .
 
-    *               reduce using rule 51 (exponenciacao -> comparacao EXP exp_u .)
-    DIVINT          reduce using rule 51 (exponenciacao -> comparacao EXP exp_u .)
-    /               reduce using rule 51 (exponenciacao -> comparacao EXP exp_u .)
-    +               reduce using rule 51 (exponenciacao -> comparacao EXP exp_u .)
-    -               reduce using rule 51 (exponenciacao -> comparacao EXP exp_u .)
-    E               reduce using rule 51 (exponenciacao -> comparacao EXP exp_u .)
-    OU              reduce using rule 51 (exponenciacao -> comparacao EXP exp_u .)
-    :               reduce using rule 51 (exponenciacao -> comparacao EXP exp_u .)
-    NOVALINHA       reduce using rule 51 (exponenciacao -> comparacao EXP exp_u .)
-    FIM             reduce using rule 51 (exponenciacao -> comparacao EXP exp_u .)
-    SENAOSE         reduce using rule 51 (exponenciacao -> comparacao EXP exp_u .)
-    SENAO           reduce using rule 51 (exponenciacao -> comparacao EXP exp_u .)
-    RETORNA         reduce using rule 51 (exponenciacao -> comparacao EXP exp_u .)
+    *               reduce using rule 50 (exponenciacao -> comparacao EXP exp_u .)
+    DIVINT          reduce using rule 50 (exponenciacao -> comparacao EXP exp_u .)
+    /               reduce using rule 50 (exponenciacao -> comparacao EXP exp_u .)
+    +               reduce using rule 50 (exponenciacao -> comparacao EXP exp_u .)
+    -               reduce using rule 50 (exponenciacao -> comparacao EXP exp_u .)
+    E               reduce using rule 50 (exponenciacao -> comparacao EXP exp_u .)
+    OU              reduce using rule 50 (exponenciacao -> comparacao EXP exp_u .)
+    :               reduce using rule 50 (exponenciacao -> comparacao EXP exp_u .)
+    NOVALINHA       reduce using rule 50 (exponenciacao -> comparacao EXP exp_u .)
+    FIM             reduce using rule 50 (exponenciacao -> comparacao EXP exp_u .)
+    SENAOSE         reduce using rule 50 (exponenciacao -> comparacao EXP exp_u .)
+    SENAO           reduce using rule 50 (exponenciacao -> comparacao EXP exp_u .)
+    RETORNA         reduce using rule 50 (exponenciacao -> comparacao EXP exp_u .)
 
 
 state 90
 
-    (69) exp_m -> exp_m DIVINT exp_u .
+    (56) exp_m -> exp_m DIVINT exp_u .
 
-    *               reduce using rule 69 (exp_m -> exp_m DIVINT exp_u .)
-    DIVINT          reduce using rule 69 (exp_m -> exp_m DIVINT exp_u .)
-    /               reduce using rule 69 (exp_m -> exp_m DIVINT exp_u .)
-    +               reduce using rule 69 (exp_m -> exp_m DIVINT exp_u .)
-    -               reduce using rule 69 (exp_m -> exp_m DIVINT exp_u .)
-    E               reduce using rule 69 (exp_m -> exp_m DIVINT exp_u .)
-    OU              reduce using rule 69 (exp_m -> exp_m DIVINT exp_u .)
-    :               reduce using rule 69 (exp_m -> exp_m DIVINT exp_u .)
-    NOVALINHA       reduce using rule 69 (exp_m -> exp_m DIVINT exp_u .)
-    FIM             reduce using rule 69 (exp_m -> exp_m DIVINT exp_u .)
-    SENAOSE         reduce using rule 69 (exp_m -> exp_m DIVINT exp_u .)
-    SENAO           reduce using rule 69 (exp_m -> exp_m DIVINT exp_u .)
-    RETORNA         reduce using rule 69 (exp_m -> exp_m DIVINT exp_u .)
+    *               reduce using rule 56 (exp_m -> exp_m DIVINT exp_u .)
+    DIVINT          reduce using rule 56 (exp_m -> exp_m DIVINT exp_u .)
+    /               reduce using rule 56 (exp_m -> exp_m DIVINT exp_u .)
+    +               reduce using rule 56 (exp_m -> exp_m DIVINT exp_u .)
+    -               reduce using rule 56 (exp_m -> exp_m DIVINT exp_u .)
+    E               reduce using rule 56 (exp_m -> exp_m DIVINT exp_u .)
+    OU              reduce using rule 56 (exp_m -> exp_m DIVINT exp_u .)
+    :               reduce using rule 56 (exp_m -> exp_m DIVINT exp_u .)
+    NOVALINHA       reduce using rule 56 (exp_m -> exp_m DIVINT exp_u .)
+    FIM             reduce using rule 56 (exp_m -> exp_m DIVINT exp_u .)
+    SENAOSE         reduce using rule 56 (exp_m -> exp_m DIVINT exp_u .)
+    SENAO           reduce using rule 56 (exp_m -> exp_m DIVINT exp_u .)
+    RETORNA         reduce using rule 56 (exp_m -> exp_m DIVINT exp_u .)
 
 
 state 91
 
-    (68) exp_m -> exp_m * exp_u .
+    (55) exp_m -> exp_m * exp_u .
 
-    *               reduce using rule 68 (exp_m -> exp_m * exp_u .)
-    DIVINT          reduce using rule 68 (exp_m -> exp_m * exp_u .)
-    /               reduce using rule 68 (exp_m -> exp_m * exp_u .)
-    +               reduce using rule 68 (exp_m -> exp_m * exp_u .)
-    -               reduce using rule 68 (exp_m -> exp_m * exp_u .)
-    E               reduce using rule 68 (exp_m -> exp_m * exp_u .)
-    OU              reduce using rule 68 (exp_m -> exp_m * exp_u .)
-    :               reduce using rule 68 (exp_m -> exp_m * exp_u .)
-    NOVALINHA       reduce using rule 68 (exp_m -> exp_m * exp_u .)
-    FIM             reduce using rule 68 (exp_m -> exp_m * exp_u .)
-    SENAOSE         reduce using rule 68 (exp_m -> exp_m * exp_u .)
-    SENAO           reduce using rule 68 (exp_m -> exp_m * exp_u .)
-    RETORNA         reduce using rule 68 (exp_m -> exp_m * exp_u .)
+    *               reduce using rule 55 (exp_m -> exp_m * exp_u .)
+    DIVINT          reduce using rule 55 (exp_m -> exp_m * exp_u .)
+    /               reduce using rule 55 (exp_m -> exp_m * exp_u .)
+    +               reduce using rule 55 (exp_m -> exp_m * exp_u .)
+    -               reduce using rule 55 (exp_m -> exp_m * exp_u .)
+    E               reduce using rule 55 (exp_m -> exp_m * exp_u .)
+    OU              reduce using rule 55 (exp_m -> exp_m * exp_u .)
+    :               reduce using rule 55 (exp_m -> exp_m * exp_u .)
+    NOVALINHA       reduce using rule 55 (exp_m -> exp_m * exp_u .)
+    FIM             reduce using rule 55 (exp_m -> exp_m * exp_u .)
+    SENAOSE         reduce using rule 55 (exp_m -> exp_m * exp_u .)
+    SENAO           reduce using rule 55 (exp_m -> exp_m * exp_u .)
+    RETORNA         reduce using rule 55 (exp_m -> exp_m * exp_u .)
 
 
 state 92
 
-    (70) exp_m -> exp_m / exp_u .
+    (57) exp_m -> exp_m / exp_u .
 
-    *               reduce using rule 70 (exp_m -> exp_m / exp_u .)
-    DIVINT          reduce using rule 70 (exp_m -> exp_m / exp_u .)
-    /               reduce using rule 70 (exp_m -> exp_m / exp_u .)
-    +               reduce using rule 70 (exp_m -> exp_m / exp_u .)
-    -               reduce using rule 70 (exp_m -> exp_m / exp_u .)
-    E               reduce using rule 70 (exp_m -> exp_m / exp_u .)
-    OU              reduce using rule 70 (exp_m -> exp_m / exp_u .)
-    :               reduce using rule 70 (exp_m -> exp_m / exp_u .)
-    NOVALINHA       reduce using rule 70 (exp_m -> exp_m / exp_u .)
-    FIM             reduce using rule 70 (exp_m -> exp_m / exp_u .)
-    SENAOSE         reduce using rule 70 (exp_m -> exp_m / exp_u .)
-    SENAO           reduce using rule 70 (exp_m -> exp_m / exp_u .)
-    RETORNA         reduce using rule 70 (exp_m -> exp_m / exp_u .)
+    *               reduce using rule 57 (exp_m -> exp_m / exp_u .)
+    DIVINT          reduce using rule 57 (exp_m -> exp_m / exp_u .)
+    /               reduce using rule 57 (exp_m -> exp_m / exp_u .)
+    +               reduce using rule 57 (exp_m -> exp_m / exp_u .)
+    -               reduce using rule 57 (exp_m -> exp_m / exp_u .)
+    E               reduce using rule 57 (exp_m -> exp_m / exp_u .)
+    OU              reduce using rule 57 (exp_m -> exp_m / exp_u .)
+    :               reduce using rule 57 (exp_m -> exp_m / exp_u .)
+    NOVALINHA       reduce using rule 57 (exp_m -> exp_m / exp_u .)
+    FIM             reduce using rule 57 (exp_m -> exp_m / exp_u .)
+    SENAOSE         reduce using rule 57 (exp_m -> exp_m / exp_u .)
+    SENAO           reduce using rule 57 (exp_m -> exp_m / exp_u .)
+    RETORNA         reduce using rule 57 (exp_m -> exp_m / exp_u .)
 
 
 state 93
 
-    (80) suite -> afirmacao .
-    (81) suite -> afirmacao . NOVALINHA suite
+    (81) suite -> afirmacao .
+    (82) suite -> afirmacao . NOVALINHA suite
 
-    FIM             reduce using rule 80 (suite -> afirmacao .)
-    SENAOSE         reduce using rule 80 (suite -> afirmacao .)
-    SENAO           reduce using rule 80 (suite -> afirmacao .)
+    FIM             reduce using rule 81 (suite -> afirmacao .)
+    SENAOSE         reduce using rule 81 (suite -> afirmacao .)
+    SENAO           reduce using rule 81 (suite -> afirmacao .)
     NOVALINHA       shift and go to state 124
 
 
 state 94
 
-    (88) afirmacao -> afirm_simples .
+    (89) afirmacao -> afirm_simples .
 
-    NOVALINHA       reduce using rule 88 (afirmacao -> afirm_simples .)
-    FIM             reduce using rule 88 (afirmacao -> afirm_simples .)
-    SENAOSE         reduce using rule 88 (afirmacao -> afirm_simples .)
-    SENAO           reduce using rule 88 (afirmacao -> afirm_simples .)
+    NOVALINHA       reduce using rule 89 (afirmacao -> afirm_simples .)
+    FIM             reduce using rule 89 (afirmacao -> afirm_simples .)
+    SENAOSE         reduce using rule 89 (afirmacao -> afirm_simples .)
+    SENAO           reduce using rule 89 (afirmacao -> afirm_simples .)
 
 
 state 95
 
-    (96) afirm_simples -> declaracao .
+    (97) afirm_simples -> declaracao .
 
-    NOVALINHA       reduce using rule 96 (afirm_simples -> declaracao .)
-    FIM             reduce using rule 96 (afirm_simples -> declaracao .)
-    SENAOSE         reduce using rule 96 (afirm_simples -> declaracao .)
-    SENAO           reduce using rule 96 (afirm_simples -> declaracao .)
+    NOVALINHA       reduce using rule 97 (afirm_simples -> declaracao .)
+    FIM             reduce using rule 97 (afirm_simples -> declaracao .)
+    SENAOSE         reduce using rule 97 (afirm_simples -> declaracao .)
+    SENAO           reduce using rule 97 (afirm_simples -> declaracao .)
 
 
 state 96
 
-    (106) afirm_composto -> enquanto .
+    (107) afirm_composto -> enquanto .
 
-    NOVALINHA       reduce using rule 106 (afirm_composto -> enquanto .)
-    SENAOSE         reduce using rule 106 (afirm_composto -> enquanto .)
-    SENAO           reduce using rule 106 (afirm_composto -> enquanto .)
-    FIM             reduce using rule 106 (afirm_composto -> enquanto .)
-    RETORNA         reduce using rule 106 (afirm_composto -> enquanto .)
+    NOVALINHA       reduce using rule 107 (afirm_composto -> enquanto .)
+    SENAOSE         reduce using rule 107 (afirm_composto -> enquanto .)
+    SENAO           reduce using rule 107 (afirm_composto -> enquanto .)
+    FIM             reduce using rule 107 (afirm_composto -> enquanto .)
+    RETORNA         reduce using rule 107 (afirm_composto -> enquanto .)
 
 
 state 97
 
-    (93) afirm_simples -> atribuicao_aumentada .
+    (94) afirm_simples -> atribuicao_aumentada .
 
-    NOVALINHA       reduce using rule 93 (afirm_simples -> atribuicao_aumentada .)
-    FIM             reduce using rule 93 (afirm_simples -> atribuicao_aumentada .)
-    SENAOSE         reduce using rule 93 (afirm_simples -> atribuicao_aumentada .)
-    SENAO           reduce using rule 93 (afirm_simples -> atribuicao_aumentada .)
+    NOVALINHA       reduce using rule 94 (afirm_simples -> atribuicao_aumentada .)
+    FIM             reduce using rule 94 (afirm_simples -> atribuicao_aumentada .)
+    SENAOSE         reduce using rule 94 (afirm_simples -> atribuicao_aumentada .)
+    SENAO           reduce using rule 94 (afirm_simples -> atribuicao_aumentada .)
 
 
 state 98
 
-    (95) afirm_simples -> retorna .
+    (96) afirm_simples -> retorna .
 
-    NOVALINHA       reduce using rule 95 (afirm_simples -> retorna .)
-    FIM             reduce using rule 95 (afirm_simples -> retorna .)
-    SENAOSE         reduce using rule 95 (afirm_simples -> retorna .)
-    SENAO           reduce using rule 95 (afirm_simples -> retorna .)
+    NOVALINHA       reduce using rule 96 (afirm_simples -> retorna .)
+    FIM             reduce using rule 96 (afirm_simples -> retorna .)
+    SENAOSE         reduce using rule 96 (afirm_simples -> retorna .)
+    SENAO           reduce using rule 96 (afirm_simples -> retorna .)
 
 
 state 99
@@ -2340,68 +2340,68 @@ state 99
 
 state 100
 
-    (83) suite -> empty .
+    (84) suite -> empty .
 
-    FIM             reduce using rule 83 (suite -> empty .)
-    SENAOSE         reduce using rule 83 (suite -> empty .)
-    SENAO           reduce using rule 83 (suite -> empty .)
+    FIM             reduce using rule 84 (suite -> empty .)
+    SENAOSE         reduce using rule 84 (suite -> empty .)
+    SENAO           reduce using rule 84 (suite -> empty .)
 
 
 state 101
 
-    (94) afirm_simples -> imprime .
+    (95) afirm_simples -> imprime .
 
-    NOVALINHA       reduce using rule 94 (afirm_simples -> imprime .)
-    FIM             reduce using rule 94 (afirm_simples -> imprime .)
-    SENAOSE         reduce using rule 94 (afirm_simples -> imprime .)
-    SENAO           reduce using rule 94 (afirm_simples -> imprime .)
+    NOVALINHA       reduce using rule 95 (afirm_simples -> imprime .)
+    FIM             reduce using rule 95 (afirm_simples -> imprime .)
+    SENAOSE         reduce using rule 95 (afirm_simples -> imprime .)
+    SENAO           reduce using rule 95 (afirm_simples -> imprime .)
 
 
 state 102
 
-    (89) afirmacao -> afirm_composto .
+    (90) afirmacao -> afirm_composto .
 
-    NOVALINHA       reduce using rule 89 (afirmacao -> afirm_composto .)
-    FIM             reduce using rule 89 (afirmacao -> afirm_composto .)
-    SENAOSE         reduce using rule 89 (afirmacao -> afirm_composto .)
-    SENAO           reduce using rule 89 (afirmacao -> afirm_composto .)
+    NOVALINHA       reduce using rule 90 (afirmacao -> afirm_composto .)
+    FIM             reduce using rule 90 (afirmacao -> afirm_composto .)
+    SENAOSE         reduce using rule 90 (afirmacao -> afirm_composto .)
+    SENAO           reduce using rule 90 (afirmacao -> afirm_composto .)
 
 
 state 103
 
-    (107) afirm_composto -> para .
+    (108) afirm_composto -> para .
 
-    NOVALINHA       reduce using rule 107 (afirm_composto -> para .)
-    SENAOSE         reduce using rule 107 (afirm_composto -> para .)
-    SENAO           reduce using rule 107 (afirm_composto -> para .)
-    FIM             reduce using rule 107 (afirm_composto -> para .)
-    RETORNA         reduce using rule 107 (afirm_composto -> para .)
+    NOVALINHA       reduce using rule 108 (afirm_composto -> para .)
+    SENAOSE         reduce using rule 108 (afirm_composto -> para .)
+    SENAO           reduce using rule 108 (afirm_composto -> para .)
+    FIM             reduce using rule 108 (afirm_composto -> para .)
+    RETORNA         reduce using rule 108 (afirm_composto -> para .)
 
 
 state 104
 
-    (59) retorna -> RETORNA . expressao
-    (41) expressao -> . exp_ou
-    (74) exp_ou -> . exp_e
-    (75) exp_ou -> . exp_ou OU exp_e
-    (76) exp_e -> . exp_nao
-    (77) exp_e -> . exp_e E exp_nao
-    (78) exp_nao -> . exp_a
-    (79) exp_nao -> . ! exp_nao
-    (71) exp_a -> . exp_m
-    (72) exp_a -> . exp_a + exp_m
-    (73) exp_a -> . exp_a - exp_m
-    (67) exp_m -> . exp_u
-    (68) exp_m -> . exp_m * exp_u
-    (69) exp_m -> . exp_m DIVINT exp_u
-    (70) exp_m -> . exp_m / exp_u
-    (52) exp_u -> . exponenciacao
-    (53) exp_u -> . - exp_u
-    (54) exp_u -> . + exp_u
-    (50) exponenciacao -> . comparacao
-    (51) exponenciacao -> . comparacao EXP exp_u
-    (42) comparacao -> . valor
-    (43) comparacao -> . valor operador_comp valor
+    (72) retorna -> RETORNA . expressao
+    (67) expressao -> . exp_ou
+    (65) exp_ou -> . exp_e
+    (66) exp_ou -> . exp_ou OU exp_e
+    (63) exp_e -> . exp_nao
+    (64) exp_e -> . exp_e E exp_nao
+    (61) exp_nao -> . exp_a
+    (62) exp_nao -> . ! exp_nao
+    (58) exp_a -> . exp_m
+    (59) exp_a -> . exp_a + exp_m
+    (60) exp_a -> . exp_a - exp_m
+    (54) exp_m -> . exp_u
+    (55) exp_m -> . exp_m * exp_u
+    (56) exp_m -> . exp_m DIVINT exp_u
+    (57) exp_m -> . exp_m / exp_u
+    (51) exp_u -> . exponenciacao
+    (52) exp_u -> . - exp_u
+    (53) exp_u -> . + exp_u
+    (49) exponenciacao -> . comparacao
+    (50) exponenciacao -> . comparacao EXP exp_u
+    (41) comparacao -> . valor
+    (42) comparacao -> . valor operador_comp valor
     (37) valor -> . ID
     (38) valor -> . literal
     (39) valor -> . chamada
@@ -2436,29 +2436,29 @@ state 104
 
 state 105
 
-    (82) suite -> NOVALINHA . suite
-    (80) suite -> . afirmacao
-    (81) suite -> . afirmacao NOVALINHA suite
-    (82) suite -> . NOVALINHA suite
-    (83) suite -> . empty
-    (88) afirmacao -> . afirm_simples
-    (89) afirmacao -> . afirm_composto
+    (83) suite -> NOVALINHA . suite
+    (81) suite -> . afirmacao
+    (82) suite -> . afirmacao NOVALINHA suite
+    (83) suite -> . NOVALINHA suite
+    (84) suite -> . empty
+    (89) afirmacao -> . afirm_simples
+    (90) afirmacao -> . afirm_composto
     (15) empty -> .
-    (92) afirm_simples -> . atribuicao
-    (93) afirm_simples -> . atribuicao_aumentada
-    (94) afirm_simples -> . imprime
-    (95) afirm_simples -> . retorna
-    (96) afirm_simples -> . declaracao
-    (97) afirm_simples -> . QUEBRA
-    (98) afirm_simples -> . CONTINUA
-    (105) afirm_composto -> . se
-    (106) afirm_composto -> . enquanto
-    (107) afirm_composto -> . para
+    (93) afirm_simples -> . atribuicao
+    (94) afirm_simples -> . atribuicao_aumentada
+    (95) afirm_simples -> . imprime
+    (96) afirm_simples -> . retorna
+    (97) afirm_simples -> . declaracao
+    (98) afirm_simples -> . QUEBRA
+    (99) afirm_simples -> . CONTINUA
+    (106) afirm_composto -> . se
+    (107) afirm_composto -> . enquanto
+    (108) afirm_composto -> . para
     (31) atribuicao -> . ID [ INT ] = valor
     (32) atribuicao -> . ID = valor
-    (108) atribuicao_aumentada -> . ID op_aum valor
-    (60) imprime -> . IMPRIME expressao
-    (59) retorna -> . RETORNA expressao
+    (80) atribuicao_aumentada -> . ID op_aum valor
+    (73) imprime -> . IMPRIME expressao
+    (72) retorna -> . RETORNA expressao
     (14) declaracao -> . TIPO ID
     (21) se -> . SE expressao : suite senaosemais senao FIM
     (22) enquanto -> . ENQUANTO expressao : suite FIM
@@ -2496,13 +2496,13 @@ state 106
 
     (31) atribuicao -> ID . [ INT ] = valor
     (32) atribuicao -> ID . = valor
-    (108) atribuicao_aumentada -> ID . op_aum valor
-    (61) op_aum -> . MAISIG
-    (62) op_aum -> . MENOSIG
-    (63) op_aum -> . MULTIG
-    (64) op_aum -> . DIVIG
-    (65) op_aum -> . MODIG
-    (66) op_aum -> . EXPIG
+    (80) atribuicao_aumentada -> ID . op_aum valor
+    (74) op_aum -> . MAISIG
+    (75) op_aum -> . MENOSIG
+    (76) op_aum -> . MULTIG
+    (77) op_aum -> . DIVIG
+    (78) op_aum -> . MODIG
+    (79) op_aum -> . EXPIG
 
     [               shift and go to state 27
     =               shift and go to state 28
@@ -2517,28 +2517,28 @@ state 106
 
 state 107
 
-    (60) imprime -> IMPRIME . expressao
-    (41) expressao -> . exp_ou
-    (74) exp_ou -> . exp_e
-    (75) exp_ou -> . exp_ou OU exp_e
-    (76) exp_e -> . exp_nao
-    (77) exp_e -> . exp_e E exp_nao
-    (78) exp_nao -> . exp_a
-    (79) exp_nao -> . ! exp_nao
-    (71) exp_a -> . exp_m
-    (72) exp_a -> . exp_a + exp_m
-    (73) exp_a -> . exp_a - exp_m
-    (67) exp_m -> . exp_u
-    (68) exp_m -> . exp_m * exp_u
-    (69) exp_m -> . exp_m DIVINT exp_u
-    (70) exp_m -> . exp_m / exp_u
-    (52) exp_u -> . exponenciacao
-    (53) exp_u -> . - exp_u
-    (54) exp_u -> . + exp_u
-    (50) exponenciacao -> . comparacao
-    (51) exponenciacao -> . comparacao EXP exp_u
-    (42) comparacao -> . valor
-    (43) comparacao -> . valor operador_comp valor
+    (73) imprime -> IMPRIME . expressao
+    (67) expressao -> . exp_ou
+    (65) exp_ou -> . exp_e
+    (66) exp_ou -> . exp_ou OU exp_e
+    (63) exp_e -> . exp_nao
+    (64) exp_e -> . exp_e E exp_nao
+    (61) exp_nao -> . exp_a
+    (62) exp_nao -> . ! exp_nao
+    (58) exp_a -> . exp_m
+    (59) exp_a -> . exp_a + exp_m
+    (60) exp_a -> . exp_a - exp_m
+    (54) exp_m -> . exp_u
+    (55) exp_m -> . exp_m * exp_u
+    (56) exp_m -> . exp_m DIVINT exp_u
+    (57) exp_m -> . exp_m / exp_u
+    (51) exp_u -> . exponenciacao
+    (52) exp_u -> . - exp_u
+    (53) exp_u -> . + exp_u
+    (49) exponenciacao -> . comparacao
+    (50) exponenciacao -> . comparacao EXP exp_u
+    (41) comparacao -> . valor
+    (42) comparacao -> . valor operador_comp valor
     (37) valor -> . ID
     (38) valor -> . literal
     (39) valor -> . chamada
@@ -2573,77 +2573,77 @@ state 107
 
 state 108
 
-    (92) afirm_simples -> atribuicao .
+    (93) afirm_simples -> atribuicao .
 
-    NOVALINHA       reduce using rule 92 (afirm_simples -> atribuicao .)
-    FIM             reduce using rule 92 (afirm_simples -> atribuicao .)
-    SENAOSE         reduce using rule 92 (afirm_simples -> atribuicao .)
-    SENAO           reduce using rule 92 (afirm_simples -> atribuicao .)
+    NOVALINHA       reduce using rule 93 (afirm_simples -> atribuicao .)
+    FIM             reduce using rule 93 (afirm_simples -> atribuicao .)
+    SENAOSE         reduce using rule 93 (afirm_simples -> atribuicao .)
+    SENAO           reduce using rule 93 (afirm_simples -> atribuicao .)
 
 
 state 109
 
-    (97) afirm_simples -> QUEBRA .
+    (98) afirm_simples -> QUEBRA .
 
-    NOVALINHA       reduce using rule 97 (afirm_simples -> QUEBRA .)
-    FIM             reduce using rule 97 (afirm_simples -> QUEBRA .)
-    SENAOSE         reduce using rule 97 (afirm_simples -> QUEBRA .)
-    SENAO           reduce using rule 97 (afirm_simples -> QUEBRA .)
+    NOVALINHA       reduce using rule 98 (afirm_simples -> QUEBRA .)
+    FIM             reduce using rule 98 (afirm_simples -> QUEBRA .)
+    SENAOSE         reduce using rule 98 (afirm_simples -> QUEBRA .)
+    SENAO           reduce using rule 98 (afirm_simples -> QUEBRA .)
 
 
 state 110
 
-    (98) afirm_simples -> CONTINUA .
+    (99) afirm_simples -> CONTINUA .
 
-    NOVALINHA       reduce using rule 98 (afirm_simples -> CONTINUA .)
-    FIM             reduce using rule 98 (afirm_simples -> CONTINUA .)
-    SENAOSE         reduce using rule 98 (afirm_simples -> CONTINUA .)
-    SENAO           reduce using rule 98 (afirm_simples -> CONTINUA .)
+    NOVALINHA       reduce using rule 99 (afirm_simples -> CONTINUA .)
+    FIM             reduce using rule 99 (afirm_simples -> CONTINUA .)
+    SENAOSE         reduce using rule 99 (afirm_simples -> CONTINUA .)
+    SENAO           reduce using rule 99 (afirm_simples -> CONTINUA .)
 
 
 state 111
 
-    (105) afirm_composto -> se .
+    (106) afirm_composto -> se .
 
-    NOVALINHA       reduce using rule 105 (afirm_composto -> se .)
-    SENAOSE         reduce using rule 105 (afirm_composto -> se .)
-    SENAO           reduce using rule 105 (afirm_composto -> se .)
-    FIM             reduce using rule 105 (afirm_composto -> se .)
-    RETORNA         reduce using rule 105 (afirm_composto -> se .)
+    NOVALINHA       reduce using rule 106 (afirm_composto -> se .)
+    SENAOSE         reduce using rule 106 (afirm_composto -> se .)
+    SENAO           reduce using rule 106 (afirm_composto -> se .)
+    FIM             reduce using rule 106 (afirm_composto -> se .)
+    RETORNA         reduce using rule 106 (afirm_composto -> se .)
 
 
 state 112
 
-    (43) comparacao -> valor operador_comp valor .
+    (42) comparacao -> valor operador_comp valor .
 
-    EXP             reduce using rule 43 (comparacao -> valor operador_comp valor .)
-    *               reduce using rule 43 (comparacao -> valor operador_comp valor .)
-    DIVINT          reduce using rule 43 (comparacao -> valor operador_comp valor .)
-    /               reduce using rule 43 (comparacao -> valor operador_comp valor .)
-    +               reduce using rule 43 (comparacao -> valor operador_comp valor .)
-    -               reduce using rule 43 (comparacao -> valor operador_comp valor .)
-    E               reduce using rule 43 (comparacao -> valor operador_comp valor .)
-    OU              reduce using rule 43 (comparacao -> valor operador_comp valor .)
-    :               reduce using rule 43 (comparacao -> valor operador_comp valor .)
-    NOVALINHA       reduce using rule 43 (comparacao -> valor operador_comp valor .)
-    FIM             reduce using rule 43 (comparacao -> valor operador_comp valor .)
-    SENAOSE         reduce using rule 43 (comparacao -> valor operador_comp valor .)
-    SENAO           reduce using rule 43 (comparacao -> valor operador_comp valor .)
-    RETORNA         reduce using rule 43 (comparacao -> valor operador_comp valor .)
+    EXP             reduce using rule 42 (comparacao -> valor operador_comp valor .)
+    *               reduce using rule 42 (comparacao -> valor operador_comp valor .)
+    DIVINT          reduce using rule 42 (comparacao -> valor operador_comp valor .)
+    /               reduce using rule 42 (comparacao -> valor operador_comp valor .)
+    +               reduce using rule 42 (comparacao -> valor operador_comp valor .)
+    -               reduce using rule 42 (comparacao -> valor operador_comp valor .)
+    E               reduce using rule 42 (comparacao -> valor operador_comp valor .)
+    OU              reduce using rule 42 (comparacao -> valor operador_comp valor .)
+    :               reduce using rule 42 (comparacao -> valor operador_comp valor .)
+    NOVALINHA       reduce using rule 42 (comparacao -> valor operador_comp valor .)
+    FIM             reduce using rule 42 (comparacao -> valor operador_comp valor .)
+    SENAOSE         reduce using rule 42 (comparacao -> valor operador_comp valor .)
+    SENAO           reduce using rule 42 (comparacao -> valor operador_comp valor .)
+    RETORNA         reduce using rule 42 (comparacao -> valor operador_comp valor .)
 
 
 state 113
 
-    (75) exp_ou -> exp_ou OU exp_e .
-    (77) exp_e -> exp_e . E exp_nao
+    (66) exp_ou -> exp_ou OU exp_e .
+    (64) exp_e -> exp_e . E exp_nao
 
-    OU              reduce using rule 75 (exp_ou -> exp_ou OU exp_e .)
-    NOVALINHA       reduce using rule 75 (exp_ou -> exp_ou OU exp_e .)
-    FIM             reduce using rule 75 (exp_ou -> exp_ou OU exp_e .)
-    SENAOSE         reduce using rule 75 (exp_ou -> exp_ou OU exp_e .)
-    SENAO           reduce using rule 75 (exp_ou -> exp_ou OU exp_e .)
-    :               reduce using rule 75 (exp_ou -> exp_ou OU exp_e .)
-    RETORNA         reduce using rule 75 (exp_ou -> exp_ou OU exp_e .)
+    OU              reduce using rule 66 (exp_ou -> exp_ou OU exp_e .)
+    NOVALINHA       reduce using rule 66 (exp_ou -> exp_ou OU exp_e .)
+    FIM             reduce using rule 66 (exp_ou -> exp_ou OU exp_e .)
+    SENAOSE         reduce using rule 66 (exp_ou -> exp_ou OU exp_e .)
+    SENAO           reduce using rule 66 (exp_ou -> exp_ou OU exp_e .)
+    :               reduce using rule 66 (exp_ou -> exp_ou OU exp_e .)
+    RETORNA         reduce using rule 66 (exp_ou -> exp_ou OU exp_e .)
     E               shift and go to state 57
 
 
@@ -2676,19 +2676,19 @@ state 115
 
 state 116
 
-    (55) param -> declaracao .
+    (68) param -> declaracao .
 
-    ,               reduce using rule 55 (param -> declaracao .)
-    )               reduce using rule 55 (param -> declaracao .)
+    ,               reduce using rule 68 (param -> declaracao .)
+    )               reduce using rule 68 (param -> declaracao .)
 
 
 state 117
 
-    (56) params -> param . , params
-    (57) params -> param .
+    (69) params -> param . , params
+    (70) params -> param .
 
     ,               shift and go to state 141
-    )               reduce using rule 57 (params -> param .)
+    )               reduce using rule 70 (params -> param .)
 
 
 state 118
@@ -2701,9 +2701,9 @@ state 118
 
 state 119
 
-    (58) params -> empty .
+    (71) params -> empty .
 
-    )               reduce using rule 58 (params -> empty .)
+    )               reduce using rule 71 (params -> empty .)
 
 
 state 120
@@ -2786,29 +2786,29 @@ state 123
 
 state 124
 
-    (81) suite -> afirmacao NOVALINHA . suite
-    (80) suite -> . afirmacao
-    (81) suite -> . afirmacao NOVALINHA suite
-    (82) suite -> . NOVALINHA suite
-    (83) suite -> . empty
-    (88) afirmacao -> . afirm_simples
-    (89) afirmacao -> . afirm_composto
+    (82) suite -> afirmacao NOVALINHA . suite
+    (81) suite -> . afirmacao
+    (82) suite -> . afirmacao NOVALINHA suite
+    (83) suite -> . NOVALINHA suite
+    (84) suite -> . empty
+    (89) afirmacao -> . afirm_simples
+    (90) afirmacao -> . afirm_composto
     (15) empty -> .
-    (92) afirm_simples -> . atribuicao
-    (93) afirm_simples -> . atribuicao_aumentada
-    (94) afirm_simples -> . imprime
-    (95) afirm_simples -> . retorna
-    (96) afirm_simples -> . declaracao
-    (97) afirm_simples -> . QUEBRA
-    (98) afirm_simples -> . CONTINUA
-    (105) afirm_composto -> . se
-    (106) afirm_composto -> . enquanto
-    (107) afirm_composto -> . para
+    (93) afirm_simples -> . atribuicao
+    (94) afirm_simples -> . atribuicao_aumentada
+    (95) afirm_simples -> . imprime
+    (96) afirm_simples -> . retorna
+    (97) afirm_simples -> . declaracao
+    (98) afirm_simples -> . QUEBRA
+    (99) afirm_simples -> . CONTINUA
+    (106) afirm_composto -> . se
+    (107) afirm_composto -> . enquanto
+    (108) afirm_composto -> . para
     (31) atribuicao -> . ID [ INT ] = valor
     (32) atribuicao -> . ID = valor
-    (108) atribuicao_aumentada -> . ID op_aum valor
-    (60) imprime -> . IMPRIME expressao
-    (59) retorna -> . RETORNA expressao
+    (80) atribuicao_aumentada -> . ID op_aum valor
+    (73) imprime -> . IMPRIME expressao
+    (72) retorna -> . RETORNA expressao
     (14) declaracao -> . TIPO ID
     (21) se -> . SE expressao : suite senaosemais senao FIM
     (22) enquanto -> . ENQUANTO expressao : suite FIM
@@ -2862,70 +2862,70 @@ state 125
 
 state 126
 
-    (59) retorna -> RETORNA expressao .
+    (72) retorna -> RETORNA expressao .
 
-    NOVALINHA       reduce using rule 59 (retorna -> RETORNA expressao .)
-    FIM             reduce using rule 59 (retorna -> RETORNA expressao .)
-    SENAOSE         reduce using rule 59 (retorna -> RETORNA expressao .)
-    SENAO           reduce using rule 59 (retorna -> RETORNA expressao .)
+    NOVALINHA       reduce using rule 72 (retorna -> RETORNA expressao .)
+    FIM             reduce using rule 72 (retorna -> RETORNA expressao .)
+    SENAOSE         reduce using rule 72 (retorna -> RETORNA expressao .)
+    SENAO           reduce using rule 72 (retorna -> RETORNA expressao .)
 
 
 state 127
 
-    (82) suite -> NOVALINHA suite .
+    (83) suite -> NOVALINHA suite .
 
-    FIM             reduce using rule 82 (suite -> NOVALINHA suite .)
-    SENAOSE         reduce using rule 82 (suite -> NOVALINHA suite .)
-    SENAO           reduce using rule 82 (suite -> NOVALINHA suite .)
+    FIM             reduce using rule 83 (suite -> NOVALINHA suite .)
+    SENAOSE         reduce using rule 83 (suite -> NOVALINHA suite .)
+    SENAO           reduce using rule 83 (suite -> NOVALINHA suite .)
 
 
 state 128
 
-    (66) op_aum -> EXPIG .
+    (79) op_aum -> EXPIG .
 
-    ID              reduce using rule 66 (op_aum -> EXPIG .)
-    CONSTANTE       reduce using rule 66 (op_aum -> EXPIG .)
-    PALAVRA         reduce using rule 66 (op_aum -> EXPIG .)
-    INT             reduce using rule 66 (op_aum -> EXPIG .)
-    REAL            reduce using rule 66 (op_aum -> EXPIG .)
+    ID              reduce using rule 79 (op_aum -> EXPIG .)
+    CONSTANTE       reduce using rule 79 (op_aum -> EXPIG .)
+    PALAVRA         reduce using rule 79 (op_aum -> EXPIG .)
+    INT             reduce using rule 79 (op_aum -> EXPIG .)
+    REAL            reduce using rule 79 (op_aum -> EXPIG .)
 
 
 state 129
 
-    (62) op_aum -> MENOSIG .
+    (75) op_aum -> MENOSIG .
 
-    ID              reduce using rule 62 (op_aum -> MENOSIG .)
-    CONSTANTE       reduce using rule 62 (op_aum -> MENOSIG .)
-    PALAVRA         reduce using rule 62 (op_aum -> MENOSIG .)
-    INT             reduce using rule 62 (op_aum -> MENOSIG .)
-    REAL            reduce using rule 62 (op_aum -> MENOSIG .)
+    ID              reduce using rule 75 (op_aum -> MENOSIG .)
+    CONSTANTE       reduce using rule 75 (op_aum -> MENOSIG .)
+    PALAVRA         reduce using rule 75 (op_aum -> MENOSIG .)
+    INT             reduce using rule 75 (op_aum -> MENOSIG .)
+    REAL            reduce using rule 75 (op_aum -> MENOSIG .)
 
 
 state 130
 
-    (64) op_aum -> DIVIG .
+    (77) op_aum -> DIVIG .
 
-    ID              reduce using rule 64 (op_aum -> DIVIG .)
-    CONSTANTE       reduce using rule 64 (op_aum -> DIVIG .)
-    PALAVRA         reduce using rule 64 (op_aum -> DIVIG .)
-    INT             reduce using rule 64 (op_aum -> DIVIG .)
-    REAL            reduce using rule 64 (op_aum -> DIVIG .)
+    ID              reduce using rule 77 (op_aum -> DIVIG .)
+    CONSTANTE       reduce using rule 77 (op_aum -> DIVIG .)
+    PALAVRA         reduce using rule 77 (op_aum -> DIVIG .)
+    INT             reduce using rule 77 (op_aum -> DIVIG .)
+    REAL            reduce using rule 77 (op_aum -> DIVIG .)
 
 
 state 131
 
-    (61) op_aum -> MAISIG .
+    (74) op_aum -> MAISIG .
 
-    ID              reduce using rule 61 (op_aum -> MAISIG .)
-    CONSTANTE       reduce using rule 61 (op_aum -> MAISIG .)
-    PALAVRA         reduce using rule 61 (op_aum -> MAISIG .)
-    INT             reduce using rule 61 (op_aum -> MAISIG .)
-    REAL            reduce using rule 61 (op_aum -> MAISIG .)
+    ID              reduce using rule 74 (op_aum -> MAISIG .)
+    CONSTANTE       reduce using rule 74 (op_aum -> MAISIG .)
+    PALAVRA         reduce using rule 74 (op_aum -> MAISIG .)
+    INT             reduce using rule 74 (op_aum -> MAISIG .)
+    REAL            reduce using rule 74 (op_aum -> MAISIG .)
 
 
 state 132
 
-    (108) atribuicao_aumentada -> ID op_aum . valor
+    (80) atribuicao_aumentada -> ID op_aum . valor
     (37) valor -> . ID
     (38) valor -> . literal
     (39) valor -> . chamada
@@ -2948,35 +2948,35 @@ state 132
 
 state 133
 
-    (63) op_aum -> MULTIG .
+    (76) op_aum -> MULTIG .
 
-    ID              reduce using rule 63 (op_aum -> MULTIG .)
-    CONSTANTE       reduce using rule 63 (op_aum -> MULTIG .)
-    PALAVRA         reduce using rule 63 (op_aum -> MULTIG .)
-    INT             reduce using rule 63 (op_aum -> MULTIG .)
-    REAL            reduce using rule 63 (op_aum -> MULTIG .)
+    ID              reduce using rule 76 (op_aum -> MULTIG .)
+    CONSTANTE       reduce using rule 76 (op_aum -> MULTIG .)
+    PALAVRA         reduce using rule 76 (op_aum -> MULTIG .)
+    INT             reduce using rule 76 (op_aum -> MULTIG .)
+    REAL            reduce using rule 76 (op_aum -> MULTIG .)
 
 
 state 134
 
-    (65) op_aum -> MODIG .
+    (78) op_aum -> MODIG .
 
-    ID              reduce using rule 65 (op_aum -> MODIG .)
-    CONSTANTE       reduce using rule 65 (op_aum -> MODIG .)
-    PALAVRA         reduce using rule 65 (op_aum -> MODIG .)
-    INT             reduce using rule 65 (op_aum -> MODIG .)
-    REAL            reduce using rule 65 (op_aum -> MODIG .)
+    ID              reduce using rule 78 (op_aum -> MODIG .)
+    CONSTANTE       reduce using rule 78 (op_aum -> MODIG .)
+    PALAVRA         reduce using rule 78 (op_aum -> MODIG .)
+    INT             reduce using rule 78 (op_aum -> MODIG .)
+    REAL            reduce using rule 78 (op_aum -> MODIG .)
 
 
 state 135
 
-    (60) imprime -> IMPRIME expressao .
+    (73) imprime -> IMPRIME expressao .
 
-    NOVALINHA       reduce using rule 60 (imprime -> IMPRIME expressao .)
-    FIM             reduce using rule 60 (imprime -> IMPRIME expressao .)
-    SENAOSE         reduce using rule 60 (imprime -> IMPRIME expressao .)
-    SENAO           reduce using rule 60 (imprime -> IMPRIME expressao .)
-    RETORNA         reduce using rule 60 (imprime -> IMPRIME expressao .)
+    NOVALINHA       reduce using rule 73 (imprime -> IMPRIME expressao .)
+    FIM             reduce using rule 73 (imprime -> IMPRIME expressao .)
+    SENAOSE         reduce using rule 73 (imprime -> IMPRIME expressao .)
+    SENAO           reduce using rule 73 (imprime -> IMPRIME expressao .)
+    RETORNA         reduce using rule 73 (imprime -> IMPRIME expressao .)
 
 
 state 136
@@ -2995,27 +2995,27 @@ state 136
 state 137
 
     (18) senaose -> SENAOSE . expressao : suite
-    (41) expressao -> . exp_ou
-    (74) exp_ou -> . exp_e
-    (75) exp_ou -> . exp_ou OU exp_e
-    (76) exp_e -> . exp_nao
-    (77) exp_e -> . exp_e E exp_nao
-    (78) exp_nao -> . exp_a
-    (79) exp_nao -> . ! exp_nao
-    (71) exp_a -> . exp_m
-    (72) exp_a -> . exp_a + exp_m
-    (73) exp_a -> . exp_a - exp_m
-    (67) exp_m -> . exp_u
-    (68) exp_m -> . exp_m * exp_u
-    (69) exp_m -> . exp_m DIVINT exp_u
-    (70) exp_m -> . exp_m / exp_u
-    (52) exp_u -> . exponenciacao
-    (53) exp_u -> . - exp_u
-    (54) exp_u -> . + exp_u
-    (50) exponenciacao -> . comparacao
-    (51) exponenciacao -> . comparacao EXP exp_u
-    (42) comparacao -> . valor
-    (43) comparacao -> . valor operador_comp valor
+    (67) expressao -> . exp_ou
+    (65) exp_ou -> . exp_e
+    (66) exp_ou -> . exp_ou OU exp_e
+    (63) exp_e -> . exp_nao
+    (64) exp_e -> . exp_e E exp_nao
+    (61) exp_nao -> . exp_a
+    (62) exp_nao -> . ! exp_nao
+    (58) exp_a -> . exp_m
+    (59) exp_a -> . exp_a + exp_m
+    (60) exp_a -> . exp_a - exp_m
+    (54) exp_m -> . exp_u
+    (55) exp_m -> . exp_m * exp_u
+    (56) exp_m -> . exp_m DIVINT exp_u
+    (57) exp_m -> . exp_m / exp_u
+    (51) exp_u -> . exponenciacao
+    (52) exp_u -> . - exp_u
+    (53) exp_u -> . + exp_u
+    (49) exponenciacao -> . comparacao
+    (50) exponenciacao -> . comparacao EXP exp_u
+    (41) comparacao -> . valor
+    (42) comparacao -> . valor operador_comp valor
     (37) valor -> . ID
     (38) valor -> . literal
     (39) valor -> . chamada
@@ -3081,11 +3081,11 @@ state 140
 
 state 141
 
-    (56) params -> param , . params
-    (56) params -> . param , params
-    (57) params -> . param
-    (58) params -> . empty
-    (55) param -> . declaracao
+    (69) params -> param , . params
+    (69) params -> . param , params
+    (70) params -> . param
+    (71) params -> . empty
+    (68) param -> . declaracao
     (15) empty -> .
     (14) declaracao -> . TIPO ID
 
@@ -3139,22 +3139,22 @@ state 145
 
 state 146
 
-    (81) suite -> afirmacao NOVALINHA suite .
+    (82) suite -> afirmacao NOVALINHA suite .
 
-    FIM             reduce using rule 81 (suite -> afirmacao NOVALINHA suite .)
-    SENAOSE         reduce using rule 81 (suite -> afirmacao NOVALINHA suite .)
-    SENAO           reduce using rule 81 (suite -> afirmacao NOVALINHA suite .)
+    FIM             reduce using rule 82 (suite -> afirmacao NOVALINHA suite .)
+    SENAOSE         reduce using rule 82 (suite -> afirmacao NOVALINHA suite .)
+    SENAO           reduce using rule 82 (suite -> afirmacao NOVALINHA suite .)
 
 
 state 147
 
-    (108) atribuicao_aumentada -> ID op_aum valor .
+    (80) atribuicao_aumentada -> ID op_aum valor .
 
-    NOVALINHA       reduce using rule 108 (atribuicao_aumentada -> ID op_aum valor .)
-    SENAOSE         reduce using rule 108 (atribuicao_aumentada -> ID op_aum valor .)
-    SENAO           reduce using rule 108 (atribuicao_aumentada -> ID op_aum valor .)
-    FIM             reduce using rule 108 (atribuicao_aumentada -> ID op_aum valor .)
-    RETORNA         reduce using rule 108 (atribuicao_aumentada -> ID op_aum valor .)
+    NOVALINHA       reduce using rule 80 (atribuicao_aumentada -> ID op_aum valor .)
+    SENAOSE         reduce using rule 80 (atribuicao_aumentada -> ID op_aum valor .)
+    SENAO           reduce using rule 80 (atribuicao_aumentada -> ID op_aum valor .)
+    FIM             reduce using rule 80 (atribuicao_aumentada -> ID op_aum valor .)
+    RETORNA         reduce using rule 80 (atribuicao_aumentada -> ID op_aum valor .)
 
 
 state 148
@@ -3196,28 +3196,28 @@ state 152
 state 153
 
     (25) para -> PARA ID DE intid ATE intid : . suite FIM
-    (80) suite -> . afirmacao
-    (81) suite -> . afirmacao NOVALINHA suite
-    (82) suite -> . NOVALINHA suite
-    (83) suite -> . empty
-    (88) afirmacao -> . afirm_simples
-    (89) afirmacao -> . afirm_composto
+    (81) suite -> . afirmacao
+    (82) suite -> . afirmacao NOVALINHA suite
+    (83) suite -> . NOVALINHA suite
+    (84) suite -> . empty
+    (89) afirmacao -> . afirm_simples
+    (90) afirmacao -> . afirm_composto
     (15) empty -> .
-    (92) afirm_simples -> . atribuicao
-    (93) afirm_simples -> . atribuicao_aumentada
-    (94) afirm_simples -> . imprime
-    (95) afirm_simples -> . retorna
-    (96) afirm_simples -> . declaracao
-    (97) afirm_simples -> . QUEBRA
-    (98) afirm_simples -> . CONTINUA
-    (105) afirm_composto -> . se
-    (106) afirm_composto -> . enquanto
-    (107) afirm_composto -> . para
+    (93) afirm_simples -> . atribuicao
+    (94) afirm_simples -> . atribuicao_aumentada
+    (95) afirm_simples -> . imprime
+    (96) afirm_simples -> . retorna
+    (97) afirm_simples -> . declaracao
+    (98) afirm_simples -> . QUEBRA
+    (99) afirm_simples -> . CONTINUA
+    (106) afirm_composto -> . se
+    (107) afirm_composto -> . enquanto
+    (108) afirm_composto -> . para
     (31) atribuicao -> . ID [ INT ] = valor
     (32) atribuicao -> . ID = valor
-    (108) atribuicao_aumentada -> . ID op_aum valor
-    (60) imprime -> . IMPRIME expressao
-    (59) retorna -> . RETORNA expressao
+    (80) atribuicao_aumentada -> . ID op_aum valor
+    (73) imprime -> . IMPRIME expressao
+    (72) retorna -> . RETORNA expressao
     (14) declaracao -> . TIPO ID
     (21) se -> . SE expressao : suite senaosemais senao FIM
     (22) enquanto -> . ENQUANTO expressao : suite FIM
@@ -3251,35 +3251,35 @@ state 153
 
 state 154
 
-    (56) params -> param , params .
+    (69) params -> param , params .
 
-    )               reduce using rule 56 (params -> param , params .)
+    )               reduce using rule 69 (params -> param , params .)
 
 
 state 155
 
     (26) definicao -> DEF TIPO ID ( params ) : . suite_sem_retorno retorna FIM
     (27) definicao -> DEF TIPO ID ( params ) : . suite_sem_retorno retorna novalinha FIM
-    (84) suite_sem_retorno -> . afirmacao_sem_retorno
-    (85) suite_sem_retorno -> . afirmacao_sem_retorno NOVALINHA suite_sem_retorno
-    (86) suite_sem_retorno -> . NOVALINHA suite_sem_retorno
-    (87) suite_sem_retorno -> . empty
-    (90) afirmacao_sem_retorno -> . afirm_simples_sem_retorno
-    (91) afirmacao_sem_retorno -> . afirm_composto
+    (85) suite_sem_retorno -> . afirmacao_sem_retorno
+    (86) suite_sem_retorno -> . afirmacao_sem_retorno NOVALINHA suite_sem_retorno
+    (87) suite_sem_retorno -> . NOVALINHA suite_sem_retorno
+    (88) suite_sem_retorno -> . empty
+    (91) afirmacao_sem_retorno -> . afirm_simples_sem_retorno
+    (92) afirmacao_sem_retorno -> . afirm_composto
     (15) empty -> .
-    (99) afirm_simples_sem_retorno -> . atribuicao
-    (100) afirm_simples_sem_retorno -> . atribuicao_aumentada
-    (101) afirm_simples_sem_retorno -> . imprime
-    (102) afirm_simples_sem_retorno -> . declaracao
-    (103) afirm_simples_sem_retorno -> . QUEBRA
-    (104) afirm_simples_sem_retorno -> . CONTINUA
-    (105) afirm_composto -> . se
-    (106) afirm_composto -> . enquanto
-    (107) afirm_composto -> . para
+    (100) afirm_simples_sem_retorno -> . atribuicao
+    (101) afirm_simples_sem_retorno -> . atribuicao_aumentada
+    (102) afirm_simples_sem_retorno -> . imprime
+    (103) afirm_simples_sem_retorno -> . declaracao
+    (104) afirm_simples_sem_retorno -> . QUEBRA
+    (105) afirm_simples_sem_retorno -> . CONTINUA
+    (106) afirm_composto -> . se
+    (107) afirm_composto -> . enquanto
+    (108) afirm_composto -> . para
     (31) atribuicao -> . ID [ INT ] = valor
     (32) atribuicao -> . ID = valor
-    (108) atribuicao_aumentada -> . ID op_aum valor
-    (60) imprime -> . IMPRIME expressao
+    (80) atribuicao_aumentada -> . ID op_aum valor
+    (73) imprime -> . IMPRIME expressao
     (14) declaracao -> . TIPO ID
     (21) se -> . SE expressao : suite senaosemais senao FIM
     (22) enquanto -> . ENQUANTO expressao : suite FIM
@@ -3312,28 +3312,28 @@ state 155
 state 156
 
     (30) defsubfuncao -> DEF VAZIO ID ( params ) : . suite FIM
-    (80) suite -> . afirmacao
-    (81) suite -> . afirmacao NOVALINHA suite
-    (82) suite -> . NOVALINHA suite
-    (83) suite -> . empty
-    (88) afirmacao -> . afirm_simples
-    (89) afirmacao -> . afirm_composto
+    (81) suite -> . afirmacao
+    (82) suite -> . afirmacao NOVALINHA suite
+    (83) suite -> . NOVALINHA suite
+    (84) suite -> . empty
+    (89) afirmacao -> . afirm_simples
+    (90) afirmacao -> . afirm_composto
     (15) empty -> .
-    (92) afirm_simples -> . atribuicao
-    (93) afirm_simples -> . atribuicao_aumentada
-    (94) afirm_simples -> . imprime
-    (95) afirm_simples -> . retorna
-    (96) afirm_simples -> . declaracao
-    (97) afirm_simples -> . QUEBRA
-    (98) afirm_simples -> . CONTINUA
-    (105) afirm_composto -> . se
-    (106) afirm_composto -> . enquanto
-    (107) afirm_composto -> . para
+    (93) afirm_simples -> . atribuicao
+    (94) afirm_simples -> . atribuicao_aumentada
+    (95) afirm_simples -> . imprime
+    (96) afirm_simples -> . retorna
+    (97) afirm_simples -> . declaracao
+    (98) afirm_simples -> . QUEBRA
+    (99) afirm_simples -> . CONTINUA
+    (106) afirm_composto -> . se
+    (107) afirm_composto -> . enquanto
+    (108) afirm_composto -> . para
     (31) atribuicao -> . ID [ INT ] = valor
     (32) atribuicao -> . ID = valor
-    (108) atribuicao_aumentada -> . ID op_aum valor
-    (60) imprime -> . IMPRIME expressao
-    (59) retorna -> . RETORNA expressao
+    (80) atribuicao_aumentada -> . ID op_aum valor
+    (73) imprime -> . IMPRIME expressao
+    (72) retorna -> . RETORNA expressao
     (14) declaracao -> . TIPO ID
     (21) se -> . SE expressao : suite senaosemais senao FIM
     (22) enquanto -> . ENQUANTO expressao : suite FIM
@@ -3386,28 +3386,28 @@ state 157
 state 158
 
     (19) senao -> SENAO : . suite
-    (80) suite -> . afirmacao
-    (81) suite -> . afirmacao NOVALINHA suite
-    (82) suite -> . NOVALINHA suite
-    (83) suite -> . empty
-    (88) afirmacao -> . afirm_simples
-    (89) afirmacao -> . afirm_composto
+    (81) suite -> . afirmacao
+    (82) suite -> . afirmacao NOVALINHA suite
+    (83) suite -> . NOVALINHA suite
+    (84) suite -> . empty
+    (89) afirmacao -> . afirm_simples
+    (90) afirmacao -> . afirm_composto
     (15) empty -> .
-    (92) afirm_simples -> . atribuicao
-    (93) afirm_simples -> . atribuicao_aumentada
-    (94) afirm_simples -> . imprime
-    (95) afirm_simples -> . retorna
-    (96) afirm_simples -> . declaracao
-    (97) afirm_simples -> . QUEBRA
-    (98) afirm_simples -> . CONTINUA
-    (105) afirm_composto -> . se
-    (106) afirm_composto -> . enquanto
-    (107) afirm_composto -> . para
+    (93) afirm_simples -> . atribuicao
+    (94) afirm_simples -> . atribuicao_aumentada
+    (95) afirm_simples -> . imprime
+    (96) afirm_simples -> . retorna
+    (97) afirm_simples -> . declaracao
+    (98) afirm_simples -> . QUEBRA
+    (99) afirm_simples -> . CONTINUA
+    (106) afirm_composto -> . se
+    (107) afirm_composto -> . enquanto
+    (108) afirm_composto -> . para
     (31) atribuicao -> . ID [ INT ] = valor
     (32) atribuicao -> . ID = valor
-    (108) atribuicao_aumentada -> . ID op_aum valor
-    (60) imprime -> . IMPRIME expressao
-    (59) retorna -> . RETORNA expressao
+    (80) atribuicao_aumentada -> . ID op_aum valor
+    (73) imprime -> . IMPRIME expressao
+    (72) retorna -> . RETORNA expressao
     (14) declaracao -> . TIPO ID
     (21) se -> . SE expressao : suite senaosemais senao FIM
     (22) enquanto -> . ENQUANTO expressao : suite FIM
@@ -3442,28 +3442,28 @@ state 158
 state 159
 
     (18) senaose -> SENAOSE expressao : . suite
-    (80) suite -> . afirmacao
-    (81) suite -> . afirmacao NOVALINHA suite
-    (82) suite -> . NOVALINHA suite
-    (83) suite -> . empty
-    (88) afirmacao -> . afirm_simples
-    (89) afirmacao -> . afirm_composto
+    (81) suite -> . afirmacao
+    (82) suite -> . afirmacao NOVALINHA suite
+    (83) suite -> . NOVALINHA suite
+    (84) suite -> . empty
+    (89) afirmacao -> . afirm_simples
+    (90) afirmacao -> . afirm_composto
     (15) empty -> .
-    (92) afirm_simples -> . atribuicao
-    (93) afirm_simples -> . atribuicao_aumentada
-    (94) afirm_simples -> . imprime
-    (95) afirm_simples -> . retorna
-    (96) afirm_simples -> . declaracao
-    (97) afirm_simples -> . QUEBRA
-    (98) afirm_simples -> . CONTINUA
-    (105) afirm_composto -> . se
-    (106) afirm_composto -> . enquanto
-    (107) afirm_composto -> . para
+    (93) afirm_simples -> . atribuicao
+    (94) afirm_simples -> . atribuicao_aumentada
+    (95) afirm_simples -> . imprime
+    (96) afirm_simples -> . retorna
+    (97) afirm_simples -> . declaracao
+    (98) afirm_simples -> . QUEBRA
+    (99) afirm_simples -> . CONTINUA
+    (106) afirm_composto -> . se
+    (107) afirm_composto -> . enquanto
+    (108) afirm_composto -> . para
     (31) atribuicao -> . ID [ INT ] = valor
     (32) atribuicao -> . ID = valor
-    (108) atribuicao_aumentada -> . ID op_aum valor
-    (60) imprime -> . IMPRIME expressao
-    (59) retorna -> . RETORNA expressao
+    (80) atribuicao_aumentada -> . ID op_aum valor
+    (73) imprime -> . IMPRIME expressao
+    (72) retorna -> . RETORNA expressao
     (14) declaracao -> . TIPO ID
     (21) se -> . SE expressao : suite senaosemais senao FIM
     (22) enquanto -> . ENQUANTO expressao : suite FIM
@@ -3506,27 +3506,27 @@ state 160
 
 state 161
 
-    (86) suite_sem_retorno -> NOVALINHA . suite_sem_retorno
-    (84) suite_sem_retorno -> . afirmacao_sem_retorno
-    (85) suite_sem_retorno -> . afirmacao_sem_retorno NOVALINHA suite_sem_retorno
-    (86) suite_sem_retorno -> . NOVALINHA suite_sem_retorno
-    (87) suite_sem_retorno -> . empty
-    (90) afirmacao_sem_retorno -> . afirm_simples_sem_retorno
-    (91) afirmacao_sem_retorno -> . afirm_composto
+    (87) suite_sem_retorno -> NOVALINHA . suite_sem_retorno
+    (85) suite_sem_retorno -> . afirmacao_sem_retorno
+    (86) suite_sem_retorno -> . afirmacao_sem_retorno NOVALINHA suite_sem_retorno
+    (87) suite_sem_retorno -> . NOVALINHA suite_sem_retorno
+    (88) suite_sem_retorno -> . empty
+    (91) afirmacao_sem_retorno -> . afirm_simples_sem_retorno
+    (92) afirmacao_sem_retorno -> . afirm_composto
     (15) empty -> .
-    (99) afirm_simples_sem_retorno -> . atribuicao
-    (100) afirm_simples_sem_retorno -> . atribuicao_aumentada
-    (101) afirm_simples_sem_retorno -> . imprime
-    (102) afirm_simples_sem_retorno -> . declaracao
-    (103) afirm_simples_sem_retorno -> . QUEBRA
-    (104) afirm_simples_sem_retorno -> . CONTINUA
-    (105) afirm_composto -> . se
-    (106) afirm_composto -> . enquanto
-    (107) afirm_composto -> . para
+    (100) afirm_simples_sem_retorno -> . atribuicao
+    (101) afirm_simples_sem_retorno -> . atribuicao_aumentada
+    (102) afirm_simples_sem_retorno -> . imprime
+    (103) afirm_simples_sem_retorno -> . declaracao
+    (104) afirm_simples_sem_retorno -> . QUEBRA
+    (105) afirm_simples_sem_retorno -> . CONTINUA
+    (106) afirm_composto -> . se
+    (107) afirm_composto -> . enquanto
+    (108) afirm_composto -> . para
     (31) atribuicao -> . ID [ INT ] = valor
     (32) atribuicao -> . ID = valor
-    (108) atribuicao_aumentada -> . ID op_aum valor
-    (60) imprime -> . IMPRIME expressao
+    (80) atribuicao_aumentada -> . ID op_aum valor
+    (73) imprime -> . IMPRIME expressao
     (14) declaracao -> . TIPO ID
     (21) se -> . SE expressao : suite senaosemais senao FIM
     (22) enquanto -> . ENQUANTO expressao : suite FIM
@@ -3558,16 +3558,16 @@ state 161
 
 state 162
 
-    (87) suite_sem_retorno -> empty .
+    (88) suite_sem_retorno -> empty .
 
-    RETORNA         reduce using rule 87 (suite_sem_retorno -> empty .)
+    RETORNA         reduce using rule 88 (suite_sem_retorno -> empty .)
 
 
 state 163
 
     (26) definicao -> DEF TIPO ID ( params ) : suite_sem_retorno . retorna FIM
     (27) definicao -> DEF TIPO ID ( params ) : suite_sem_retorno . retorna novalinha FIM
-    (59) retorna -> . RETORNA expressao
+    (72) retorna -> . RETORNA expressao
 
     RETORNA         shift and go to state 104
 
@@ -3575,75 +3575,75 @@ state 163
 
 state 164
 
-    (101) afirm_simples_sem_retorno -> imprime .
+    (102) afirm_simples_sem_retorno -> imprime .
 
-    NOVALINHA       reduce using rule 101 (afirm_simples_sem_retorno -> imprime .)
-    RETORNA         reduce using rule 101 (afirm_simples_sem_retorno -> imprime .)
+    NOVALINHA       reduce using rule 102 (afirm_simples_sem_retorno -> imprime .)
+    RETORNA         reduce using rule 102 (afirm_simples_sem_retorno -> imprime .)
 
 
 state 165
 
-    (91) afirmacao_sem_retorno -> afirm_composto .
+    (92) afirmacao_sem_retorno -> afirm_composto .
 
-    NOVALINHA       reduce using rule 91 (afirmacao_sem_retorno -> afirm_composto .)
-    RETORNA         reduce using rule 91 (afirmacao_sem_retorno -> afirm_composto .)
+    NOVALINHA       reduce using rule 92 (afirmacao_sem_retorno -> afirm_composto .)
+    RETORNA         reduce using rule 92 (afirmacao_sem_retorno -> afirm_composto .)
 
 
 state 166
 
-    (90) afirmacao_sem_retorno -> afirm_simples_sem_retorno .
+    (91) afirmacao_sem_retorno -> afirm_simples_sem_retorno .
 
-    NOVALINHA       reduce using rule 90 (afirmacao_sem_retorno -> afirm_simples_sem_retorno .)
-    RETORNA         reduce using rule 90 (afirmacao_sem_retorno -> afirm_simples_sem_retorno .)
+    NOVALINHA       reduce using rule 91 (afirmacao_sem_retorno -> afirm_simples_sem_retorno .)
+    RETORNA         reduce using rule 91 (afirmacao_sem_retorno -> afirm_simples_sem_retorno .)
 
 
 state 167
 
-    (102) afirm_simples_sem_retorno -> declaracao .
+    (103) afirm_simples_sem_retorno -> declaracao .
 
-    NOVALINHA       reduce using rule 102 (afirm_simples_sem_retorno -> declaracao .)
-    RETORNA         reduce using rule 102 (afirm_simples_sem_retorno -> declaracao .)
+    NOVALINHA       reduce using rule 103 (afirm_simples_sem_retorno -> declaracao .)
+    RETORNA         reduce using rule 103 (afirm_simples_sem_retorno -> declaracao .)
 
 
 state 168
 
-    (99) afirm_simples_sem_retorno -> atribuicao .
+    (100) afirm_simples_sem_retorno -> atribuicao .
 
-    NOVALINHA       reduce using rule 99 (afirm_simples_sem_retorno -> atribuicao .)
-    RETORNA         reduce using rule 99 (afirm_simples_sem_retorno -> atribuicao .)
+    NOVALINHA       reduce using rule 100 (afirm_simples_sem_retorno -> atribuicao .)
+    RETORNA         reduce using rule 100 (afirm_simples_sem_retorno -> atribuicao .)
 
 
 state 169
 
-    (84) suite_sem_retorno -> afirmacao_sem_retorno .
-    (85) suite_sem_retorno -> afirmacao_sem_retorno . NOVALINHA suite_sem_retorno
+    (85) suite_sem_retorno -> afirmacao_sem_retorno .
+    (86) suite_sem_retorno -> afirmacao_sem_retorno . NOVALINHA suite_sem_retorno
 
-    RETORNA         reduce using rule 84 (suite_sem_retorno -> afirmacao_sem_retorno .)
+    RETORNA         reduce using rule 85 (suite_sem_retorno -> afirmacao_sem_retorno .)
     NOVALINHA       shift and go to state 179
 
 
 state 170
 
-    (100) afirm_simples_sem_retorno -> atribuicao_aumentada .
+    (101) afirm_simples_sem_retorno -> atribuicao_aumentada .
 
-    NOVALINHA       reduce using rule 100 (afirm_simples_sem_retorno -> atribuicao_aumentada .)
-    RETORNA         reduce using rule 100 (afirm_simples_sem_retorno -> atribuicao_aumentada .)
+    NOVALINHA       reduce using rule 101 (afirm_simples_sem_retorno -> atribuicao_aumentada .)
+    RETORNA         reduce using rule 101 (afirm_simples_sem_retorno -> atribuicao_aumentada .)
 
 
 state 171
 
-    (103) afirm_simples_sem_retorno -> QUEBRA .
+    (104) afirm_simples_sem_retorno -> QUEBRA .
 
-    NOVALINHA       reduce using rule 103 (afirm_simples_sem_retorno -> QUEBRA .)
-    RETORNA         reduce using rule 103 (afirm_simples_sem_retorno -> QUEBRA .)
+    NOVALINHA       reduce using rule 104 (afirm_simples_sem_retorno -> QUEBRA .)
+    RETORNA         reduce using rule 104 (afirm_simples_sem_retorno -> QUEBRA .)
 
 
 state 172
 
-    (104) afirm_simples_sem_retorno -> CONTINUA .
+    (105) afirm_simples_sem_retorno -> CONTINUA .
 
-    NOVALINHA       reduce using rule 104 (afirm_simples_sem_retorno -> CONTINUA .)
-    RETORNA         reduce using rule 104 (afirm_simples_sem_retorno -> CONTINUA .)
+    NOVALINHA       reduce using rule 105 (afirm_simples_sem_retorno -> CONTINUA .)
+    RETORNA         reduce using rule 105 (afirm_simples_sem_retorno -> CONTINUA .)
 
 
 state 173
@@ -3689,9 +3689,9 @@ state 176
 
 state 177
 
-    (86) suite_sem_retorno -> NOVALINHA suite_sem_retorno .
+    (87) suite_sem_retorno -> NOVALINHA suite_sem_retorno .
 
-    RETORNA         reduce using rule 86 (suite_sem_retorno -> NOVALINHA suite_sem_retorno .)
+    RETORNA         reduce using rule 87 (suite_sem_retorno -> NOVALINHA suite_sem_retorno .)
 
 
 state 178
@@ -3708,27 +3708,27 @@ state 178
 
 state 179
 
-    (85) suite_sem_retorno -> afirmacao_sem_retorno NOVALINHA . suite_sem_retorno
-    (84) suite_sem_retorno -> . afirmacao_sem_retorno
-    (85) suite_sem_retorno -> . afirmacao_sem_retorno NOVALINHA suite_sem_retorno
-    (86) suite_sem_retorno -> . NOVALINHA suite_sem_retorno
-    (87) suite_sem_retorno -> . empty
-    (90) afirmacao_sem_retorno -> . afirm_simples_sem_retorno
-    (91) afirmacao_sem_retorno -> . afirm_composto
+    (86) suite_sem_retorno -> afirmacao_sem_retorno NOVALINHA . suite_sem_retorno
+    (85) suite_sem_retorno -> . afirmacao_sem_retorno
+    (86) suite_sem_retorno -> . afirmacao_sem_retorno NOVALINHA suite_sem_retorno
+    (87) suite_sem_retorno -> . NOVALINHA suite_sem_retorno
+    (88) suite_sem_retorno -> . empty
+    (91) afirmacao_sem_retorno -> . afirm_simples_sem_retorno
+    (92) afirmacao_sem_retorno -> . afirm_composto
     (15) empty -> .
-    (99) afirm_simples_sem_retorno -> . atribuicao
-    (100) afirm_simples_sem_retorno -> . atribuicao_aumentada
-    (101) afirm_simples_sem_retorno -> . imprime
-    (102) afirm_simples_sem_retorno -> . declaracao
-    (103) afirm_simples_sem_retorno -> . QUEBRA
-    (104) afirm_simples_sem_retorno -> . CONTINUA
-    (105) afirm_composto -> . se
-    (106) afirm_composto -> . enquanto
-    (107) afirm_composto -> . para
+    (100) afirm_simples_sem_retorno -> . atribuicao
+    (101) afirm_simples_sem_retorno -> . atribuicao_aumentada
+    (102) afirm_simples_sem_retorno -> . imprime
+    (103) afirm_simples_sem_retorno -> . declaracao
+    (104) afirm_simples_sem_retorno -> . QUEBRA
+    (105) afirm_simples_sem_retorno -> . CONTINUA
+    (106) afirm_composto -> . se
+    (107) afirm_composto -> . enquanto
+    (108) afirm_composto -> . para
     (31) atribuicao -> . ID [ INT ] = valor
     (32) atribuicao -> . ID = valor
-    (108) atribuicao_aumentada -> . ID op_aum valor
-    (60) imprime -> . IMPRIME expressao
+    (80) atribuicao_aumentada -> . ID op_aum valor
+    (73) imprime -> . IMPRIME expressao
     (14) declaracao -> . TIPO ID
     (21) se -> . SE expressao : suite senaosemais senao FIM
     (22) enquanto -> . ENQUANTO expressao : suite FIM
@@ -3807,9 +3807,9 @@ state 183
 
 state 184
 
-    (85) suite_sem_retorno -> afirmacao_sem_retorno NOVALINHA suite_sem_retorno .
+    (86) suite_sem_retorno -> afirmacao_sem_retorno NOVALINHA suite_sem_retorno .
 
-    RETORNA         reduce using rule 85 (suite_sem_retorno -> afirmacao_sem_retorno NOVALINHA suite_sem_retorno .)
+    RETORNA         reduce using rule 86 (suite_sem_retorno -> afirmacao_sem_retorno NOVALINHA suite_sem_retorno .)
 
 
 state 185
