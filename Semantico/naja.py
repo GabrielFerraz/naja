@@ -276,12 +276,13 @@ def p_atribuicao_vetor(p):
     
 def p_atribuicao(p):
 	"atribuicao : ID '=' valor "
+	global buffer
 	erro = verifica_tipo(p[1], get_tipo(p[3][0]), p.stack)
 	if erro == -1:
 		erro_semantico("Variavel '"+ p[1] +"' nao encontrada!")
 	elif erro == -2:
 		erro_semantico("Atribuicao ilegal: '"+ get_tipo(names[get_codigo(p[1], p.stack)]) +"' esperado, mas '"+get_tipo(p[3][0])+"' encontrado!")
-	buffer = p[1]+" = "+str(bufferValor.pop())+';'
+	buffer += p[1]+" = "+str(bufferValor.pop())+';\n'
 	print buffer
 	print 1
     
